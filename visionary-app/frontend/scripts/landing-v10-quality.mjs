@@ -158,6 +158,15 @@ async function journeys(width, height) {
     await dialog.waitFor();
     await page.setViewportSize({ width: 1280, height: 800 });
     await dialog.waitFor({ state: 'detached' });
+    /* A role locator stops matching as soon as the desktop breakpoint hides
+       the drawer; the resize handler's inert/scroll-lock release lands in the
+       following commit. Wait for the settled a11y state instead of racing
+       that single frame. */
+    await page.waitForFunction(() =>
+      document.querySelector('main')?.inert === false && document.body.style.overflow === '',
+      null,
+      { timeout: 3000 },
+    );
     assert.equal(await page.locator('main').evaluate(el => el.inert), false);
     receipt.interactions.push('Mobile menu, resize, focus restoration and five footer disclosures');
   }

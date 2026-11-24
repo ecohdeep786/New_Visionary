@@ -78,7 +78,7 @@ function SharedChallenge() {
   return (
     <section data-section="06-journey" className="home-journey" aria-labelledby="journey-heading">
       <div className="home-width journey-intro">
-        <h2 id="journey-heading" data-type="section">Understanding is only the beginning.</h2>
+        <h2 id="journey-heading" data-type="display">Understanding is only the beginning.</h2>
         <p data-type="editorial-body">It’s hard to put an idea to work or see where someone needs help when learning and progress live in different places.</p>
         <p className="journey-answer" data-type="lead">Visionary brings learning, practical work and the people who support it into one workspace.</p>
       </div>
@@ -126,7 +126,7 @@ export default function LandingPage() {
         <section id="intelligence" tabIndex={-1} data-section="05-intelligence" className="scene-dark home-intelligence" aria-labelledby="intelligence-heading">
           <div className="home-width intelligence-layout">
             <div className="intelligence-copy">
-              <h2 id="intelligence-heading" data-type="section">One Intelligence.</h2>
+              <h2 id="intelligence-heading" data-type="display">One Intelligence.</h2>
               <p data-type="editorial-body">One AI guide for learning, teaching and building. Use the workspace in English, Hindi or Bengali.</p>
               <Link to="/how-it-works" className="home-text-link">How it works <ChevronRight aria-hidden="true" size={17} /></Link>
             </div>
@@ -139,22 +139,29 @@ export default function LandingPage() {
         <SharedChallenge />
         <AudienceDirectory />
         <section className="home-privacy" data-section="11-trust" aria-labelledby="privacy-heading">
-          <div className="home-width">
-            <Lock className="privacy-mark" strokeWidth={1.6} size={30} aria-hidden="true" />
+          <div className="home-width privacy-layout">
+            <Lock className="privacy-mark" strokeWidth={1.6} size={34} aria-hidden="true" />
             <h2 id="privacy-heading" data-type="card-chapter">Know what’s shared.</h2>
             <p data-type="editorial-body">Teachers and connected parents can follow shared progress. Your private conversations stay out of those views.</p>
             <Link to="/privacy#sharing" className="home-text-link">How sharing works <ChevronRight aria-hidden="true" size={17} /></Link>
           </div>
         </section>
         <section className="home-closing" data-section="12-cta" aria-labelledby="closing-heading">
-          <div className="home-width closing-layout">
-            <div className="closing-copy">
-              <h2 id="closing-heading" data-type="section">{signedIn ? "Continue in Visionary." : "Start with your own question."}</h2>
-              <p className="closing-line" data-type="editorial-body">Free to start. Private by design.</p>
+          <div className="closing-frame">
+            <div className="closing-panel closing-layout">
+              <div className="closing-copy">
+                <h2 id="closing-heading" data-type="section">{signedIn ? "Continue in Visionary." : "Start with your own question."}</h2>
+                <p className="closing-line" data-type="editorial-body">Free to start. Private by design.</p>
+              </div>
+              <div className="closing-actions">
+                <Link className="home-action public-action" to={signedIn ? "/dashboard/home" : "/register"}>
+                  {signedIn ? "Open Visionary" : "Create an account"}
+                </Link>
+                <Link className="home-text-link closing-secondary" to="/how-it-works">
+                  See how it works <ChevronRight aria-hidden="true" size={16} />
+                </Link>
+              </div>
             </div>
-            <Link className="home-action public-action" to={signedIn ? "/dashboard/home" : "/register"}>
-              {signedIn ? "Open Visionary" : "Create an account"}
-            </Link>
           </div>
         </section>
       </main>

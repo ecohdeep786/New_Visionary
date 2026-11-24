@@ -1,10 +1,11 @@
 .page-landing {
-  --public-section-py: clamp(4.5rem, 8.5vw, 8rem);
+  /* Apple's measured chapter breath: 112px on phones, 140px on desktop. */
+  --public-section-py: clamp(7rem, 10vw, 8.75rem);
 }
 .page-landing #audiences, .page-landing #intelligence { scroll-margin-top: 4.5rem; }
 
 /* The same reading edge runs through the product, audience and privacy chapters. */
-.home-width { width: min(calc(100% - 3rem), 68rem); margin-inline: auto; }
+.home-width { width: min(calc(100% - 3rem), 61.25rem); margin-inline: auto; }
 
 /* ── 05 · One Intelligence ────────────────────────────────────────────────
    The one dark product chapter: a complete stage, its copy held to the
@@ -12,7 +13,7 @@
 .page-landing #main .home-intelligence {
   position: relative;
   display: flex;
-  min-height: clamp(36rem, 84svh, 50rem);
+  min-height: clamp(38rem, 94svh, 52rem);
   padding: 0;
   overflow: hidden;
   border-top: 0;
@@ -273,11 +274,14 @@
 /* ── 06 · The shared challenge ────────────────────────────────────────────
    A quiet grey statement between the product and the fork. ─────────────── */
 .page-landing #main .home-journey {
-  padding-block: clamp(4.5rem, 9vw, 8rem);
+  display: flex;
+  align-items: center;
+  min-height: 38rem;
+  padding-block: clamp(7rem, 10vw, 8.75rem);
   border-top: 0;
   background: #f5f5f7;
 }
-.journey-intro { max-width: 48rem; margin-inline: auto; text-align: center; }
+.journey-intro { width: 100%; max-width: 48rem; margin-inline: auto; text-align: center; }
 .journey-intro h2 { max-width: 17ch; margin: 0 auto; text-wrap: balance; }
 .page-landing #main .journey-intro p { max-width: 42ch; margin: 1.35rem auto 0; color: #424247; text-wrap: pretty; }
 .page-landing #main .journey-intro p + p { margin-top: 0.7rem; }
@@ -286,18 +290,17 @@
 /* ── 13 · The five paths ──────────────────────────────────────────────────
    One quiet editorial directory, not five category pages in one place. ─── */
 .page-landing #main .home-audiences {
-  padding-block: clamp(4.5rem, 9vw, 8rem);
+  padding-block: clamp(7rem, 10vw, 8.75rem);
   border-top: 0;
   background: #fff;
 }
-.audience-layout {
-  display: grid;
-  grid-template-columns: minmax(13rem, 0.62fr) minmax(0, 1.5fr);
-  gap: clamp(2.5rem, 8vw, 8rem);
-  align-items: start;
+.audience-intro {
+  max-width: 44rem;
+  margin: 0 auto clamp(2.5rem, 4vw, 3.5rem);
+  text-align: center;
 }
 .audience-intro h2 { margin: 0; }
-.page-landing #main .audience-intro p { max-width: 24ch; margin: 1.1rem 0 0; color: #6e6e73; text-wrap: pretty; }
+.page-landing #main .audience-intro p { max-width: none; margin: 1.1rem 0 0; color: #6e6e73; text-wrap: pretty; }
 .audience-layout nav { min-width: 0; }
 .page-landing .audience-destination {
   display: grid;
@@ -329,7 +332,7 @@
 .audience-destination:is(:hover, :focus-visible) .destination-portrait img { transform: scale(1.035); }
 .audience-destination:focus-visible { outline: 3px solid #0066cc; outline-offset: 2px; }
 @media (max-width: 849px) {
-  .audience-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .audience-intro { max-width: 30rem; margin: 0 0 2rem; text-align: left; }
   .page-landing #main .audience-intro p { max-width: 30ch; }
 }
 @media (max-width: 639px) {
@@ -347,28 +350,44 @@
 /* ── 11 · Trust ───────────────────────────────────────────────────────────
    The quiet privacy beat; one idea, one room. ──────────────────────────── */
 .page-landing #main .home-privacy {
-  padding-block: clamp(4rem, 8vw, 7rem);
+  display: flex;
+  align-items: center;
+  min-height: 36rem;
+  padding-block: clamp(7rem, 10vw, 8.75rem);
   border-top: 0;
   background: #f4f5f7;
   text-align: center;
 }
-.privacy-mark { margin: 0 auto 1.2rem; color: #3c4651; }
+.privacy-layout { width: min(100%, 44rem); margin-inline: auto; }
+.privacy-mark { margin: 0 auto 1.3rem; color: #3c4651; }
 .page-landing #main .home-privacy h2 { margin: 0 auto; }
 .page-landing #main .home-privacy p { max-width: 44ch; margin: 1rem auto 0.7rem; color: #424245; text-wrap: balance; }
 
 /* ── 12 · The close ───────────────────────────────────────────────────────*/
 .page-landing #main .home-closing {
-  padding-block: clamp(4.5rem, 8.5vw, 7.5rem);
+  padding-block: clamp(7rem, 10vw, 8.75rem);
   border-top: 0;
   background: white;
 }
-.closing-layout { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 2rem; }
+.closing-frame { width: min(calc(100% - 3rem), 79rem); margin-inline: auto; }
+.closing-panel {
+  padding: clamp(2.75rem, 5vw, 4.5rem);
+  border: 1px solid rgba(29, 29, 31, 0.04);
+  border-radius: 1.75rem;
+  background: #f5f5f7;
+}
+.closing-layout { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: clamp(2rem, 5vw, 5rem); }
 .closing-copy { max-width: 34rem; }
 .closing-layout h2 { margin: 0; max-width: 17ch; text-wrap: balance; }
 .closing-line { margin: 1.1rem 0 0; color: #6e6e73; font-size: 1.0625rem; line-height: 1.5; }
+.closing-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem; }
 .page-landing .closing-layout .home-action { flex: none; margin-top: 0; }
+.closing-secondary { min-height: 2.75rem; }
 @media (max-width: 639px) {
-  .closing-layout { align-items: flex-start; flex-direction: column; gap: 1.5rem; }
+  .closing-frame { width: calc(100% - 2.5rem); }
+  .closing-panel { padding: 2rem 1.5rem; border-radius: 1.5rem; }
+  .closing-layout { align-items: flex-start; flex-direction: column; gap: 1.75rem; }
+  .closing-actions { gap: 0.5rem; }
 }
 
 .page-landing footer[data-compact] .public-frame { width: min(calc(100% - 3rem), 68rem); margin-inline: auto; }

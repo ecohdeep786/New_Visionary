@@ -128,7 +128,8 @@
         "frontend/src/pages/Landing.jsx:99:13",
         "frontend/src/pages/Landing.jsx:131:15",
         "frontend/src/pages/Landing.jsx:146:13",
-        "frontend/src/pages/Landing.jsx:155:13"
+        "frontend/src/pages/Landing.jsx:157:17",
+        "frontend/src/pages/Landing.jsx:160:17"
       ],
       "operations": [
         "public-discovery",
@@ -79119,15 +79120,40 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:155:13",
+      "id": "frontend/src/pages/Landing.jsx:157:17",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 155,
-      "column": 13,
+      "line": 157,
+      "column": 17,
       "tag": "Link",
       "events": [],
       "calls": [],
       "disabled": null,
       "declarationSha256": "d307387c9a3834bc6a1ef3d7840ef7618bc38037da8e19c969646f4079cc6b9c",
+      "routeIds": [
+        "/"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/Landing.jsx:160:17",
+      "file": "frontend/src/pages/Landing.jsx",
+      "line": 160,
+      "column": 17,
+      "tag": "Link",
+      "events": [],
+      "calls": [],
+      "destination": "/how-it-works",
+      "disabled": null,
+      "declarationSha256": "0c6ad3bfc5b660a1ae72e870903e074e232e619e4f203f637b852af075433ffc",
       "routeIds": [
         "/"
       ],
@@ -82597,7 +82623,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "fdec9d044c0606ea54ee58635b96091bcf9bd2fb1febe14008def02c9084ffaa"
+      "sourceSha256": "1da076bc9407a9f9f34033752de6bf035d3f77e89bd381e422bf50c2c4806e6a"
     },
     {
       "file": "frontend/src/pages/Login.jsx",
@@ -85876,11 +85902,11 @@
   "counts": {
     "routes": 67,
     "registeredEndpoints": 55,
-    "controlDeclarations": 1528,
-    "routeReachableDeclarations": 1525,
+    "controlDeclarations": 1529,
+    "routeReachableDeclarations": 1526,
     "controlFiles": 193,
     "states": {
-      "connected": 527,
+      "connected": 528,
       "preview": 924,
       "missing": 74,
       "intentionally-unreleased": 3
