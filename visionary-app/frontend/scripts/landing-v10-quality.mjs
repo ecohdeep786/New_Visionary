@@ -13,7 +13,7 @@ const browsers = { chromium, firefox, webkit };
 assert.ok(Object.hasOwn(browsers, engine), 'Choose chromium, firefox or webkit');
 const browser = await browsers[engine].launch(engine === 'chromium' ? { channel: 'msedge' } : {});
 const roles = ['student', 'teacher', 'parent', 'professional', 'organization'];
-const sections = ['01-hero', '05-intelligence', '13-explore', '11-trust', '12-cta'];
+const sections = ['01-hero', '05-intelligence', '06-journey', '13-explore', '11-trust', '12-cta'];
 const receipt = { base, engine, viewports: [], interactions: [], errors: [], failedRequests: [] };
 await mkdir(output, { recursive: true });
 
@@ -74,7 +74,7 @@ async function inspectViewport(width, height) {
   assert.ok(geometry.scrollWidth <= width && geometry.clearance >= 0, 'Hero reflow at ' + width);
   assert.equal(geometry.portraits.length, 5);
   assert.ok(geometry.portraits.every(p => p.height > 0 && p.center > 0 && p.center < width), 'Cast framing at ' + width);
-  const capture = width === 390 || width === 1440;
+  const capture = [390, 768, 1280, 1440].includes(width);
   if (capture) await page.screenshot({ path: path.join(output, 'hero-' + width + '.png') });
   for (const section of sections) {
     const target = page.locator('[data-section="' + section + '"]');
@@ -96,10 +96,11 @@ async function inspectViewport(width, height) {
   await page.close();
 }
 
-async function follow(page, link, suffix) {
+async function follow(page, link, suffix, destination = page.locator('main h1, [role="main"] h1, h1').first()) {
   await link.click();
   await page.waitForURL(url => url.pathname + url.hash === suffix);
-  await page.locator('main h1, [role="main"] h1, h1').first().waitFor();
+  await page.locator(".home-hero").waitFor({ state: "detached" });
+  await destination.waitFor();
   await page.goBack();
   await page.locator('.home-hero h1').waitFor();
 }
@@ -115,7 +116,7 @@ async function journeys(width, height) {
   for (const role of roles) await follow(page, directory.locator('[href="/' + role + '"]'), '/' + role);
   await follow(page, page.locator('#intelligence').getByRole('link'), '/how-it-works');
   await follow(page, page.locator('.home-privacy').getByRole('link'), '/privacy#sharing');
-  await follow(page, page.getByRole('link', { name: 'Create an account', exact: true }), '/register');
+  await follow(page, page.getByRole('link', { name: 'Create an account', exact: true }), '/register', page.getByRole('button', { name: 'Continue with Email' }));
   await page.goto(new URL('/#lesson-example', base).href);
   await page.waitForFunction(() => document.activeElement?.id === 'intelligence');
   receipt.interactions.push(width + 'px: five role journeys, product, privacy, registration, keyboard anchor and legacy deep link');
@@ -156,23 +157,76 @@ async function journeys(width, height) {
   await page.close();
 }
 
-async function checkReturningVisitor() {
-  const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
-  // Exercise both homepage entry points without relying on an external account.
-  const profile = { id: 'homepage-qa', identity: 'student', onboarding_complete: true };
-  await page.route('**/api/auth/me*', route => route.fulfill({ json: profile }));
-  try {
-    for (const section of ['.home-hero', '.home-closing']) {
-      await page.goto(base);
-      const action = page.locator(section).getByRole('link', { name: 'Open Visionary', exact: true });
-      await action.click();
-      await page.waitForURL(url => url.pathname === '/dashboard/home');
-    }
-    receipt.interactions.push('Returning visitor fixture: hero and closing actions enter the workspace');
-  } finally {
+async function checkTextScaling() {
+  for (const [width, height] of [[320, 568], [390, 844], [768, 1024]]) {
+    const page = await openPage(width, height);
+    await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
+    await page.waitForFunction(() => getComputedStyle(document.documentElement).fontSize === '32px');
+    await checkHeader(page);
+    const overflow = await page.evaluate(() => {
+      const elements = document.querySelectorAll('main h1, main h2, main h3, main p, main a, main button, .destination-copy, .cast-active');
+      return [...elements].flatMap(element => {
+        const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+        const clipped = [];
+        for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+          if (!node.textContent.trim() || getComputedStyle(node.parentElement).visibility === 'hidden') continue;
+          const range = document.createRange();
+          range.selectNodeContents(node);
+          if ([...range.getClientRects()].some(rect => rect.left < -1 || rect.right > innerWidth + 1)) {
+            clipped.push(node.textContent.trim());
+          }
+        }
+        return clipped;
+      });
+    });
+    assert.deepEqual(overflow, [], 'Visible text fits at 200% on ' + width + 'px');
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+    await page.locator('footer').scrollIntoViewIfNeeded();
+    await page.locator('[data-scroll-action]:not([aria-hidden])').waitFor();
+    await checkHeader(page);
     await page.close();
   }
+  receipt.interactions.push('200% text and header reflow at 320, 390 and 768px');
 }
+
+async function checkPreloadLifecycle() {
+  const page = await openPage(390, 844);
+  const preload = page.locator('link[rel="preload"][data-page-lcp]');
+  const studentSource = page.locator('.cast-slot-2 picture source');
+  const assertHomePreload = async () => {
+    assert.equal(await preload.count(), 1);
+    assert.equal(await preload.getAttribute('imagesrcset'), await studentSource.getAttribute('srcset'));
+    assert.equal(await preload.getAttribute('imagesizes'), await studentSource.getAttribute('sizes'));
+  };
+  await assertHomePreload();
+  await follow(page, page.locator('#intelligence').getByRole('link'), '/how-it-works');
+  await assertHomePreload();
+  await page.locator('#intelligence').getByRole('link').click();
+  await preload.waitFor({ state: 'detached' });
+  receipt.interactions.push('The homepage preload matches its responsive picture, clears on exit and returns with browser Back');
+  await page.close();
+}
+
+async function checkReturningVisitor() {
+  const scenarios = [".home-hero", ".home-closing", null];
+  for (const section of scenarios) {
+    const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+    const profile = { id: 'homepage-qa', identity: 'student', onboarding_complete: section === null };
+    await page.route('**/api/auth/me*', route => route.fulfill({ json: profile }));
+    try {
+      await page.goto(base);
+      if (section) {
+        await page.locator(section).getByRole('link', { name: 'Open Visionary', exact: true }).click();
+      }
+      await page.waitForURL(url => url.pathname === (section ? '/onboarding' : '/dashboard/home'));
+      await page.locator('.home-hero').waitFor({ state: 'detached' });
+    } finally {
+      await page.close();
+    }
+  }
+  receipt.interactions.push('Signed-in fixtures: both actions continue setup and completed profiles enter the workspace');
+}
+
 
 async function checkRotation() {
   const page = await openPage(390, 844);
@@ -201,6 +255,8 @@ try {
   await journeys(390, 844);
   await journeys(1440, 900);
   await checkRotation();
+  await checkTextScaling();
+  await checkPreloadLifecycle();
   await checkReturningVisitor();
   assert.deepEqual(receipt.errors, [], 'No browser errors');
   assert.deepEqual(receipt.failedRequests, [], 'No failed resources');

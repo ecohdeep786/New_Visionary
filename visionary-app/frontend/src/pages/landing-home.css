@@ -17,7 +17,7 @@
 .intelligence-portrait { display: block; align-self: end; width: min(100%, 24rem); justify-self: center; margin-bottom: -3rem; }
 .intelligence-portrait img { display: block; width: 100%; height: auto; }
 @media (max-width: 699px) {
-  .home-width { width: calc(100% - 3rem); }
+  .home-width { width: calc(100% - min(3rem, 12vw)); }
   .intelligence-layout { min-height: 0; grid-template-columns: 1fr; gap: 1rem; }
   .intelligence-copy { padding-block: clamp(3.5rem, 12vw, 5rem) 0; }
   .intelligence-portrait { width: min(65%, 14rem); margin-right: 2%; margin-bottom: -2rem; }
@@ -38,8 +38,8 @@
   margin: 0; max-width: none; font-weight: 600; font-size: clamp(3.6rem, 6.3vw, 6.1rem);
   line-height: 1.02; letter-spacing: -.055em;
 }
-.home-hero-copy h1 > span { display: block; }
-.home-hero-copy h1 .role-headlines { display: grid; color: #1468bf; }
+.home-hero-copy h1 > span { display: block; overflow-wrap: anywhere; }
+.home-hero-copy h1 .role-headlines { display: grid; grid-template-columns: minmax(0, 1fr); overflow-wrap: anywhere; color: #1468bf; }
 .role-headlines > span { grid-area: 1 / 1; visibility: hidden; }
 .role-headlines .is-current { visibility: visible; animation: audience-arrive var(--motion-duration-slow) var(--ease-out-apple); }
 @keyframes audience-arrive { from { opacity: .35; transform: translateY(.09em); } to { opacity: 1; transform: none; } }
@@ -60,8 +60,8 @@
 }
 .cast-person { transition: transform var(--motion-duration-slow) var(--ease-out-apple); transform-origin: 50% 100%; }
 .cast-person[data-current="true"] { transform: scale(1.035); }
-.cast-caption { display: flex; align-items: center; justify-content: center; gap: .35rem; padding: .2rem 1.25rem; background: #fafafa; }
-.cast-caption button { display: inline-flex; align-items: center; justify-content: center; gap: .3rem; min-height: 2.75rem; min-width: 2.75rem; border-radius: .5rem; color: #4d4d53; }
+.cast-caption { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .35rem; padding: .2rem 1.25rem; background: #fafafa; }
+.cast-caption button { display: inline-flex; align-items: center; justify-content: center; gap: .3rem; min-height: 44px; min-width: 44px; border-radius: .5rem; color: #4d4d53; }
 .cast-active { margin-right: .35rem; color: #505057; font-size: .9375rem; }
 .cast-caption button:hover { color: #125aab; }
 .page-landing .home-action:focus-visible, .cast-caption button:focus-visible {
@@ -72,7 +72,7 @@
 }
 @media (max-width: 639px) {
   .page-landing #main .home-hero { --cast-h: 36vw; min-height: min(calc(100svh - 3.5rem), 38rem); padding-top: 2.8rem; }
-  .page-landing #main .home-hero-copy h1 { font-size: clamp(2.15rem, 10.5vw, 3.8rem); }
+  .page-landing #main .home-hero-copy h1 { font-size: min(clamp(2.15rem, 10.5vw, 3.8rem), 16vw); }
   .page-landing #main .home-hero-copy p { max-width: 33ch; margin: 1rem auto 1.4rem; }
   .family-stage { margin-top: clamp(1.75rem, 4svh, 2.5rem); }
   .home-hero .cast-slot-1 { margin-left: calc(var(--cast-h) * -.39); }
@@ -84,6 +84,38 @@
   .role-headlines .is-current { animation: none; }
   .cast-person, .page-landing .home-action { transition: none; }
 }
+
+.page-landing #main .home-journey {
+  padding-block: clamp(4rem, 8svh + 3vw, 8rem);
+  border-top: 0;
+  background: #f5f5f7;
+}
+.journey-intro { max-width: 44rem; margin-inline: auto; text-align: center; }
+.journey-intro h2 { margin: 0; text-wrap: balance; }
+.page-landing #main .journey-intro p { max-width: 43ch; margin: 1.25rem auto 0; text-wrap: balance; }
+.journey-steps {
+  --fs-feature-heading: clamp(1.25rem, 2.2vw, 1.75rem);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1.25rem, 3.5vw, 3rem);
+  margin: clamp(2.25rem, 5vw, 4.25rem) 0 0;
+  padding: 0;
+}
+.journey-steps li { border-top: 1px solid #c7cbd1; padding-top: 1.15rem; overflow-wrap: anywhere; }
+.journey-steps h3 { margin: 0; }
+.journey-steps p { max-width: 24ch; margin: .45rem 0 0; color: #505057; line-height: 1.45; }
+
+@media (max-width: 799px) {
+  .journey-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 479px) {
+  .journey-intro { text-align: start; }
+  .page-landing #main .journey-intro p { margin-inline: 0; text-wrap: pretty; }
+  .journey-steps { grid-template-columns: minmax(0, 1fr); gap: .8rem; }
+  .journey-steps li { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.5fr); align-items: baseline; gap: .7rem; }
+  .journey-steps :is(h3, p) { margin: 0; }
+}
+
 
 /* Use the whole row as the destination. The short statement replaces a separate problem card. */
 .page-landing #main .home-audiences { background: #fff; padding-block: clamp(4.5rem, 8.5vw, 8rem); }
@@ -98,7 +130,7 @@
 .audience-destination:last-child { border-bottom: 1px solid #d5d7da; }
 .destination-portrait { display: block; width: 5.5rem; height: 5.5rem; overflow: hidden; border-radius: .85rem; background: #f4f4f6; }
 .destination-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center; mix-blend-mode: multiply; }
-.destination-copy { display: grid; gap: .3rem; padding-inline-start: .5rem; }
+.destination-copy { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; overflow-wrap: anywhere; gap: .3rem; padding-inline-start: min(.5rem, 2vw); }
 .destination-copy strong { font-size: clamp(1.45rem, 2.4vw, 2rem); line-height: 1.12; font-weight: 600; letter-spacing: -.035em; }
 .destination-copy > span { color: #505057; font-size: 1.0625rem; line-height: 1.4; }
 .destination-arrow { justify-self: end; color: #606068; }
@@ -108,8 +140,8 @@
   .audience-layout { grid-template-columns: 1fr; gap: 2rem; }
 }
 @media (max-width: 639px) {
-  .page-landing .audience-destination { grid-template-columns: 3.75rem minmax(0, 1fr) 1rem; gap: .9rem; min-height: 6rem; }
-  .destination-portrait { width: 3.75rem; height: 4.25rem; border-radius: .6rem; }
+  .page-landing .audience-destination { grid-template-columns: min(3.75rem, 16vw) minmax(0, 1fr) min(1rem, 5vw); gap: min(.9rem, 3vw); min-height: 6rem; }
+  .destination-portrait { width: min(3.75rem, 16vw); height: min(4.25rem, 19vw); border-radius: .6rem; }
   .destination-copy strong { font-size: 1.35rem; overflow-wrap: anywhere; }
   .destination-copy > span { font-size: .9375rem; }
   .destination-arrow { width: 1rem; }
@@ -121,9 +153,9 @@
 .page-landing #main .home-privacy p { max-width: 43ch; margin: .95rem auto .55rem; color: #424245; text-wrap: balance; }
 
 .page-landing #main .home-closing { padding-block: clamp(3.75rem, 7.5vw, 7rem); background: white; }
-.closing-layout { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+.closing-layout { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem; }
 .closing-layout h2 { margin: 0; max-width: 17ch; text-wrap: balance; }
-.closing-layout .home-action { flex: none; }
+.page-landing .closing-layout .home-action { flex: none; margin-top: 0; }
 @media (max-width: 639px) {
   .closing-layout { align-items: flex-start; flex-direction: column; gap: 1.25rem; }
 }
@@ -144,12 +176,16 @@
 
 @media (max-width: 639px) {
   .page-landing header [data-scroll-action][aria-hidden="true"] { display: none; }
-  .page-landing header [data-public-nav-bar] { column-gap: .5rem; }
+  .page-landing header [data-public-nav-bar] { width: calc(100% - min(2.5rem, 10vw)); column-gap: min(.5rem, 2vw); }
+  .page-landing header [aria-label="Visionary home"] > svg { width: min(6.825rem, 29vw); height: auto; }
+  .page-landing header button[aria-expanded] { width: 44px; height: 44px; }
+  .page-landing header [data-scroll-action] { margin-inline-start: 0; padding-inline: min(1.3125rem, 4vw); }
+  .page-landing header [data-public-nav-bar] > div:last-child { gap: min(.5rem, 2vw); }
   .page-landing header [aria-label="Visionary home"]::after { inset-inline: 0; }
 }
 @media (max-width: 374px) {
-  .page-landing header [data-public-nav-bar] { width: calc(100% - 1.5rem); }
-  .page-landing header [data-scroll-action] { min-width: 0; margin-left: 0; padding-inline: .75rem; font-size: .9375rem; }
+  .page-landing header [data-public-nav-bar] { width: calc(100% - min(1.5rem, 6vw)); }
+  .page-landing header [data-scroll-action] { min-width: 0; margin-left: 0; padding-inline: min(.75rem, 3vw); font-size: min(.9375rem, 6vw); }
   .page-landing header [data-scroll-action] svg { display: none; }
   .page-landing header [data-public-nav-bar] > div:last-child { gap: .25rem; }
 }

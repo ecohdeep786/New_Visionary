@@ -54,38 +54,13 @@ import orgCut800 from "@/assets/hero-cutouts/organization-800w.webp";
 import professionalPhotoAvif from "@/assets/pro-face-main-800w.avif";
 import teacherCut480Avif from "@/assets/hero-cutouts/teacher-480w.avif";
 import teacherCut800Avif from "@/assets/hero-cutouts/teacher-800w.avif";
-import studentCut480Avif from "@/assets/hero-cutouts/student-480w.avif";
-import studentCut800Avif from "@/assets/hero-cutouts/student-800w.avif";
 import parentCut480Avif from "@/assets/hero-cutouts/parent-480w.avif";
 import parentCut800Avif from "@/assets/hero-cutouts/parent-800w.avif";
 import orgCut480Avif from "@/assets/hero-cutouts/organization-480w.avif";
 import orgCut800Avif from "@/assets/hero-cutouts/organization-800w.avif";
 import { fontStack } from "@/components/landing/system/tokens";
 
-/* LCP preload — the cast’s largest slot (the student cutout) is the
-   landing’s LCP element, but its URL lives inside this module, so the
-   browser cannot discover it before module eval + render. Under the lab
-   throttle the request then queued behind its four siblings, the auth
-   probe and the favicon (~600ms of queueing for a 15KB file). Preloading
-   at module scope starts the fetch one commit earlier. The srcset/sizes
-   mirror the cast <img>'s AVIF source exactly, so the preload is reused,
-   not re-fetched. Gated to the landing path: this module evaluates with
-   the entry chunk on every route, and the preload is only true on "/". */
-if (typeof window !== "undefined" && window.location.pathname === "/") {
-  const lcpPreload = document.createElement("link");
-  lcpPreload.setAttribute("rel", "preload");
-  lcpPreload.setAttribute("as", "image");
-  /* setAttribute, not the IDL property: this Chromium build does not reflect
-     imagesrcset/imagesizes assignments onto the DOM attributes, and an
-     attribute-less preload is inert (the same quirk PageMeta’s upsertPreload
-     works around). type="image/avif" byte-matches the cast <source>, so the
-     preload is reused by the <picture> instead of fighting the fallback. */
-  lcpPreload.setAttribute("imagesrcset", `${studentCut480Avif} 480w, ${studentCut800Avif} 800w`);
-  lcpPreload.setAttribute("imagesizes", "(max-width: 639px) 44vw, (max-width: 1023px) 30vw, 24vw");
-  lcpPreload.setAttribute("type", "image/avif");
-  lcpPreload.setAttribute("fetchpriority", "high");
-  document.head.appendChild(lcpPreload);
-}
+import { UNIVERSAL_HERO_AVIF_SRCSET } from "@/lib/universalHero";
 
 const cutSet = (w480, w800) => `${w480} 480w, ${w800} 800w`;
 /* avifSet mirrors cutSet for the same-pixel AVIF siblings; the <picture>
@@ -94,10 +69,38 @@ const cutSet = (w480, w800) => `${w480} 480w, ${w800} 800w`;
 const LANDING_HERO_LINEUP = [
   { label: "Professional", src: professionalPhoto, avifSrcSet: professionalPhotoAvif },
   { label: "Teacher", src: teacherCut800, srcSet: cutSet(teacherCut480, teacherCut800), avifSrcSet: cutSet(teacherCut480Avif, teacherCut800Avif) },
-  { label: "Student", src: studentCut800, srcSet: cutSet(studentCut480, studentCut800), avifSrcSet: cutSet(studentCut480Avif, studentCut800Avif) },
+  { label: "Student", src: studentCut800, srcSet: cutSet(studentCut480, studentCut800), avifSrcSet: UNIVERSAL_HERO_AVIF_SRCSET },
   { label: "Parent", src: parentCut800, srcSet: cutSet(parentCut480, parentCut800), avifSrcSet: cutSet(parentCut480Avif, parentCut800Avif) },
   { label: "Organization", src: orgCut800, srcSet: cutSet(orgCut480, orgCut800), avifSrcSet: cutSet(orgCut480Avif, orgCut800Avif) },
 ];
+
+const LEARNING_STEPS = [
+  { name: "Learn", detail: "Start with an idea you want to understand." },
+  { name: "Ask", detail: "Get another explanation where you’re stuck." },
+  { name: "Practise", detail: "Try it yourself and see what you understand." },
+  { name: "Build", detail: "Put the idea to work in a project." },
+];
+
+function LearningJourney() {
+  return (
+    <section data-section="06-journey" className="home-journey" aria-labelledby="journey-heading">
+      <div className="home-width">
+        <div className="journey-intro">
+          <h2 id="journey-heading" data-type="section">Different goals. <br />The same disconnect.</h2>
+          <p data-type="editorial-body">A lesson in one place, practice in another, and a project you have to start from scratch. Visionary brings those steps together.</p>
+        </div>
+        <ol className="journey-steps" role="list" aria-label="How Visionary connects learning and building">
+          {LEARNING_STEPS.map(({ name, detail }) => (
+            <li key={name}>
+              <h3 data-type="feature-heading">{name}</h3>
+              <p>{detail}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
 
 function AudienceDirectory() {
   return (
@@ -137,7 +140,7 @@ export default function LandingPage() {
           <div className="home-width intelligence-layout">
             <div className="intelligence-copy">
               <h2 id="intelligence-heading" data-type="section">One Intelligence.</h2>
-              <p data-type="editorial-body">Ask your AI guide about a tricky idea in Learn. Practise it, then put it to work on a project in Build.</p>
+              <p data-type="editorial-body">One AI guide connects what you learn to what you build. Use the workspace in English, Hindi or Bengali.</p>
               <Link to="/how-it-works" className="home-text-link">How it works <ChevronRight aria-hidden="true" size={17} /></Link>
             </div>
             <picture className="intelligence-portrait" aria-hidden="true">
@@ -146,6 +149,7 @@ export default function LandingPage() {
             </picture>
           </div>
         </section>
+        <LearningJourney />
         <AudienceDirectory />
         <section className="home-privacy" data-section="11-trust" aria-labelledby="privacy-heading">
           <div className="home-width">

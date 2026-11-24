@@ -50,6 +50,7 @@
         "frontend/src/lib/onboardingLearningContext.js",
         "frontend/src/lib/query-client.js",
         "frontend/src/lib/queryClientSetup.js",
+        "frontend/src/lib/universalHero.js",
         "frontend/src/pages/Landing.jsx",
         "frontend/src/services/curriculumTemplate.ts",
         "frontend/src/services/journeyEligibility.ts",
@@ -112,11 +113,11 @@
         "frontend/src/components/landing/LandingNav/MobileNavigation.jsx:172:15",
         "frontend/src/components/landing/LandingNav/MobileNavigation.jsx:184:13",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
-        "frontend/src/components/landing/NewPersona.jsx:54:5",
-        "frontend/src/components/landing/NewPersona.jsx:69:9",
-        "frontend/src/components/landing/NewPersona.jsx:114:7",
-        "frontend/src/components/landing/NewPersona.jsx:117:9",
-        "frontend/src/components/landing/NewPersona.jsx:121:9",
+        "frontend/src/components/landing/NewPersona.jsx:55:5",
+        "frontend/src/components/landing/NewPersona.jsx:70:9",
+        "frontend/src/components/landing/NewPersona.jsx:115:7",
+        "frontend/src/components/landing/NewPersona.jsx:118:9",
+        "frontend/src/components/landing/NewPersona.jsx:122:9",
         "frontend/src/components/landing/system/ui.jsx:166:7",
         "frontend/src/components/landing/system/ui.jsx:186:9",
         "frontend/src/components/landing/system/ui.jsx:213:5",
@@ -124,10 +125,10 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/Landing.jsx:109:13",
-        "frontend/src/pages/Landing.jsx:141:15",
-        "frontend/src/pages/Landing.jsx:155:13",
-        "frontend/src/pages/Landing.jsx:161:13"
+        "frontend/src/pages/Landing.jsx:112:13",
+        "frontend/src/pages/Landing.jsx:144:15",
+        "frontend/src/pages/Landing.jsx:159:13",
+        "frontend/src/pages/Landing.jsx:165:13"
       ],
       "operations": [
         "public-discovery",
@@ -784,6 +785,7 @@
         "frontend/src/lib/onboardingLearningContext.js",
         "frontend/src/lib/query-client.js",
         "frontend/src/lib/queryClientSetup.js",
+        "frontend/src/lib/universalHero.js",
         "frontend/src/pages/landing/StudentPage.jsx",
         "frontend/src/services/curriculumTemplate.ts",
         "frontend/src/services/journeyEligibility.ts",
@@ -847,11 +849,11 @@
         "frontend/src/components/landing/LandingNav/MobileNavigation.jsx:184:13",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:80:5",
-        "frontend/src/components/landing/NewPersona.jsx:54:5",
-        "frontend/src/components/landing/NewPersona.jsx:69:9",
-        "frontend/src/components/landing/NewPersona.jsx:114:7",
-        "frontend/src/components/landing/NewPersona.jsx:117:9",
-        "frontend/src/components/landing/NewPersona.jsx:121:9",
+        "frontend/src/components/landing/NewPersona.jsx:55:5",
+        "frontend/src/components/landing/NewPersona.jsx:70:9",
+        "frontend/src/components/landing/NewPersona.jsx:115:7",
+        "frontend/src/components/landing/NewPersona.jsx:118:9",
+        "frontend/src/components/landing/NewPersona.jsx:122:9",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -1010,6 +1012,7 @@
         "frontend/src/lib/onboardingLearningContext.js",
         "frontend/src/lib/query-client.js",
         "frontend/src/lib/queryClientSetup.js",
+        "frontend/src/lib/universalHero.js",
         "frontend/src/pages/landing/TeacherPage.jsx",
         "frontend/src/services/curriculumTemplate.ts",
         "frontend/src/services/journeyEligibility.ts",
@@ -1073,11 +1076,11 @@
         "frontend/src/components/landing/LandingNav/MobileNavigation.jsx:184:13",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:80:5",
-        "frontend/src/components/landing/NewPersona.jsx:54:5",
-        "frontend/src/components/landing/NewPersona.jsx:69:9",
-        "frontend/src/components/landing/NewPersona.jsx:114:7",
-        "frontend/src/components/landing/NewPersona.jsx:117:9",
-        "frontend/src/components/landing/NewPersona.jsx:121:9",
+        "frontend/src/components/landing/NewPersona.jsx:55:5",
+        "frontend/src/components/landing/NewPersona.jsx:70:9",
+        "frontend/src/components/landing/NewPersona.jsx:115:7",
+        "frontend/src/components/landing/NewPersona.jsx:118:9",
+        "frontend/src/components/landing/NewPersona.jsx:122:9",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -1236,6 +1239,7 @@
         "frontend/src/lib/onboardingLearningContext.js",
         "frontend/src/lib/query-client.js",
         "frontend/src/lib/queryClientSetup.js",
+        "frontend/src/lib/universalHero.js",
         "frontend/src/pages/landing/ParentPage.jsx",
         "frontend/src/services/curriculumTemplate.ts",
         "frontend/src/services/journeyEligibility.ts",
@@ -1299,11 +1303,11 @@
         "frontend/src/components/landing/LandingNav/MobileNavigation.jsx:184:13",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:80:5",
-        "frontend/src/components/landing/NewPersona.jsx:54:5",
-        "frontend/src/components/landing/NewPersona.jsx:69:9",
-        "frontend/src/components/landing/NewPersona.jsx:114:7",
-        "frontend/src/components/landing/NewPersona.jsx:117:9",
-        "frontend/src/components/landing/NewPersona.jsx:121:9",
+        "frontend/src/components/landing/NewPersona.jsx:55:5",
+        "frontend/src/components/landing/NewPersona.jsx:70:9",
+        "frontend/src/components/landing/NewPersona.jsx:115:7",
+        "frontend/src/components/landing/NewPersona.jsx:118:9",
+        "frontend/src/components/landing/NewPersona.jsx:122:9",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -1588,6 +1592,7 @@
         "frontend/src/lib/onboardingLearningContext.js",
         "frontend/src/lib/query-client.js",
         "frontend/src/lib/queryClientSetup.js",
+        "frontend/src/lib/universalHero.js",
         "frontend/src/pages/landing/CollegePage.jsx",
         "frontend/src/services/curriculumTemplate.ts",
         "frontend/src/services/journeyEligibility.ts",
@@ -1651,11 +1656,11 @@
         "frontend/src/components/landing/LandingNav/MobileNavigation.jsx:184:13",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:80:5",
-        "frontend/src/components/landing/NewPersona.jsx:54:5",
-        "frontend/src/components/landing/NewPersona.jsx:69:9",
-        "frontend/src/components/landing/NewPersona.jsx:114:7",
-        "frontend/src/components/landing/NewPersona.jsx:117:9",
-        "frontend/src/components/landing/NewPersona.jsx:121:9",
+        "frontend/src/components/landing/NewPersona.jsx:55:5",
+        "frontend/src/components/landing/NewPersona.jsx:70:9",
+        "frontend/src/components/landing/NewPersona.jsx:115:7",
+        "frontend/src/components/landing/NewPersona.jsx:118:9",
+        "frontend/src/components/landing/NewPersona.jsx:122:9",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -1995,6 +2000,7 @@
         "frontend/src/lib/onboardingLearningContext.js",
         "frontend/src/lib/query-client.js",
         "frontend/src/lib/queryClientSetup.js",
+        "frontend/src/lib/universalHero.js",
         "frontend/src/pages/landing/OrganizationPage.jsx",
         "frontend/src/services/curriculumTemplate.ts",
         "frontend/src/services/journeyEligibility.ts",
@@ -2058,11 +2064,11 @@
         "frontend/src/components/landing/LandingNav/MobileNavigation.jsx:184:13",
         "frontend/src/components/landing/LandingNav/nav-shared.jsx:32:5",
         "frontend/src/components/landing/LazyImage.jsx:80:5",
-        "frontend/src/components/landing/NewPersona.jsx:54:5",
-        "frontend/src/components/landing/NewPersona.jsx:69:9",
-        "frontend/src/components/landing/NewPersona.jsx:114:7",
-        "frontend/src/components/landing/NewPersona.jsx:117:9",
-        "frontend/src/components/landing/NewPersona.jsx:121:9",
+        "frontend/src/components/landing/NewPersona.jsx:55:5",
+        "frontend/src/components/landing/NewPersona.jsx:70:9",
+        "frontend/src/components/landing/NewPersona.jsx:115:7",
+        "frontend/src/components/landing/NewPersona.jsx:118:9",
+        "frontend/src/components/landing/NewPersona.jsx:122:9",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:25:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:34:11",
         "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx:42:23",
@@ -47488,9 +47494,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/NewPersona.jsx:54:5",
+      "id": "frontend/src/components/landing/NewPersona.jsx:55:5",
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "line": 54,
+      "line": 55,
       "column": 5,
       "tag": "section",
       "events": [
@@ -47525,9 +47531,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/NewPersona.jsx:69:9",
+      "id": "frontend/src/components/landing/NewPersona.jsx:70:9",
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "line": 69,
+      "line": 70,
       "column": 9,
       "tag": "Link",
       "events": [],
@@ -47554,9 +47560,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/NewPersona.jsx:114:7",
+      "id": "frontend/src/components/landing/NewPersona.jsx:115:7",
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "line": 114,
+      "line": 115,
       "column": 7,
       "tag": "div",
       "events": [
@@ -47594,9 +47600,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/NewPersona.jsx:117:9",
+      "id": "frontend/src/components/landing/NewPersona.jsx:118:9",
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "line": 117,
+      "line": 118,
       "column": 9,
       "tag": "button",
       "events": [
@@ -47631,9 +47637,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/NewPersona.jsx:121:9",
+      "id": "frontend/src/components/landing/NewPersona.jsx:122:9",
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "line": 121,
+      "line": 122,
       "column": 9,
       "tag": "button",
       "events": [
@@ -79035,9 +79041,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:109:13",
+      "id": "frontend/src/pages/Landing.jsx:112:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 109,
+      "line": 112,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -79059,9 +79065,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:141:15",
+      "id": "frontend/src/pages/Landing.jsx:144:15",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 141,
+      "line": 144,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -79084,9 +79090,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:155:13",
+      "id": "frontend/src/pages/Landing.jsx:159:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 155,
+      "line": 159,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -79109,9 +79115,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:161:13",
+      "id": "frontend/src/pages/Landing.jsx:165:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 161,
+      "line": 165,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -81715,7 +81721,7 @@
     },
     {
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "sourceSha256": "8c220beac5745985e22779e6d56b596c06fa873de141b4e16083239c5f1fe9ef"
+      "sourceSha256": "f52f1a910808c44d4e149112913a58134f41bf73ccd2d896a1a11fe8f8f86a2c"
     },
     {
       "file": "frontend/src/components/landing/persona/PersonaSections.jsx",
@@ -82287,7 +82293,7 @@
     },
     {
       "file": "frontend/src/lib/routeMeta.js",
-      "sourceSha256": "013297d3d32fc476ed6c76f7db997c8c8e741bbedaceace7cc37f998c9dca737"
+      "sourceSha256": "97091415378a79c3a37b3a05af783894d0bef84c941122efacefe60e670f9803"
     },
     {
       "file": "frontend/src/lib/RoutePrefetcher.jsx",
@@ -82308,6 +82314,10 @@
     {
       "file": "frontend/src/lib/teacherCopy.js",
       "sourceSha256": "408b964d67d16d08d169b2c01b028d8abdd4cb9de92a687b25fa888232209e9e"
+    },
+    {
+      "file": "frontend/src/lib/universalHero.js",
+      "sourceSha256": "35ab79dbf2ff896a7bb91979d347176e4c5cca5f34f17a8ece54a6bb4d5e9363"
     },
     {
       "file": "frontend/src/lib/utils.js",
@@ -82583,7 +82593,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "c54cab69a985bbb6d48fcca12f1d0231c217942dfe934ccf05f78c10fd0b78e9"
+      "sourceSha256": "db46b06f2984c8e086295af276a11674e04eb4eaeef806df61dd631921bd24f6"
     },
     {
       "file": "frontend/src/pages/Login.jsx",

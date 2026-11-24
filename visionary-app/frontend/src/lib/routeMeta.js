@@ -6,18 +6,22 @@
  */
 import { HERO_SIZES, HERO_AVIF_SOURCES, HEROES } from "@/lib/heroVariants";
 import { PRICING_FAQ } from "@/data/pricingConfig";
+import { UNIVERSAL_HERO_AVIF_SRCSET, UNIVERSAL_HERO_SIZES } from "@/lib/universalHero";
 
 /* D3 preload law: the LCP image preload byte-matches the <img> the route
  * actually renders. Persona routes render <picture> (NewPersona), whose
  * first candidate is the AVIF sizeset — so the preload is the AVIF family
  * with type="image/avif" (about half the WebP wire for the same pixels).
- * The "/" route's LCP element is the hero <div> (static backdrop + type),
- * not an image — preloading student-face-main here fetched a below-the-fold
- * portrait (~13.9KB at 12.8s in the 2026-10-25 lab baseline) and slowed the
- * real LCP, so "/" ships without an image preload. */
+ * The universal "/" hero uses the same declarative lifecycle with its
+ * responsive student cutout srcset, restored correctly after SPA journeys. */
 const heroPreload = (img) => {
   const avif = HERO_AVIF_SOURCES[img];
   return { src: avif.src, srcSet: avif.srcSet, sizes: HERO_SIZES, type: "image/avif" };
+};
+const universalHeroPreload = {
+  srcSet: UNIVERSAL_HERO_AVIF_SRCSET,
+  sizes: UNIVERSAL_HERO_SIZES,
+  type: "image/avif",
 };
 
 export const ROUTE_META = {
@@ -25,6 +29,7 @@ export const ROUTE_META = {
     title: "Visionary — Learn, ask, practice, and build",
     description: "One intelligence that helps anyone learn, teach, support, and build. Start free with Visionary.",
     image: "/og-image.jpg",
+    preloadImage: universalHeroPreload,
   },
   "/student": {
     title: "Visionary for students | Learn at your pace",

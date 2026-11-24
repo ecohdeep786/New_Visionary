@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ChevronRight, Pause, Play } from "lucide-react";
 import { useCycleIndex, usePrefersReducedMotion } from "./system/hooks";
 import { HERO_SRCSETS, HERO_SIZES, HERO_AVIF_SOURCES } from "@/lib/heroVariants";
+import { UNIVERSAL_HERO_SIZES } from "@/lib/universalHero";
 import { CtaPair } from "@/components/landing/system/ui";
 import "@/components/landing/cast.css";
 
@@ -85,11 +86,11 @@ function AudienceHero({ cast, audiences, ctaTo, ctaLabel }) {
                 {/* D3 image law: cast cutout prefers the AVIF sibling at the
                     same pixel grid; the WebP sizeset stays the fallback. */}
                 <picture>
-                  <source type="image/avif" srcSet={p.avifSrcSet || p.srcSet} sizes="(max-width: 639px) 44vw, (max-width: 1023px) 30vw, 24vw" />
+                  <source type="image/avif" srcSet={p.avifSrcSet || p.srcSet} sizes={UNIVERSAL_HERO_SIZES} />
                   <img
                     src={p.src}
                     srcSet={p.srcSet}
-                    sizes="(max-width: 639px) 44vw, (max-width: 1023px) 30vw, 24vw"
+                    sizes={UNIVERSAL_HERO_SIZES}
                     alt=""
                     loading="eager"
                     {...{ fetchpriority: "high" }}
