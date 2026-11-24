@@ -128,12 +128,20 @@ async function journeys(width, height) {
   assert.deepEqual(await directory.locator('a').evaluateAll(links => links.map(link => link.pathname)), roles.map(r => '/' + r));
   for (const role of roles) await follow(page, directory.locator('[href="/' + role + '"]'), '/' + role);
   await follow(page, page.locator('#intelligence').getByRole('link'), '/how-it-works');
-  await follow(page, page.locator('.home-privacy').getByRole('link'), '/privacy#sharing');
+  await follow(page, page.locator('.home-privacy').getByRole('link', { name: 'How sharing works', exact: true }), '/privacy#sharing');
+  await follow(page, page.locator('.home-privacy').getByRole('link', { name: 'How safety works', exact: true }), '/safety');
+  await follow(page, page.locator('.home-privacy').getByRole('link', { name: 'Accessibility', exact: true }), '/accessibility');
   await follow(page, page.getByRole('link', { name: 'Create an account', exact: true }), '/register', page.getByRole('button', { name: 'Continue with Email' }));
   await page.goto(new URL('/#lesson-example', base).href);
   await page.waitForFunction(() => document.activeElement?.id === 'intelligence');
   receipt.interactions.push(width + 'px: five role journeys, product, privacy, registration, keyboard anchor and legacy deep link');
   if (width < 640) {
+    const pathNext = page.getByRole('button', { name: 'Next audience', exact: true });
+    await pathNext.click();
+    assert.ok(await page.locator('#audience-paths').evaluate(el => el.scrollLeft > 0), 'The path rail advances');
+    const trustNext = page.getByRole('button', { name: 'Next value', exact: true });
+    await trustNext.click();
+    assert.ok(await page.locator('#trust-values').evaluate(el => el.scrollLeft > 0), 'The values rail advances');
     const groups = page.locator('footer button[aria-controls]');
     assert.equal(await groups.count(), 5);
     for (const group of await groups.all()) {
@@ -186,8 +194,13 @@ async function checkTextScaling() {
     await page.waitForFunction(() => getComputedStyle(document.documentElement).fontSize === '32px');
     await checkHeader(page);
     const overflow = await page.evaluate(() => {
-      const elements = document.querySelectorAll('main h1, main h2, main h3, main p, main a, main button, .destination-copy, .hero-path');
+      const elements = document.querySelectorAll('main h1, main h2, main h3, main p, main a, main button, .path-copy, .hero-path');
       return [...elements].flatMap(element => {
+        /* The five-path row is a deliberate horizontal scroller below the
+           desktop breakpoint; off-screen cards are reachable by swipe/keys,
+           not clipped text. */
+        const scroller = element.closest('.path-row, .trust-row');
+        if (scroller && scroller.scrollWidth > scroller.clientWidth + 1) return [];
         const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
         const clipped = [];
         for (let node = walker.nextNode(); node; node = walker.nextNode()) {

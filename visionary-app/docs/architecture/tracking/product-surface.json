@@ -125,11 +125,15 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/Landing.jsx:99:13",
-        "frontend/src/pages/Landing.jsx:131:15",
-        "frontend/src/pages/Landing.jsx:146:13",
-        "frontend/src/pages/Landing.jsx:157:17",
-        "frontend/src/pages/Landing.jsx:160:17"
+        "frontend/src/pages/Landing.jsx:128:7",
+        "frontend/src/pages/Landing.jsx:131:7",
+        "frontend/src/pages/Landing.jsx:149:13",
+        "frontend/src/pages/Landing.jsx:163:9",
+        "frontend/src/pages/Landing.jsx:187:15",
+        "frontend/src/pages/Landing.jsx:206:19",
+        "frontend/src/pages/Landing.jsx:210:13",
+        "frontend/src/pages/Landing.jsx:221:17",
+        "frontend/src/pages/Landing.jsx:224:17"
       ],
       "operations": [
         "public-discovery",
@@ -79046,15 +79050,22 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:99:13",
+      "id": "frontend/src/pages/Landing.jsx:128:7",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 99,
-      "column": 13,
-      "tag": "Link",
-      "events": [],
-      "calls": [],
+      "line": 128,
+      "column": 7,
+      "tag": "button",
+      "events": [
+        {
+          "event": "onClick",
+          "expression": "{() => onStep(-1)}"
+        }
+      ],
+      "calls": [
+        "onStep"
+      ],
       "disabled": null,
-      "declarationSha256": "72392da17883f393525bdaab8736896b05fbce914bf6dc34b981b503aaf6a715",
+      "declarationSha256": "0253f6b51586d886a103f30389b2f8541c2242a2695f189fd6e514f024b015b6",
       "routeIds": [
         "/"
       ],
@@ -79070,9 +79081,95 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:131:15",
+      "id": "frontend/src/pages/Landing.jsx:131:7",
       "file": "frontend/src/pages/Landing.jsx",
       "line": 131,
+      "column": 7,
+      "tag": "button",
+      "events": [
+        {
+          "event": "onClick",
+          "expression": "{() => onStep(1)}"
+        }
+      ],
+      "calls": [
+        "onStep"
+      ],
+      "disabled": null,
+      "declarationSha256": "1bad4e4a86b33eb5b111f5db37349fa54918e5627b122b59f36276d757ad0064",
+      "routeIds": [
+        "/"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/Landing.jsx:149:13",
+      "file": "frontend/src/pages/Landing.jsx",
+      "line": 149,
+      "column": 13,
+      "tag": "Link",
+      "events": [],
+      "calls": [],
+      "disabled": null,
+      "declarationSha256": "45b372e9b3cc9661fa4decca81ea11e69712e4478135367551444306a817cec4",
+      "routeIds": [
+        "/"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/Landing.jsx:163:9",
+      "file": "frontend/src/pages/Landing.jsx",
+      "line": 163,
+      "column": 9,
+      "tag": "RailControls",
+      "events": [
+        {
+          "event": "onStep",
+          "expression": "{(step) => scrollRail(pathRow, step)}"
+        }
+      ],
+      "calls": [
+        "scrollRail"
+      ],
+      "disabled": null,
+      "declarationSha256": "1a60b8c92c5f5e2cf756c866e5733541503c3bcff39dccb53d9364e36dd253fc",
+      "routeIds": [
+        "/"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/Landing.jsx:187:15",
+      "file": "frontend/src/pages/Landing.jsx",
+      "line": 187,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -79095,16 +79192,15 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:146:13",
+      "id": "frontend/src/pages/Landing.jsx:206:19",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 146,
-      "column": 13,
+      "line": 206,
+      "column": 19,
       "tag": "Link",
       "events": [],
       "calls": [],
-      "destination": "/privacy#sharing",
       "disabled": null,
-      "declarationSha256": "9d22c64b6be98e2bda2d649750eb054a1f254b195c928c184c06792ddd5388ee",
+      "declarationSha256": "7d426d110c9333a33f8a8b52d2b6bfa56360f932b6692ad06ec7747a7438b7af",
       "routeIds": [
         "/"
       ],
@@ -79120,9 +79216,40 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:157:17",
+      "id": "frontend/src/pages/Landing.jsx:210:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 157,
+      "line": 210,
+      "column": 13,
+      "tag": "RailControls",
+      "events": [
+        {
+          "event": "onStep",
+          "expression": "{(step) => scrollRail(trustRow, step)}"
+        }
+      ],
+      "calls": [
+        "scrollRail"
+      ],
+      "disabled": null,
+      "declarationSha256": "c1a61b2817f47ca3c541893e61147c9fad8be9018e95a46d7f2e02ca4b6e1ba4",
+      "routeIds": [
+        "/"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/pages/Landing.jsx:221:17",
+      "file": "frontend/src/pages/Landing.jsx",
+      "line": 221,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -79144,9 +79271,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:160:17",
+      "id": "frontend/src/pages/Landing.jsx:224:17",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 160,
+      "line": 224,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -82623,7 +82750,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "1da076bc9407a9f9f34033752de6bf035d3f77e89bd381e422bf50c2c4806e6a"
+      "sourceSha256": "cd945cb3fcd960a0e1e49b13a63c87442291eada279ae6afc929c9f7fca607b5"
     },
     {
       "file": "frontend/src/pages/Login.jsx",
@@ -85902,11 +86029,11 @@
   "counts": {
     "routes": 67,
     "registeredEndpoints": 55,
-    "controlDeclarations": 1529,
-    "routeReachableDeclarations": 1526,
+    "controlDeclarations": 1533,
+    "routeReachableDeclarations": 1530,
     "controlFiles": 193,
     "states": {
-      "connected": 528,
+      "connected": 532,
       "preview": 924,
       "missing": 74,
       "intentionally-unreleased": 3
