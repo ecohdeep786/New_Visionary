@@ -51,6 +51,16 @@ async function checkHeader(page) {
   }
 }
 
+async function checkScrolledHeader(page) {
+  await page.locator('footer').scrollIntoViewIfNeeded();
+  // WebKit can reserve a scrollbar at this CSS breakpoint.
+  const compact = await page.evaluate(() => matchMedia('(max-width: 639px)').matches);
+  const action = page.locator('[data-scroll-action]');
+  if (compact) await action.waitFor({ state: 'hidden' });
+  else await page.locator('[data-scroll-action]:not([aria-hidden])').waitFor();
+  await checkHeader(page);
+}
+
 async function inspectViewport(width, height) {
   const page = await openPage(width, height);
   const hero = page.locator('.home-hero');
@@ -134,9 +144,7 @@ async function inspectViewport(width, height) {
     }
     if (capture) await target.screenshot({ path: path.join(output, section + '-' + width + '.png') });
   }
-  await page.locator('footer').scrollIntoViewIfNeeded();
-  if (width >= 640) await page.locator('[data-scroll-action]:not([aria-hidden])').waitFor();
-  await checkHeader(page);
+  await checkScrolledHeader(page);
   if (capture) {
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
     await page.screenshot({ path: path.join(output, 'landing-' + width + '.png'), fullPage: true });
@@ -318,9 +326,7 @@ async function checkTextScaling() {
     assert.ok(!pathChrome.controlsVisible || pathChrome.scrollable, 'Path controls only appear when the path row scrolls at 200% on ' + width + 'px');
     assert.deepEqual(pathChrome.titleOverflow, [], 'Path titles stay inside their cards at 200% on ' + width + 'px');
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
-    await page.locator('footer').scrollIntoViewIfNeeded();
-    if (width >= 640) await page.locator('[data-scroll-action]:not([aria-hidden])').waitFor();
-    await checkHeader(page);
+    await checkScrolledHeader(page);
     await page.close();
   }
   receipt.interactions.push('200% text, header reflow and pointer targets across seven widths');
