@@ -328,7 +328,7 @@ function PremiumIntelligenceSection({ steps, sub, note }) {
           roadmap-note pattern). Outside the flow grid so it is never a grid
           item on desktop. */}
       {note ? (
-        <p className="mx-auto max-w-[640px] px-6 pb-24 text-center text-[14px] leading-[1.6]" style={{ color: "#6e6e73" }}>{note}</p>
+        <p className="text-frost mx-auto max-w-[640px] px-6 pb-24 text-center text-[14px] leading-[1.6]">{note}</p>
       ) : null}
     </section>
   );

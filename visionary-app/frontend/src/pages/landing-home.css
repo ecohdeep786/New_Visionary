@@ -2,7 +2,8 @@
   /* Apple's measured chapter breath: 112px on phones, 140px on desktop. */
   --public-section-py: clamp(7rem, 10vw, 8.75rem);
 }
-.page-landing #audiences, .page-landing #intelligence { scroll-margin-top: 4.5rem; }
+.page-landing #intelligence { scroll-margin-top: 4.5rem; }
+.page-landing #audiences { scroll-margin-top: calc(4.5rem - var(--public-section-py)); }
 .page-landing main > section[data-section]:not([data-section="01-hero"]) { scroll-margin-top: 4.5rem; }
 
 /* The same reading edge runs through the product, audience and privacy chapters. */
@@ -49,11 +50,9 @@
   line-height: 1.32;
 }
 .page-landing #main .intelligence-copy .intelligence-note {
-  max-width: 46ch;
-  margin: 0.65rem 0 0.85rem;
-  color: #a1a1a6;
-  font-size: 0.8125rem;
-  line-height: 1.5;
+  max-width: 39ch;
+  margin: 1rem 0 0.85rem;
+  color: #b5b6bc;
 }
 .home-text-link {
   display: inline-flex;
@@ -238,7 +237,7 @@
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 62%, rgba(0, 0, 0, 0.72) 78%, rgba(0, 0, 0, 0) 100%);
   mask-image: linear-gradient(to bottom, #000 0%, #000 62%, rgba(0, 0, 0, 0.72) 78%, rgba(0, 0, 0, 0) 100%);
 }
-@media (min-width: 1024px) {
+@media (min-width: 640px) {
   .home-hero .cast-person + .cast-person { margin-left: calc(var(--cast-h) * -0.09); }
 }
 .cast-person { transition: transform var(--motion-duration-slow) var(--ease-out-apple); transform-origin: 50% 100%; }
@@ -247,13 +246,13 @@
 
 @media (min-width: 640px) and (max-width: 1023px) {
   .page-landing #main .home-hero {
-    --cast-h: clamp(12rem, 30vw, 17rem);
+    --cast-h: min(26vw, 16rem);
   }
   .page-landing #main .home-hero-copy h1 { font-size: clamp(3.4rem, 6.5vw, 4.6rem); }
 }
 @media (max-width: 639px) {
   .page-landing #main .home-hero {
-    --cast-h: 44vw;
+    --cast-h: 36vw;
     padding-top: 1.75rem;
   }
   .page-landing #main .home-hero-copy h1 { font-size: min(clamp(2.15rem, 10.5vw, 3.8rem), 16vw); }
@@ -266,6 +265,9 @@
   .home-hero .cast-slot-2 { margin-left: calc(var(--cast-h) * -0.26); }
   .home-hero .cast-slot-3 { margin-left: calc(var(--cast-h) * -0.42); }
   .home-hero .cast-slot-4 { margin-left: calc(var(--cast-h) * -0.34); }
+}
+@media (max-width: 380px) {
+  .hero-paths { max-width: 15.5rem; }
 }
 /* A short landscape phone cannot carry the full cast and still show all five
    doors on arrival. The words, the action and the five audience doors stay;
@@ -332,8 +334,7 @@
   .journey-copy { padding-top: 0; }
 }
 
-/* ── 07 · The learning loop ────────────────────────────────────────────────
-   The shared how: four small stages, one line, no cards. ────────────────── */
+/* ── 07 · The learning loop ──────────────────────────────────────────────── */
 .page-landing #main .home-loop {
   padding-block: clamp(7rem, 10vw, 8.75rem);
   border-top: 0;
@@ -341,93 +342,36 @@
   text-align: center;
   container-type: inline-size;
 }
-.loop-eyebrow { margin: 0 0 1rem; color: #6e6e73; letter-spacing: 0.02em; }
-.home-loop h2 { max-width: 18ch; margin: 0 auto; text-wrap: balance; }
+.home-loop .home-width { width: min(calc(100% - min(3rem, 12vw)), 61.25rem); }
+.home-loop h2 { max-width: 24ch; margin: 0 auto; text-wrap: balance; }
 .loop-lead {
-  max-width: 58ch;
+  max-width: 50ch;
   margin: 1.25rem auto 0;
   color: #6e6e73;
   text-wrap: balance;
 }
-.loop-row {
-  position: relative;
+.loop-steps {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(1.5rem, 4vw, 3rem);
-  margin-top: clamp(3.5rem, 5vw, 5rem);
+  margin: clamp(2.75rem, 5vw, 4.5rem) 0 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
 }
-.loop-row::before {
-  content: "";
-  position: absolute;
-  top: 1.375rem;
-  left: 12.5%;
-  right: 12.5%;
-  height: 1px;
-  background: #d2d2d7;
+.loop-step {
+  padding-top: 1rem;
+  border-top: 1px solid #d2d2d7;
 }
-.loop-step { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; min-width: 0; }
-.loop-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border: 1px solid #d2d2d7;
-  border-radius: 999px;
-  background: #fff;
-  color: #6e6e73;
-  font-size: 0.8125rem;
-  letter-spacing: 0.06em;
+.loop-step h3 { margin: 0; overflow-wrap: normal; }
+.loop-step p { max-width: 28ch; margin: 0.55rem 0 0; color: #515154; }
+.loop-actions { margin-top: clamp(2rem, 4vw, 3.5rem); }
+@container (max-width: 64rem) {
+  .loop-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-.loop-icon { margin: 1.5rem 0 1rem; color: #1d1d1f; }
-.loop-step h3 { margin: 0; max-width: 12ch; overflow-wrap: normal; }
-.loop-step p { max-width: 22ch; margin: 0.55rem auto 0; color: #6e6e73; overflow-wrap: normal; }
-.loop-actions { display: flex; flex-direction: column; align-items: center; gap: 0.8rem; margin-top: clamp(2.5rem, 4vw, 3.5rem); }
-@media (max-width: 1023px) {
-  .loop-row { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 2.75rem; }
-  .loop-row::before { display: none; }
-}
-@media (max-width: 639px) {
-  .loop-row { grid-template-columns: 1fr; gap: 1.9rem; margin-top: 2.75rem; }
-  .loop-step {
-    display: grid;
-    grid-template-columns: 2.75rem minmax(0, 1fr);
-    column-gap: 1rem;
-    align-items: start;
-    text-align: left;
-  }
-  .loop-number { grid-row: 1 / 3; }
-  .loop-icon { display: none; }
-  .loop-step h3 { grid-column: 2; max-width: none; }
-  .loop-step p { grid-column: 2; max-width: none; margin: 0.3rem 0 0; }
-  .loop-actions { margin-top: 2.5rem; }
-}
-/* Text-size-aware reflow: `em` follows the reader's root text size, so a
-   200% setting switches the diagram to two columns and then one, instead of
-   squeezing four stages into the same four tracks. */
-@container (max-width: 60rem) {
-  .loop-row { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 2.75rem; }
-  .loop-row::before { display: none; }
-}
-@container (max-width: 34rem) {
-  .loop-row { grid-template-columns: 1fr; gap: 1.9rem; margin-top: 2.75rem; }
-  .loop-step {
-    display: grid;
-    grid-template-columns: 2.75rem minmax(0, 1fr);
-    column-gap: 1rem;
-    align-items: start;
-    text-align: left;
-  }
-  .loop-number { grid-row: 1 / 3; }
-  .loop-icon { display: none; }
-  .loop-step h3 { grid-column: 2; max-width: none; }
-  .loop-step p { grid-column: 2; max-width: none; margin: 0.3rem 0 0; }
-  .loop-actions { margin-top: 2.5rem; }
-}
-@container (max-width: 20rem) {
-  .loop-step { display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .loop-number { grid-row: auto; }
-  .loop-step h3, .loop-step p { grid-column: auto; }
+@container (max-width: 40rem) {
+  .loop-steps { grid-template-columns: minmax(0, 1fr); gap: 1.1rem; }
+  .loop-step p { max-width: none; }
 }
 
 /* ── 13 · The five paths ──────────────────────────────────────────────────
@@ -463,6 +407,7 @@
   transition: transform var(--motion-duration-slow) var(--ease-out-apple);
 }
 .path-body { display: flex; flex-direction: column; padding: 1.2rem 0.1rem 0; }
+.path-outcome { display: block; margin-top: 0.5rem; color: #515154; }
 .path-title { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
 .path-title strong {
   min-width: 0;
@@ -551,7 +496,8 @@
   color: #1d1d1f;
   transition: background-color var(--motion-duration-fast) var(--ease-out-apple);
 }
-.rail-controls button:hover { background: #f5f5f7; }
+.rail-controls button[aria-disabled="false"]:hover { background: #f5f5f7; }
+.rail-controls button[aria-disabled="true"] { opacity: 0.45; cursor: default; }
 .rail-controls button:focus-visible { outline: 3px solid #0066cc; outline-offset: 2px; }
 @media (max-width: 1279px) { .path-controls { display: flex; } }
 @media (max-width: 899px) { .trust-controls { display: flex; } }
@@ -661,7 +607,6 @@
   .page-landing header [aria-label="Visionary home"]::after { inset-inline: 0; }
 }
 @media (max-width: 374px) {
-  .hero-paths { max-width: 15.5rem; }
   .page-landing header [data-public-nav-bar] { width: calc(100% - min(1.5rem, 6vw)); }
   .page-landing header [data-scroll-action] { min-width: 0; margin-left: 0; padding-inline: min(0.75rem, 3vw); font-size: min(0.9375rem, 6vw); }
   .page-landing header [data-scroll-action] svg { display: none; }

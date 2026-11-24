@@ -296,6 +296,7 @@ export default function TeacherPage() {
         <PremiumIntelligenceSection
           steps={INTELLIGENCE_STEPS}
           sub="For you and your class, from first question to real understanding."
+          note="Classroom tools are in development. Today, you can create an account and choose the Teacher role during setup."
         />
         <PremiumLanguageSection
           chips={LANGUAGE_CHIPS}

@@ -9,11 +9,11 @@ const out = process.env.LANDING_EVIDENCE_DIR || fileURLToPath(new URL('../../../
 await mkdir(out, { recursive: true });
 
 const roles = [
-  { slug: 'student', label: 'Students', story: 'to a project', destination: 'Learning,' },
-  { slug: 'teacher', label: 'Teachers', story: 'to a lesson', destination: 'Teaching.' },
-  { slug: 'parent', label: 'Parents', story: 'to a conversation', destination: 'Parenting.' },
-  { slug: 'professional', label: 'Professionals', story: 'to a new skill', destination: 'Building.' },
-  { slug: 'organization', label: 'Organizations', story: 'to a team plan', destination: 'Leading.' },
+  { slug: 'student', label: 'Students', story: 'to a project', value: /different explanation.*project/, destination: 'Learning,', detail: /Build from what you know/ },
+  { slug: 'teacher', label: 'Teachers', story: 'to a lesson', value: /class is stuck.*next lesson/, destination: 'Teaching.', detail: /teach it another way/ },
+  { slug: 'parent', label: 'Parents', story: 'to a conversation', value: /child understands.*help at home/, destination: 'Parenting.', detail: /What your child understood this week/ },
+  { slug: 'professional', label: 'Professionals', story: 'to a new skill', value: /work into skills you can reuse/, destination: 'Building.', detail: /Turn every project into a lesson/ },
+  { slug: 'organization', label: 'Organizations', story: 'to a team plan', value: /gaps across teams.*what to teach next/, destination: 'Leading.', detail: /Find gaps before they spread/ },
 ];
 
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
@@ -46,7 +46,10 @@ for (const [viewportName, width, height] of [['desktop', 1440, 900], ['mobile', 
     await assertNoOverflow(page, `${role.label} hero`);
     await page.screenshot({ path: path.join(out, `${viewportName}-${role.slug}-hero.png`) });
 
-    await rail.click();
+    const pathLink = page.getByRole('navigation', { name: 'Audience pages' }).locator(`[href="/${role.slug}"]`);
+    const outcome = await pathLink.locator('.path-outcome').innerText();
+    assert.match(outcome, role.value, `${role.label} sees a specific outcome before exploring`);
+    await (viewportName === 'mobile' ? pathLink : rail).click();
     await page.waitForURL(url => url.pathname === `/${role.slug}`);
     await page.locator('.home-hero').waitFor({ state: 'detached' });
     const h1 = page.locator('main h1').first();
@@ -56,13 +59,20 @@ for (const [viewportName, width, height] of [['desktop', 1440, 900], ['mobile', 
     assert.equal(new URL(page.url()).pathname, `/${role.slug}`);
     await assertNoOverflow(page, `${role.label} destination`);
     await page.screenshot({ path: path.join(out, `${viewportName}-${role.slug}-destination.png`) });
-    receipt.journeys.push({ viewport: viewportName, role: role.slug, story: role.story, destination: `/${role.slug}`, destinationHeading: heading.split('\n')[0] });
+    const intelligence = page.locator('main section[data-section="05-intelligence"]');
+    await intelligence.getByRole('heading', { name: 'One intelligence.', exact: true }).waitFor();
+    const detail = await intelligence.getByRole('heading', { name: role.detail }).innerText();
+    const availability = await intelligence.getByText(/(?:is|are) in development/i).innerText();
+    receipt.journeys.push({
+      viewport: viewportName, role: role.slug, story: role.story, outcome, destination: `/${role.slug}`,
+      destinationHeading: heading.split('\n')[0], intelligenceDetail: detail, availability,
+    });
     await page.close();
   }
 }
 
 /* The directory must be a second complete set of the same doors, with real
-   portraits and the role's own line. */
+   portraits and the role's own outcome. */
 {
   const page = await open(390, 844);
   const directory = page.getByRole('navigation', { name: 'Audience pages' });

@@ -125,16 +125,14 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/Landing.jsx:122:7",
-        "frontend/src/pages/Landing.jsx:125:7",
-        "frontend/src/pages/Landing.jsx:150:11",
-        "frontend/src/pages/Landing.jsx:183:13",
-        "frontend/src/pages/Landing.jsx:196:28",
-        "frontend/src/pages/Landing.jsx:221:15",
-        "frontend/src/pages/Landing.jsx:241:19",
-        "frontend/src/pages/Landing.jsx:245:13",
-        "frontend/src/pages/Landing.jsx:256:17",
-        "frontend/src/pages/Landing.jsx:259:17"
+        "frontend/src/pages/Landing.jsx:164:7",
+        "frontend/src/pages/Landing.jsx:167:7",
+        "frontend/src/pages/Landing.jsx:189:11",
+        "frontend/src/pages/Landing.jsx:208:13",
+        "frontend/src/pages/Landing.jsx:247:15",
+        "frontend/src/pages/Landing.jsx:267:19",
+        "frontend/src/pages/Landing.jsx:282:17",
+        "frontend/src/pages/Landing.jsx:285:17"
       ],
       "operations": [
         "public-discovery",
@@ -79051,22 +79049,22 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:122:7",
+      "id": "frontend/src/pages/Landing.jsx:164:7",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 122,
+      "line": 164,
       "column": 7,
       "tag": "button",
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => onStep(-1)}"
+          "expression": "{() => canGoBack && scrollRail(railRef, -1)}"
         }
       ],
       "calls": [
-        "onStep"
+        "scrollRail"
       ],
       "disabled": null,
-      "declarationSha256": "0253f6b51586d886a103f30389b2f8541c2242a2695f189fd6e514f024b015b6",
+      "declarationSha256": "4915ae48b3529443150f482b23eff48660a75639a9006cadea83a323dd0225c0",
       "routeIds": [
         "/"
       ],
@@ -79082,22 +79080,22 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:125:7",
+      "id": "frontend/src/pages/Landing.jsx:167:7",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 125,
+      "line": 167,
       "column": 7,
       "tag": "button",
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => onStep(1)}"
+          "expression": "{() => canGoForward && scrollRail(railRef, 1)}"
         }
       ],
       "calls": [
-        "onStep"
+        "scrollRail"
       ],
       "disabled": null,
-      "declarationSha256": "1bad4e4a86b33eb5b111f5db37349fa54918e5627b122b59f36276d757ad0064",
+      "declarationSha256": "54386986d47baee8ae4c804cdd9f9cd5203e877145a56e4eac661fdf6118b8b2",
       "routeIds": [
         "/"
       ],
@@ -79113,9 +79111,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:150:11",
+      "id": "frontend/src/pages/Landing.jsx:189:11",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 150,
+      "line": 189,
       "column": 11,
       "tag": "Link",
       "events": [],
@@ -79138,9 +79136,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:183:13",
+      "id": "frontend/src/pages/Landing.jsx:208:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 183,
+      "line": 208,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -79162,40 +79160,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:196:28",
+      "id": "frontend/src/pages/Landing.jsx:247:15",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 196,
-      "column": 28,
-      "tag": "RailControls",
-      "events": [
-        {
-          "event": "onStep",
-          "expression": "{(step) => scrollRail(pathRow, step)}"
-        }
-      ],
-      "calls": [
-        "scrollRail"
-      ],
-      "disabled": null,
-      "declarationSha256": "1a60b8c92c5f5e2cf756c866e5733541503c3bcff39dccb53d9364e36dd253fc",
-      "routeIds": [
-        "/"
-      ],
-      "reviewProfile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Landing.jsx:221:15",
-      "file": "frontend/src/pages/Landing.jsx",
-      "line": 221,
+      "line": 247,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -79218,9 +79185,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:241:19",
+      "id": "frontend/src/pages/Landing.jsx:267:19",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 241,
+      "line": 267,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -79242,40 +79209,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:245:13",
+      "id": "frontend/src/pages/Landing.jsx:282:17",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 245,
-      "column": 13,
-      "tag": "RailControls",
-      "events": [
-        {
-          "event": "onStep",
-          "expression": "{(step) => scrollRail(trustRow, step)}"
-        }
-      ],
-      "calls": [
-        "scrollRail"
-      ],
-      "disabled": null,
-      "declarationSha256": "c1a61b2817f47ca3c541893e61147c9fad8be9018e95a46d7f2e02ca4b6e1ba4",
-      "routeIds": [
-        "/"
-      ],
-      "reviewProfile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Landing.jsx:256:17",
-      "file": "frontend/src/pages/Landing.jsx",
-      "line": 256,
+      "line": 282,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -79297,9 +79233,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:259:17",
+      "id": "frontend/src/pages/Landing.jsx:285:17",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 259,
+      "line": 285,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -81924,7 +81860,7 @@
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumIntelligenceSection.jsx",
-      "sourceSha256": "dd5604e680b668ff086220f88ffcba68462d85b22519406b57e253139edfb1bf"
+      "sourceSha256": "97d89f35dac2dad91480ad5bd9a834f5dfad96d815828465ac40a606107280ec"
     },
     {
       "file": "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx",
@@ -82764,7 +82700,7 @@
     },
     {
       "file": "frontend/src/pages/landing/TeacherPage.jsx",
-      "sourceSha256": "0f7ab1422efdddeca39a343458d10e92cf62bc217898fde55fa4b714bf493131"
+      "sourceSha256": "1d9c8c519792ad2ae1cd9c5dcfd6ae5c85e0f30309b12bab0f191f7ca25f5a39"
     },
     {
       "file": "frontend/src/pages/landing/TermsPage.jsx",
@@ -82776,7 +82712,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "25344a3fec82caab3fdfabeae7fa849f771cf63d811f02f1dee741ea50a25a8a"
+      "sourceSha256": "c899b37f0bb7ad0cf7e9f98a0aaefe54e484a312295224c0645f6ea4bf813c0e"
     },
     {
       "file": "frontend/src/pages/Login.jsx",
@@ -86055,11 +85991,11 @@
   "counts": {
     "routes": 67,
     "registeredEndpoints": 55,
-    "controlDeclarations": 1534,
-    "routeReachableDeclarations": 1531,
+    "controlDeclarations": 1532,
+    "routeReachableDeclarations": 1529,
     "controlFiles": 193,
     "states": {
-      "connected": 533,
+      "connected": 531,
       "preview": 924,
       "missing": 74,
       "intentionally-unreleased": 3

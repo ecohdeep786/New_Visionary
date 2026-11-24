@@ -67,6 +67,8 @@ async function inspectViewport(width, height) {
   for (const role of roles) assert.ok(introduction.toLowerCase().includes(role + "s"), "Hero identifies " + role);
   const loopLead = await page.locator(".home-loop .loop-lead").innerText();
   for (const role of roles) assert.ok(loopLead.toLowerCase().includes(role), "The shared loop names " + role);
+  const steps = page.getByRole('list', { name: 'Learning loop steps' });
+  assert.deepEqual(await steps.getByRole('heading').allTextContents(), ['Ask', 'Understand', 'Practise', 'Build']);
   const geometry = await hero.evaluate(el => {
     const familyEl = el.querySelector('.family-stage');
     const family = familyEl.getBoundingClientRect();
@@ -171,12 +173,21 @@ async function journeys(width, height) {
   await page.waitForFunction(() => document.activeElement?.id === 'intelligence');
   receipt.interactions.push(width + 'px: five role journeys, product, privacy, registration, keyboard anchor and legacy deep link');
   if (width < 640) {
-    const pathNext = page.getByRole('button', { name: 'Next audience', exact: true });
-    await pathNext.click();
-    assert.ok(await page.locator('#audience-paths').evaluate(el => el.scrollLeft > 0), 'The path rail advances');
-    const trustNext = page.getByRole('button', { name: 'Next value', exact: true });
-    await trustNext.click();
-    assert.ok(await page.locator('#trust-values').evaluate(el => el.scrollLeft > 0), 'The values rail advances');
+    for (const [id, label] of [['audience-paths', 'audience'], ['trust-values', 'value']]) {
+      const rail = page.locator('#' + id);
+      const previous = page.getByRole('button', { name: 'Previous ' + label, exact: true });
+      const next = page.getByRole('button', { name: 'Next ' + label, exact: true });
+      await previous.waitFor();
+      assert.equal(await previous.isEnabled(), false, 'Previous is disabled at the beginning of ' + id);
+      await next.click();
+      await page.waitForFunction(id => document.getElementById(id)?.scrollLeft > 1, id);
+      await previous.click();
+      await page.waitForFunction(id => document.getElementById(id)?.scrollLeft < 1, id);
+      await rail.evaluate(row => { row.scrollLeft = row.scrollWidth; });
+      await page.waitForFunction(id =>
+        document.querySelector('button[aria-label^="Next"][aria-controls="' + id + '"]')?.getAttribute('aria-disabled') === 'true', id);
+      assert.equal(await next.isEnabled(), false, 'Next is disabled at the end of ' + id);
+    }
     const groups = page.locator('footer button[aria-controls]');
     assert.equal(await groups.count(), 5);
     for (const group of await groups.all()) {
@@ -211,7 +222,7 @@ async function journeys(width, height) {
       { timeout: 3000 },
     );
     assert.equal(await page.locator('main').evaluate(el => el.inert), false);
-    receipt.interactions.push('Mobile menu, resize, focus restoration and five footer disclosures');
+    receipt.interactions.push('Path and trust rail endpoints, mobile menu, resize, focus restoration and five footer disclosures');
   }
   const who = page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'For you', exact: true });
   await who.focus();
@@ -229,7 +240,7 @@ async function checkTextScaling() {
     await page.waitForFunction(() => getComputedStyle(document.documentElement).fontSize === '32px');
     await checkHeader(page);
     const overflow = await page.evaluate(() => {
-      const elements = document.querySelectorAll('main h1, main h2, main h3, main p, main a, main button, .path-copy, .hero-path');
+      const elements = document.querySelectorAll('main h1, main h2, main h3, main p, main a, main button, .hero-path');
       return [...elements].flatMap(element => {
         /* Off-screen rail cards are reachable by swipe or keys. Visible cards
            still have to contain their own text at 200%; a card that continues
@@ -312,6 +323,18 @@ async function checkTextScaling() {
   receipt.interactions.push('200% text, header reflow and pointer targets across seven widths');
 }
 
+async function checkDirectoryEntry() {
+  const page = await openPage(1280, 720);
+  await page.locator('.home-hero').getByRole('link', { name: 'Find your path' }).click();
+  await page.waitForFunction(() => document.activeElement?.id === 'audiences');
+  const copy = page.locator('#audience-paths .path-outcome');
+  assert.equal(await copy.count(), 5);
+  assert.ok(await copy.evaluateAll(outcomes => outcomes.every(outcome => outcome.getBoundingClientRect().bottom <= innerHeight)),
+    'A laptop visitor can read every role outcome directly after using Find your path');
+  receipt.interactions.push('Direct audience entry shows five complete outcomes at 1280×720');
+  await page.close();
+}
+
 async function checkPreloadLifecycle() {
   const page = await openPage(390, 844);
   const preload = page.locator('link[rel="preload"][data-page-lcp]');
@@ -377,11 +400,15 @@ async function checkRotation() {
 }
 
 try {
-  for (const [width, height] of [[320, 568], [390, 844], [768, 1024], [844, 390], [900, 750], [1024, 768], [1280, 800], [1440, 900], [1920, 1080]]) {
+  for (const [width, height] of [
+    [320, 568], [360, 568], [375, 568], [390, 844], [768, 1024], [834, 1112],
+    [844, 390], [900, 750], [1024, 768], [1280, 800], [1366, 768], [1440, 900], [1920, 1080],
+  ]) {
     await inspectViewport(width, height);
   }
   await journeys(390, 844);
   await journeys(1440, 900);
+  await checkDirectoryEntry();
   await checkRotation();
   await checkTextScaling();
   await checkPreloadLifecycle();
