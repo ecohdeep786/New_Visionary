@@ -6,32 +6,34 @@
 /* The same reading edge runs through the product, audience and privacy chapters. */
 .home-width { width: min(calc(100% - 3rem), 68rem); margin-inline: auto; }
 .page-landing #main .home-intelligence { padding: 0; overflow: hidden; background: #101114; color: #fafafa; }
-.intelligence-layout { display: grid; grid-template-columns: 1fr .9fr; align-items: center; gap: 3rem; }
+.intelligence-layout { min-height: clamp(29rem, 68svh, 39rem); display: grid; grid-template-columns: 1fr .9fr; align-items: center; gap: 3rem; }
 .intelligence-copy { padding-block: clamp(4.5rem, 8.5vw, 8rem); }
-.page-landing #main .intelligence-copy h2 { max-width: 11ch; margin: 0; color: #fafafa; }
-.page-landing #main .intelligence-copy p { max-width: 31ch; margin: 1.25rem 0 .7rem; color: #d0d1d6; line-height: 1.48; }
+.page-landing #main .intelligence-copy h2 { margin: 0; color: #fafafa; }
+.page-landing #main .intelligence-copy p { max-width: 35ch; margin: 1.25rem 0 .7rem; color: #d0d1d6; line-height: 1.48; }
 .home-text-link { display: inline-flex; align-items: center; gap: .15rem; min-height: 2.75rem; color: #155da9; font-weight: 500; text-decoration: none; }
 .home-text-link:hover { text-decoration: underline; text-underline-offset: .2em; }
 .home-text-link:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; border-radius: .2rem; }
 .home-intelligence .home-text-link { color: #a3d0ff; }
-.intelligence-portrait { display: block; align-self: end; width: min(100%, 24rem); justify-self: end; margin-bottom: -3rem; }
+.intelligence-portrait { display: block; align-self: end; width: min(100%, 24rem); justify-self: center; margin-bottom: -3rem; }
 .intelligence-portrait img { display: block; width: 100%; height: auto; }
 @media (max-width: 699px) {
   .home-width { width: calc(100% - 3rem); }
-  .intelligence-layout { grid-template-columns: 1fr; gap: 1rem; }
+  .intelligence-layout { min-height: 0; grid-template-columns: 1fr; gap: 1rem; }
   .intelligence-copy { padding-block: clamp(3.5rem, 12vw, 5rem) 0; }
   .intelligence-portrait { width: min(65%, 14rem); margin-right: 2%; margin-bottom: -2rem; }
 }
 
 .page-landing #main .home-hero {
-  --cast-h: min(18vw, 17.5rem);
-  min-height: 0;
+  --cast-h: clamp(12rem, min(22vw, 35svh), 21rem);
+  display: flex;
+  flex-direction: column;
+  min-height: min(calc(100svh - 3.5rem), 51rem);
   margin-top: 3.5rem;
-  padding: clamp(3.5rem, 8svh, 6.5rem) 0 0;
+  padding: clamp(2.8rem, 6svh, 5.25rem) 0 0;
   overflow: hidden;
   background: #fff;
 }
-.home-hero-copy { width: min(92%, 62rem); margin-inline: auto; text-align: center; }
+.home-hero-copy { width: min(92%, 62rem); margin: auto; text-align: center; }
 .page-landing #main .home-hero-copy h1 {
   margin: 0; max-width: none; font-weight: 600; font-size: clamp(3.6rem, 6.3vw, 6.1rem);
   line-height: 1.02; letter-spacing: -.055em;
@@ -42,7 +44,7 @@
 .role-headlines .is-current { visibility: visible; animation: audience-arrive var(--motion-duration-slow) var(--ease-out-apple); }
 @keyframes audience-arrive { from { opacity: .35; transform: translateY(.09em); } to { opacity: 1; transform: none; } }
 .page-landing #main .home-hero-copy p {
-  margin: 1.2rem auto 1.45rem; max-width: 34ch; color: #424247;
+  margin: 1.2rem auto 1.45rem; max-width: 48ch; color: #424247;
   font-size: clamp(1.0625rem, 1.5vw, 1.3rem); font-weight: 400; line-height: 1.4; text-wrap: balance;
 }
 .page-landing .home-action {
@@ -52,7 +54,10 @@
   transition: background-color var(--motion-duration-fast) var(--ease-out-apple);
 }
 .page-landing .home-action:hover { background: #38383c; }
-.family-stage { margin: clamp(2.5rem, 6svh, 4.5rem) auto 0; padding-top: .65rem; overflow: hidden; }
+.family-stage { width: 100%; margin: clamp(1.75rem, 4svh, 3rem) auto 0; padding-top: .85rem; overflow: hidden; }
+@media (min-width: 1024px) {
+  .home-hero .cast-person + .cast-person { margin-left: calc(var(--cast-h) * -.09); }
+}
 .cast-person { transition: transform var(--motion-duration-slow) var(--ease-out-apple); transform-origin: 50% 100%; }
 .cast-person[data-current="true"] { transform: scale(1.035); }
 .cast-caption { display: flex; align-items: center; justify-content: center; gap: .35rem; padding: .2rem 1.25rem; background: #fafafa; }
@@ -63,13 +68,13 @@
   outline: 3px solid #0066cc; outline-offset: 2px;
 }
 @media (min-width: 640px) and (max-width: 1023px) {
-  .page-landing #main .home-hero { --cast-h: 24vw; }
+  .page-landing #main .home-hero { --cast-h: 24vw; min-height: min(calc(100svh - 3.5rem), 47rem); }
 }
 @media (max-width: 639px) {
-  .page-landing #main .home-hero { --cast-h: 36vw; padding-top: clamp(3rem, 9svh, 5rem); }
+  .page-landing #main .home-hero { --cast-h: 36vw; min-height: min(calc(100svh - 3.5rem), 38rem); padding-top: 2.8rem; }
   .page-landing #main .home-hero-copy h1 { font-size: clamp(2.15rem, 10.5vw, 3.8rem); }
-  .page-landing #main .home-hero-copy p { max-width: 28ch; margin: 1rem auto 1.4rem; }
-  .family-stage { margin-top: clamp(2.6rem, 8svh, 4.5rem); }
+  .page-landing #main .home-hero-copy p { max-width: 33ch; margin: 1rem auto 1.4rem; }
+  .family-stage { margin-top: clamp(1.75rem, 4svh, 2.5rem); }
   .home-hero .cast-slot-1 { margin-left: calc(var(--cast-h) * -.39); }
   .home-hero .cast-slot-2 { margin-left: calc(var(--cast-h) * -.26); }
   .home-hero .cast-slot-3 { margin-left: calc(var(--cast-h) * -.42); }
@@ -92,7 +97,7 @@
 }
 .audience-destination:last-child { border-bottom: 1px solid #d5d7da; }
 .destination-portrait { display: block; width: 5.5rem; height: 5.5rem; overflow: hidden; border-radius: .85rem; background: #f4f4f6; }
-.destination-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 19%; mix-blend-mode: multiply; }
+.destination-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center; mix-blend-mode: multiply; }
 .destination-copy { display: grid; gap: .3rem; padding-inline-start: .5rem; }
 .destination-copy strong { font-size: clamp(1.45rem, 2.4vw, 2rem); line-height: 1.12; font-weight: 600; letter-spacing: -.035em; }
 .destination-copy > span { color: #505057; font-size: 1.0625rem; line-height: 1.4; }
@@ -117,7 +122,7 @@
 
 .page-landing #main .home-closing { padding-block: clamp(3.75rem, 7.5vw, 7rem); background: white; }
 .closing-layout { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-.closing-layout h2 { margin: 0; }
+.closing-layout h2 { margin: 0; max-width: 17ch; text-wrap: balance; }
 .closing-layout .home-action { flex: none; }
 @media (max-width: 639px) {
   .closing-layout { align-items: flex-start; flex-direction: column; gap: 1.25rem; }

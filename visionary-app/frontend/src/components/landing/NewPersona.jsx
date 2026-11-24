@@ -65,7 +65,7 @@ function AudienceHero({ cast, audiences, ctaTo, ctaLabel }) {
             ))}
           </span>
         </h1>
-        <p>Visionary brings learning and building into one workspace.</p>
+        <p>A workspace for students, teachers, parents, professionals and organizations to learn and build.</p>
         <Link className="home-action" to={ctaTo}>{ctaLabel}</Link>
       </div>
       <div className="family-stage" aria-hidden="true">

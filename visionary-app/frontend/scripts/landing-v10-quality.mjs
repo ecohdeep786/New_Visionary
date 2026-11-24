@@ -57,6 +57,8 @@ async function inspectViewport(width, height) {
   assert.equal(await page.locator('main select, main [role="combobox"], main details').count(), 0);
   assert.equal(await page.locator('html').getAttribute('lang'), 'en');
   await checkHeader(page);
+  const introduction = await hero.locator(".home-hero-copy p").innerText();
+  for (const role of roles) assert.ok(introduction.toLowerCase().includes(role + "s"), "Hero identifies " + role);
   const geometry = await hero.evaluate(el => {
     const family = el.querySelector('.family-stage').getBoundingClientRect();
     const copy = el.querySelector('.home-hero-copy').getBoundingClientRect();
@@ -154,6 +156,24 @@ async function journeys(width, height) {
   await page.close();
 }
 
+async function checkReturningVisitor() {
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  // Exercise both homepage entry points without relying on an external account.
+  const profile = { id: 'homepage-qa', identity: 'student', onboarding_complete: true };
+  await page.route('**/api/auth/me*', route => route.fulfill({ json: profile }));
+  try {
+    for (const section of ['.home-hero', '.home-closing']) {
+      await page.goto(base);
+      const action = page.locator(section).getByRole('link', { name: 'Open Visionary', exact: true });
+      await action.click();
+      await page.waitForURL(url => url.pathname === '/dashboard/home');
+    }
+    receipt.interactions.push('Returning visitor fixture: hero and closing actions enter the workspace');
+  } finally {
+    await page.close();
+  }
+}
+
 async function checkRotation() {
   const page = await openPage(390, 844);
   const next = page.getByRole('button', { name: 'Next audience', exact: true });
@@ -181,6 +201,7 @@ try {
   await journeys(390, 844);
   await journeys(1440, 900);
   await checkRotation();
+  await checkReturningVisitor();
   assert.deepEqual(receipt.errors, [], 'No browser errors');
   assert.deepEqual(receipt.failedRequests, [], 'No failed resources');
   console.log('PASS ' + engine + ': ' + receipt.viewports.length + ' viewports, ' + receipt.interactions.length + ' interaction groups');

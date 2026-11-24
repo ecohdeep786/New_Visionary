@@ -81715,7 +81715,7 @@
     },
     {
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "sourceSha256": "3ffb2d53d63c9d2cb4705fec4f59e0625be6f7a8fe0494463ce3886772d6bb56"
+      "sourceSha256": "8c220beac5745985e22779e6d56b596c06fa873de141b4e16083239c5f1fe9ef"
     },
     {
       "file": "frontend/src/components/landing/persona/PersonaSections.jsx",
@@ -82583,7 +82583,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "74814afefddf78c7042f04e548b7b378d385e68a7a26a6d4ff1c431f7d3242c1"
+      "sourceSha256": "c54cab69a985bbb6d48fcca12f1d0231c217942dfe934ccf05f78c10fd0b78e9"
     },
     {
       "file": "frontend/src/pages/Login.jsx",
