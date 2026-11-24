@@ -238,6 +238,7 @@ export default function NewPersona({
             <h1 data-type="product-section" className="category-hero-statement m-0">
               <span
                 key={index}
+                aria-hidden="true"
                 className="apple-anim accent-gradient inline-block"
                 style={{ animation: "heroFadeUp var(--motion-duration-slow) var(--ease-out-apple) both" }}
               >

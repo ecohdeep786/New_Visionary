@@ -66,14 +66,18 @@ async function inspectViewport(width, height) {
   const introduction = await hero.locator(".home-hero-copy p").innerText();
   for (const role of roles) assert.ok(introduction.toLowerCase().includes(role + "s"), "Hero identifies " + role);
   const geometry = await hero.evaluate(el => {
-    const family = el.querySelector('.family-stage').getBoundingClientRect();
+    const familyEl = el.querySelector('.family-stage');
+    const family = familyEl.getBoundingClientRect();
+    const familyVisible = familyEl.getClientRects().length > 0;
     const copy = el.querySelector('.home-hero-copy').getBoundingClientRect();
     const rect = el.getBoundingClientRect();
     const next = el.nextElementSibling.getBoundingClientRect();
     return {
       width: innerWidth, scrollWidth: document.documentElement.scrollWidth,
-      clearance: family.top - copy.bottom,
+      castVisible: familyVisible,
+      clearance: familyVisible ? family.top - copy.bottom : null,
       heroBottom: rect.bottom,
+      pathsBottom: el.querySelector('.hero-paths').getBoundingClientRect().bottom,
       nextTop: next.top,
       viewport: innerHeight,
       portraits: [...el.querySelectorAll('.cast-person')].map(person => {
@@ -82,19 +86,34 @@ async function inspectViewport(width, height) {
       }),
     };
   });
-  assert.ok(geometry.scrollWidth <= width && geometry.clearance >= 0, 'Hero reflow at ' + width);
+  assert.ok(geometry.scrollWidth <= width && (!geometry.castVisible || geometry.clearance >= 0), 'Hero reflow at ' + width);
   assert.ok(geometry.heroBottom >= geometry.viewport - 1, 'Hero fills the first screen at ' + width + 'x' + height);
+  assert.ok(geometry.pathsBottom <= geometry.viewport + 1, 'Five audience doors inside the first screen at ' + width + 'x' + height);
   assert.ok(geometry.nextTop >= geometry.viewport - 1, 'The next chapter intrudes into the first screen at ' + width + 'x' + height);
-  assert.equal(geometry.portraits.length, 5);
-  assert.ok(geometry.portraits.every(p => p.height > 0 && p.center > 0 && p.center < width), 'Cast framing at ' + width);
+  if (geometry.castVisible) {
+    assert.equal(geometry.portraits.length, 5);
+    assert.ok(geometry.portraits.every(p => p.height > 0 && p.center > 0 && p.center < width), 'Cast framing at ' + width);
+  }
   const capture = [390, 768, 1280, 1440].includes(width);
   if (capture) await page.screenshot({ path: path.join(output, 'hero-' + width + '.png') });
   for (const section of sections) {
     const target = page.locator('[data-section="' + section + '"]');
     await target.scrollIntoViewIfNeeded();
     for (const img of await target.locator('img').all()) {
+      if (!(await img.isVisible())) continue;
       await img.scrollIntoViewIfNeeded();
-      await img.evaluate(image => image.decode());
+      await img.evaluate(async image => {
+        if (!image.complete) {
+          await new Promise(resolve => {
+            image.addEventListener('load', resolve, { once: true });
+            image.addEventListener('error', resolve, { once: true });
+          });
+        }
+        try { await image.decode(); }
+        catch (error) {
+          if (!image.naturalWidth) throw new Error('Image failed to decode: ' + image.currentSrc);
+        }
+      });
     }
     if (capture) await target.screenshot({ path: path.join(output, section + '-' + width + '.png') });
   }
@@ -197,18 +216,24 @@ async function checkTextScaling() {
     const overflow = await page.evaluate(() => {
       const elements = document.querySelectorAll('main h1, main h2, main h3, main p, main a, main button, .path-copy, .hero-path');
       return [...elements].flatMap(element => {
-        /* The five-path row is a deliberate horizontal scroller below the
-           desktop breakpoint; off-screen cards are reachable by swipe/keys,
-           not clipped text. */
-        const scroller = element.closest('.path-row, .trust-row');
-        if (scroller && scroller.scrollWidth > scroller.clientWidth + 1) return [];
+        /* Off-screen rail cards are reachable by swipe or keys. Visible cards
+           still have to contain their own text at 200%; a card that continues
+           beyond the viewport is checked against its own box, not the viewport. */
+        let bounds = { left: -1, right: innerWidth + 1 };
+        const card = element.closest('.path-card, .trust-card');
+        if (card) {
+          const rect = card.getBoundingClientRect();
+          if (rect.right < 0 || rect.left > innerWidth) return [];
+          const rail = card.closest('.path-row, .trust-row');
+          if (rail && rail.scrollWidth > rail.clientWidth + 1) bounds = { left: rect.left - 1, right: rect.right + 1 };
+        }
         const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
         const clipped = [];
         for (let node = walker.nextNode(); node; node = walker.nextNode()) {
           if (!node.textContent.trim() || getComputedStyle(node.parentElement).visibility === 'hidden') continue;
           const range = document.createRange();
           range.selectNodeContents(node);
-          if ([...range.getClientRects()].some(rect => rect.left < -1 || rect.right > innerWidth + 1)) {
+          if ([...range.getClientRects()].some(rect => rect.left < bounds.left || rect.right > bounds.right)) {
             clipped.push(node.textContent.trim());
           }
         }
@@ -216,6 +241,30 @@ async function checkTextScaling() {
       });
     });
     assert.deepEqual(overflow, [], 'Visible text fits at 200% on ' + width + 'px');
+    const broken = await page.evaluate(() => {
+      const broken = [];
+      for (const element of document.querySelectorAll('.path-title strong, .loop-step h3')) {
+        const card = element.closest('.path-card');
+        if (card) {
+          const rect = card.getBoundingClientRect();
+          if (rect.right < 0 || rect.left > innerWidth) continue;
+        }
+        const node = element.firstChild;
+        if (!node || node.nodeType !== Node.TEXT_NODE) continue;
+        const text = node.textContent || '';
+        let from = 0;
+        for (const word of text.match(/\S+/g) || []) {
+          const start = text.indexOf(word, from);
+          from = start + word.length;
+          const range = document.createRange();
+          range.setStart(node, start);
+          range.setEnd(node, start + word.length);
+          if ([...range.getClientRects()].filter(rect => rect.width || rect.height).length > 1) broken.push(word);
+        }
+      }
+      return broken;
+    });
+    assert.deepEqual(broken, [], 'Role and stage names stay whole at 200% on ' + width + 'px');
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     await page.locator('footer').scrollIntoViewIfNeeded();
     if (width >= 640) await page.locator('[data-scroll-action]:not([aria-hidden])').waitFor();

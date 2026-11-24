@@ -48,6 +48,13 @@
   color: #c7c8cd;
   line-height: 1.32;
 }
+.page-landing #main .intelligence-copy .intelligence-note {
+  max-width: 46ch;
+  margin: 0.65rem 0 0.85rem;
+  color: #a1a1a6;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
 .home-text-link {
   display: inline-flex;
   align-items: center;
@@ -260,6 +267,24 @@
   .home-hero .cast-slot-3 { margin-left: calc(var(--cast-h) * -0.42); }
   .home-hero .cast-slot-4 { margin-left: calc(var(--cast-h) * -0.34); }
 }
+/* A short landscape phone cannot carry the full cast and still show all five
+   doors on arrival. The words, the action and the five audience doors stay;
+   the studio image steps aside so the shared story remains complete. */
+@media (max-height: 520px) and (orientation: landscape) {
+  .page-landing #main .home-hero {
+    --cast-h: 0px;
+    min-height: calc(100svh - 3.5rem);
+    padding-top: 0.75rem;
+  }
+  .home-hero-copy { width: min(94%, 62rem); }
+  .page-landing #main .home-hero-copy h1 { font-size: clamp(2.25rem, 7svh, 3.5rem); }
+  .page-landing #main .home-hero-copy p { margin: 0.55rem auto 0.8rem; max-width: 58ch; font-size: 0.9375rem; line-height: 1.35; }
+  .page-landing .home-action { min-height: 2.25rem; padding: 0.4rem 1.1rem; font-size: 0.9375rem; }
+  .hero-paths { margin-top: 0.35rem; gap: 0 0.8rem; }
+  .hero-path { min-height: 2rem; font-size: 0.75rem; }
+  .family-stage { display: none; }
+  .home-hero .hero-playback { display: none; }
+}
 @media (prefers-reduced-motion: reduce) {
   .role-headlines .is-current { animation: none; }
   .cast-person, .page-landing .home-action, .hero-path, .home-hero .hero-playback { transition: none; }
@@ -305,6 +330,7 @@
   border-top: 0;
   background: #fff;
   text-align: center;
+  container-type: inline-size;
 }
 .loop-eyebrow { margin: 0 0 1rem; color: #6e6e73; letter-spacing: 0.02em; }
 .home-loop h2 { max-width: 18ch; margin: 0 auto; text-wrap: balance; }
@@ -339,10 +365,9 @@
   letter-spacing: 0.06em;
 }
 .loop-icon { margin: 1.5rem 0 1rem; color: #1d1d1f; }
-.loop-step h3 { margin: 0; max-width: 12ch; overflow-wrap: anywhere; }
-.loop-step p { max-width: 22ch; margin: 0.55rem auto 0; color: #6e6e73; overflow-wrap: anywhere; }
+.loop-step h3 { margin: 0; max-width: 12ch; overflow-wrap: normal; }
+.loop-step p { max-width: 22ch; margin: 0.55rem auto 0; color: #6e6e73; overflow-wrap: normal; }
 .loop-actions { display: flex; flex-direction: column; align-items: center; gap: 0.8rem; margin-top: clamp(2.5rem, 4vw, 3.5rem); }
-.loop-note { max-width: 52ch; margin: 0; color: #6e6e73; font-size: 0.8125rem; line-height: 1.5; }
 @media (max-width: 1023px) {
   .loop-row { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 2.75rem; }
   .loop-row::before { display: none; }
@@ -362,6 +387,33 @@
   .loop-step p { grid-column: 2; max-width: none; margin: 0.3rem 0 0; }
   .loop-actions { margin-top: 2.5rem; }
 }
+/* Text-size-aware reflow: `em` follows the reader's root text size, so a
+   200% setting switches the diagram to two columns and then one, instead of
+   squeezing four stages into the same four tracks. */
+@container (max-width: 60rem) {
+  .loop-row { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 2.75rem; }
+  .loop-row::before { display: none; }
+}
+@container (max-width: 34rem) {
+  .loop-row { grid-template-columns: 1fr; gap: 1.9rem; margin-top: 2.75rem; }
+  .loop-step {
+    display: grid;
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+    column-gap: 1rem;
+    align-items: start;
+    text-align: left;
+  }
+  .loop-number { grid-row: 1 / 3; }
+  .loop-icon { display: none; }
+  .loop-step h3 { grid-column: 2; max-width: none; }
+  .loop-step p { grid-column: 2; max-width: none; margin: 0.3rem 0 0; }
+  .loop-actions { margin-top: 2.5rem; }
+}
+@container (max-width: 20rem) {
+  .loop-step { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .loop-number { grid-row: auto; }
+  .loop-step h3, .loop-step p { grid-column: auto; }
+}
 
 /* ── 13 · The five paths ──────────────────────────────────────────────────
    One quiet editorial directory, not five category pages in one place. ─── */
@@ -370,7 +422,7 @@
   border-top: 0;
   background: #fff;
 }
-.path-frame { width: min(calc(100% - 3rem), 79rem); margin-inline: auto; }
+.path-frame { width: min(calc(100% - 3rem), 79rem); margin-inline: auto; container-type: inline-size; }
 .path-intro { max-width: 38rem; margin: 0 0 clamp(3.5rem, 5vw, 5rem); }
 .path-intro h2 { margin: 0; }
 .path-row {
@@ -403,7 +455,7 @@
   line-height: 1.12;
   font-weight: 600;
   letter-spacing: -0.035em;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
   transition: color var(--motion-duration-fast) var(--ease-out-apple);
 }
 .path-arrow {
@@ -436,6 +488,37 @@
   .path-row { margin-inline: -1.25rem; padding-inline: 1.25rem; scroll-padding-inline: 1.25rem; }
   .path-intro { margin-bottom: 2.5rem; }
   .path-title strong { font-size: 1.45rem; }
+}
+/* Text-size-aware path reflow: at 200% the five-up becomes a three-up and,
+   on the narrowest frames, a compact list — names never split mid-word. */
+@container (max-width: 75rem) {
+  .path-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@container (max-width: 17rem) {
+  .path-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    margin-inline: 0;
+    padding-inline: 0;
+    overflow: visible;
+  }
+  .path-card {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.9rem;
+  }
+  .path-media { aspect-ratio: 1; border-radius: 0.75rem; }
+  .path-body { padding: 0; }
+  .path-title strong { font-size: 1rem; letter-spacing: -0.02em; }
+  .path-controls { display: none; }
+}
+@container (max-width: 13rem) {
+  .path-card { grid-template-columns: 1fr; gap: 0; }
+  .path-media { display: none; }
+  .path-body { padding: 0.35rem 0; }
+  .path-title strong { font-size: 1.1rem; }
 }
 
 .rail-controls { display: none; justify-content: flex-end; gap: 0.5rem; margin-top: 1rem; }

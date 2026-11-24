@@ -92,6 +92,14 @@ for (const file of [...walkPublic("../src/pages/landing"), ...walkPublic("../src
   });
 }
 
+test("category hero announces one complete heading, not a duplicated word", () => {
+  const source = readFileSync(new URL("../src/components/landing/NewPersona.jsx", import.meta.url), "utf8");
+  const heading = source.match(/<h1[\s\S]*?srSentence[\s\S]*?<\/h1>/)?.[0] || "";
+  assert.ok(heading, "the category hero h1 with its spoken sentence is missing");
+  assert.match(heading, /aria-hidden="true"/, "the animated word must stay out of the accessible name");
+  assert.match(heading, /className="sr-only">\{srSentence\}/, "the complete sentence must be the announced heading");
+});
+
 test("B2 label role — law present with the measured dial", () => {
   const law = readFileSync(new URL("../src/styles/apple-typography.css", import.meta.url), "utf8");
   const block = law.match(/\[data-type="label"\]\s*{[^}]*}/);

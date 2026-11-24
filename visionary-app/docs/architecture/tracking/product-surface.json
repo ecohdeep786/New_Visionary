@@ -128,8 +128,8 @@
         "frontend/src/pages/Landing.jsx:122:7",
         "frontend/src/pages/Landing.jsx:125:7",
         "frontend/src/pages/Landing.jsx:149:11",
-        "frontend/src/pages/Landing.jsx:169:13",
-        "frontend/src/pages/Landing.jsx:182:9",
+        "frontend/src/pages/Landing.jsx:168:13",
+        "frontend/src/pages/Landing.jsx:181:9",
         "frontend/src/pages/Landing.jsx:206:15",
         "frontend/src/pages/Landing.jsx:226:19",
         "frontend/src/pages/Landing.jsx:230:13",
@@ -79138,9 +79138,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:169:13",
+      "id": "frontend/src/pages/Landing.jsx:168:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 169,
+      "line": 168,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -79162,9 +79162,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:182:9",
+      "id": "frontend/src/pages/Landing.jsx:181:9",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 182,
+      "line": 181,
       "column": 9,
       "tag": "RailControls",
       "events": [
@@ -81904,7 +81904,7 @@
     },
     {
       "file": "frontend/src/components/landing/NewPersona.jsx",
-      "sourceSha256": "8ce7ccab05a666ab13a95e9020c2f4da968baa5ce82556063a6fb72cf35e63c7"
+      "sourceSha256": "ae3b803313ff19659ae7678f1291a9c2932a41c736a6c85ac53a6fdda493bf8e"
     },
     {
       "file": "frontend/src/components/landing/persona/PersonaSections.jsx",
@@ -82704,7 +82704,7 @@
     },
     {
       "file": "frontend/src/pages/landing/CollegePage.jsx",
-      "sourceSha256": "0f5d182db6144033b131754b1d3f5ffc0a106c95670fbc4923982d51623df922"
+      "sourceSha256": "741bd5af0dccb94837a8e173629af324b122a2aeafc6520a6407f7bafdf7a21c"
     },
     {
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
@@ -82776,7 +82776,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "f3f65cb465cfe06ffce5597fd8d6c85ea0061005bcce90f735a0723e04fb8bfa"
+      "sourceSha256": "90a14865cf080199e3a3a512dd04fe11bfbe6337ed4ee94f91fe9d15d9479591"
     },
     {
       "file": "frontend/src/pages/Login.jsx",

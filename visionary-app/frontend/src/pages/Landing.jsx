@@ -72,14 +72,14 @@ const LOOP_STEPS = [
 const TRUST_VALUES = [
   {
     title: "Private by design.",
-    copy: "Teachers and connected parents see shared progress; your private conversations stay out of those views.",
+    copy: "Your private work stays private. When you choose to share, the people you authorize see only what you shared.",
     link: "How sharing works",
     to: "/privacy#sharing",
     Icon: Lock,
   },
   {
     title: "Safe to learn.",
-    copy: "Controls and protections for learners, families and schools.",
+    copy: "Designed with controls and protections for learners, families and schools.",
     link: "How safety works",
     to: "/safety",
     Icon: ShieldCheck,
@@ -149,7 +149,6 @@ function LearningLoop() {
           <Link to="/how-it-works" className="home-text-link">
             See the full learning loop <ChevronRight aria-hidden="true" size={17} />
           </Link>
-          <p className="loop-note">The guided learning journey is in development. Today, you can create an account and view saved learning history.</p>
         </div>
       </div>
     </section>
@@ -202,7 +201,8 @@ export default function LandingPage() {
           <div className="home-width intelligence-layout">
             <div className="intelligence-copy">
               <h2 id="intelligence-heading" data-type="display">One Intelligence.</h2>
-              <p data-type="editorial-body">One AI guide for learning, teaching and building. Use the workspace in English, Hindi or Bengali.</p>
+              <p data-type="editorial-body">Learning, teaching and building, connected in one workspace. Use it in English, Hindi or Bengali.</p>
+              <p className="intelligence-note">The guided experience is in development. Today, you can create an account and view saved learning history.</p>
               <Link to="/how-it-works" className="home-text-link">How it works <ChevronRight aria-hidden="true" size={17} /></Link>
             </div>
             <picture className="intelligence-portrait" aria-hidden="true">

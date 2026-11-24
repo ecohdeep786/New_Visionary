@@ -68,7 +68,7 @@ const HERO_WORD_MS = 2800;
 const STRUGGLE_LINES = ["Every", "professional", "wonders", "about"];
 
 const SLIDES = [
-  { word: "application", quote: "I took three courses. I still don't know how to use them at work.", image: proProblem1, alt: "Professional struggling to apply coursework at work" },
+  { word: "application", quote: "I took three courses. I still don’t know how to use them at work.", image: proProblem1, alt: "Professional struggling to apply coursework at work" },
   { word: "Relevance", quote: "I read every article. The next project still feels like the first.", image: proProblem2, alt: "Professional overwhelmed by learning resources" },
   { word: "Growth", quote: "Five years in, and I can’t show what I’ve actually learned.", image: proProblem3, alt: "Professional reflecting on career growth" },
   { word: "Focus", quote: "Between meetings and deadlines, learning keeps getting postponed.", image: proProblem4, alt: "Professional juggling work deadlines and learning" },
