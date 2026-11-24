@@ -22,6 +22,18 @@ The universal front door (`/`) was rebuilt as one focused product story for five
 
 The common laws: chapter breath **140–144px desktop / 120px phone**; editorial spine **980px**; wide card row **1264px**; card radius **28px**; statements **48–64px**; body **17/25**; lead **24/28–32**; one scene at a time; light/dark alternation; a hero that owns the first screen; and no paragraph allowed to become wider than its statement.
 
+### App-browser re-read — 1000px Apple pages, 1980px Visionary
+
+| Page | Document height | Section heights (px) |
+| --- | --- | --- |
+| Education | 6,375 | 604 · 620 · 1,762 · 678 · 678 · 524 · 661 |
+| K–12 | 11,093 | 750 · 753 · 1,723 · 2,612 · 2,207 · 1,655 · 524 |
+| iPhone | 8,581 | 896 · 946 · 831 · 854 · 848 · 916 · 1,087 |
+| Vision Pro | 24,830 | 636 · 954 · 1,648 · 10,232 · 2,105 · 5,319 · 1,362 · 1,062 |
+| **Visionary landing** | **5,177** | **844 · 832 · 608 · 752 · 799 · 590** |
+
+At 1980px the landing hero is 1,218px tall; the copy block is 433px and the cast stage 388px. The path frame is 1,264px with five 234px cards; trust and close are also 1,264px. This is intentionally the **front-door scale**, not Apple’s 8k–25k product-catalog length: deep media chapters, labels and product grids remain on the category pages.
+
 ## Apple's measured space applied
 
 | Property | Apple measured | This pass |
@@ -43,7 +55,7 @@ Measured rendered line widths at 1440:
 
 - Hero statement line: **603px**. Hero sub lines: **341 / 248 / 364px** — the sub never reaches the statement width.
 - Shared-challenge statement lines: **447 / 301 / 319px**. Supporting copy lines: **358 / 407 / 349px** — the copy sits inside the statement's measure.
-- Audience intro: 21/25 under a 56px statement; card titles 28/32; card copy 17/25.
+- Path line-up: 56px statement; 28/32 role names; no per-card copy.
 - Trust card titles 28/32; copy 17/25; values links 17px.
 
 ## What changed
@@ -88,6 +100,8 @@ Final desktop chapters: **hero 844 · Intelligence 832 · shared challenge 608 �
 The five portraits repeat as the path line-up; keyboard focus order is the five cards; Enter opens the focused page. The path and trust rails also expose previous/next controls below their desktop breakpoints. Reduced motion holds the first story; pause holds the active story for 7 seconds.
 
 **App-browser final check (1980×1274):** each path card was focused and activated with Enter. The destinations read `/student → Learning,`, `/teacher → Teaching.`, `/parent → Parenting.`, `/professional → Building.`, `/organization → Leading.`, with matching supporting lines. Back returned to `/` with “Find your path.” intact and refresh restored `/` with all five paths. The app-browser reading is deliberately image + role name; there is no explanatory copy to decode.
+
+**App-browser full-page audit:** header → hero → One Intelligence → shared challenge → five paths → trust → close → footer. The hero is complete at the fold; all five faces are visible; the path row breathes; the trust cards are legible; the closing panel is singular. No section needed a second media scene: adding one would repeat the cast or invent product imagery and make the front door heavier than Apple’s own landing.
 
 ## Verification
 
