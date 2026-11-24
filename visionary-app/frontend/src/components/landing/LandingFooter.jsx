@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { fontStack } from "@/components/landing/system/tokens";
 
@@ -69,7 +71,8 @@ const LEGAL_LINKS = [
   { label: "Accessibility", to: "/accessibility" },
 ];
 
-export default function LandingFooter({ variant = "brand" }) {
+export default function LandingFooter({ variant = "brand", compactOnMobile = false }) {
+  const [openGroup, setOpenGroup] = useState(null);
   const quiet = variant === "quiet";
   /* The public site is English. Real language support (English, Hindi,
      Bengali) lives in the signed-in workspace and onboarding, where the
@@ -80,16 +83,22 @@ export default function LandingFooter({ variant = "brand" }) {
     /* Apple's global footer surface: #F5F5F7, hairline seams, quiet link
        columns — sized for legibility (15px rows on 44px targets), so the
        page ends in air, not a logo. */
-    <footer className="border-t" style={{ fontFamily: fontStack, backgroundColor: "#F5F5F7", borderColor: "#d2d2d7" }}>
+    <footer data-compact={compactOnMobile || undefined} className="border-t" style={{ fontFamily: fontStack, backgroundColor: "#F5F5F7", borderColor: "#d2d2d7" }}>
       <div className="public-frame public-frame-wide pt-16">
         {/* the columns sit under one directory heading so the h3 labels never
             skip a level in the document outline (typography-audit law) */}
         <h2 className="sr-only">Explore Visionary</h2>
-        <div className="grid grid-cols-2 gap-10 border-t pb-16 sm:grid-cols-3 lg:grid-cols-5 lg:gap-8" style={{ borderColor: "#d2d2d7" }}>
-          {FOOTER_SECTIONS.map((section) => (
-            <div key={section.title} className="pt-10">
-              <h3 className="mb-4 text-[13px] font-semibold tracking-[-0.010em]" style={{ color: C.ink }}>{section.title}</h3>
-              <ul className="space-y-1">
+        <div className="footer-groups grid grid-cols-2 gap-10 border-t pb-16 sm:grid-cols-3 lg:grid-cols-5 lg:gap-8" style={{ borderColor: "#d2d2d7" }}>
+          {FOOTER_SECTIONS.map((section, index) => (
+            <div key={section.title} className="footer-group pt-10" data-open={openGroup === index}>
+              <h3 className="mb-4 text-[13px] font-semibold tracking-[-0.010em]" style={{ color: C.ink }}>
+                <span className="footer-label">{section.title}</span>
+                {compactOnMobile && <button type="button" className="footer-toggle" aria-expanded={openGroup === index}
+                  aria-controls={`footer-group-${index}`} onClick={() => setOpenGroup(openGroup === index ? null : index)}>
+                  {section.title}<ChevronDown size={16} aria-hidden="true" />
+                </button>}
+              </h3>
+              <ul id={compactOnMobile ? `footer-group-${index}` : undefined} className="space-y-1">
                 {section.links.map((link) => (
                   <li key={link.label}>
                     <Link to={link.to || "#"} className={FOOTER_LINK} style={{ color: C.graphite }}>{link.label}</Link>

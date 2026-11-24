@@ -419,7 +419,7 @@ export default function LandingNav() {
             Help
           </Link>
 
-          <Link to={signedIn ? "/dashboard/home" : "/login"} className={`${navLink(false)} hidden sm:flex`}>
+          <Link to={signedIn ? "/dashboard/home" : "/login"} className={`${navLink(false)} ${pathname === "/" && !scrolled ? "flex" : pathname === "/" && signedIn ? "hidden" : "hidden sm:flex"}`}>
             {signedIn ? "Open Visionary" : "Sign in"}
           </Link>
 
@@ -434,6 +434,7 @@ export default function LandingNav() {
                 ? "visible translate-y-0 opacity-100"
                 : "pointer-events-none invisible -translate-y-1 opacity-0"
             }`}
+            data-scroll-action
             tabIndex={scrolled ? 0 : -1}
             aria-hidden={scrolled ? undefined : "true"}
           >

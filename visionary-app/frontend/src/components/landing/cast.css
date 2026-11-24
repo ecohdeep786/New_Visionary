@@ -1,54 +1,9 @@
-/* ═══ Persona hero cast stage styles ═══
-   Extracted from NewPersona.jsx inline <style> to avoid runtime CSS injection
-   on every render. */
-
-/* The cast's rise is transform-only: the cutouts paint from the first
-   frame. The opacity:0 start here was the landing LCP's second gate — an
-   element at opacity 0 cannot paint, so the LCP cutout waited for its
-   animation delay (260ms + slot stagger) before it could even be
-   considered, on top of the image wire. The rise motion is unchanged. */
-@keyframes figIn {
-  from { transform: translateY(5%) scale(0.988); }
-  to { transform: none; }
-}
-
 @keyframes appleFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-/* The pinned stage fills the first screen at every width — the hero sticks
-   (Vision Pro anatomy) and the story glides over it on frosted glass. The
-   height lives HERE, not inline, so the short-window rule below can retire
-   the pin: a 320×568 stage (512px) cannot hold the full phone copy plus
-   the family reserve, and clipping the story is worse than scrolling it.
-   Phones carry the keynote huddle: a large family whose outer figures
-   bleed past the screen edges, the center figure in front. */
-.cast-stage {
-  --cast-h: min(34svh, calc(100vw / 2.2));
-  height: auto;
-  min-height: min(calc(100svh - 56px), 54rem);
-}
-
-/* Short and landscape windows trade the fixed stage for a readable story:
-   the hero scrolls naturally and the content establishes the height. */
-@media (max-height: 720px) {
-  .cast-stage[data-section] {
-    position: relative;
-    height: auto;
-    min-height: calc(100svh - 56px);
-    padding-block: 0;
-  }
-}
-
-@media (min-width: 640px) {
-  .cast-stage { --cast-h: min(46svh, calc(100vw / 4.1)); }
-}
-
 @media (min-width: 1024px) {
-  .cast-stage {
-    --cast-h: min(40svh, clamp(170px, calc((100vw - clamp(96px, 12vw, 240px)) / 5.17), 460px));
-  }
   .cast-slot-1 { margin-left: calc(var(--cast-h) * 0.1200); }
   .cast-slot-2 { margin-left: calc(var(--cast-h) * 0.3459); }
   .cast-slot-3 { margin-left: calc(var(--cast-h) * 0.1724); }
@@ -59,16 +14,6 @@
       radial-gradient(62% 95% at 14% 100%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 68%);
   }
 }
-
-/* The copy block centres in the free stage above the family reserve — the
-   education hero's optical grammar: the promise sits mid-way between the
-   nav and the family, so the scroll stage breathes evenly above and below
-   it instead of collecting a dead pocket under the audience rail. Auto
-   margins split the free stage evenly; the clamped padding keeps a real
-   floor on compact stages where the free space collapses to zero (320×568
-   measures a 19px rail-to-family gap — the padding, not the margin, is
-   what holds there). */
-.cast-copy { margin-top: auto; margin-bottom: auto; padding-top: clamp(24px, 4svh, 56px); }
 
 .cast-slot-0 { z-index: 10; }
 .cast-slot-2 { z-index: 30; }
@@ -91,13 +36,6 @@
   .cast-slot-4 { margin-left: calc(var(--cast-h) * -0.0653); }
 }
 
-@media (max-width: 639.9px) {
-  .cast-slot-1 { margin-left: calc(var(--cast-h) * -0.2732); }
-  .cast-slot-2 { margin-left: calc(var(--cast-h) * -0.0473); }
-  .cast-slot-3 { margin-left: calc(var(--cast-h) * -0.2208); }
-  .cast-slot-4 { margin-left: calc(var(--cast-h) * -0.1903); }
-}
-
 /* Reduced motion keeps the cast visible with a fade only — no movement
    (static-and-visible per the D1 motion law; tokens.css is the curve home). */
 @media (prefers-reduced-motion: reduce) {
@@ -107,23 +45,4 @@
     animation-timing-function: var(--ease-out-apple) !important;
     animation-iteration-count: 1 !important;
   }
-}
-
-.cast-copy h1 {
-  font-size: var(--fs-hero-headline);
-  line-height: 1.02;
-  letter-spacing: -0.045em;
-}
-.cast-intro {
-  margin: 1.25rem auto 0;
-  max-width: 44ch;
-  color: #424245;
-  font-size: 1.1875rem;
-  line-height: 1.45;
-  text-wrap: balance;
-}
-.cast-copy .cast-intro + div { margin-top: 1.5rem; }
-@media (max-width: 639px) {
-  .cast-intro { font-size: 1.0625rem; }
-  .cast-copy .audience-rail { max-width: 26rem; }
 }
