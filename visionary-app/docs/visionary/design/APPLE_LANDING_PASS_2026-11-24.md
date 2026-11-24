@@ -2,7 +2,7 @@
 
 Date: 2026-11-24
 Base: `aae98fdc` (`origin/dev`, PR #66 — the accepted five-audience homepage)
-Implementation candidate: `fe05476a5fbdb5c07aeb9f1fc18fa91546ecd03c`
+Implementation candidate: `e7864b49eca533d52addac5ba77caa565674bd1e`
 Branch: `deepseek/frontend-work`
 Merge target: `dev` only after explicit owner approval. **Not merged yet.** `main` was not promoted.
 
@@ -55,7 +55,17 @@ The four remaining category pages were opened in the app browser at the final ca
 | `/professional` | 13,339px | Building. Building, to apply, to grow. | Work/career journey, private portfolio, trust |
 | `/organization` | 13,497px | Leading. Leading, to scale, to last. | Adoption, people/teams, language, governance, trust |
 
-Each page carries the detailed story that the landing deliberately does not repeat. One downstream copy finding is logged for the Professional page worktree: its struggle heading reads “Every professional wonders about Application.” with an unnecessary capital. It does not block the landing; the landing link and destination hero are correct.
+Each page carries the detailed story that the landing deliberately does not repeat. The Professional struggle copy defect is fixed in `e7864b49`: the slide word is now lower-case “application,” and the app browser verifies “Every professional wonders about application.” The landing link and destination hero were already correct.
+
+## Public and auth route audit
+
+- **24 public routes** were opened in the app browser: `/`, five categories, how-it-works, help, pricing, download, about, research, community, updates, partners, referral, privacy, terms, cookies, safety, security, accessibility, careers, contact. Every route rendered a main H1 and correct title; none returned the 404 page.
+- **Claim consistency:** pricing states that Personal/Family prices are a billing preview and learning features are planned; how-it-works states the guided journey is in development and saved learning history is available today. The landing’s loop note uses the same truth language. Trust/legal pages match the landing’s privacy, safety and accessibility promises.
+- **Auth/recovery:** login, register, forgot-password, forgot-user-id and reset-password render their forms and controls. `/auth/action` previously inherited the 404 title; it is now added to the auth-surface boundary in `routeMeta.js`, and the browser verifies title “Visionary — Learn, Ask, Build” with H1 “Verify your email.”
+- **Internal surfaces:** the 22 dashboard/onboarding routes are inventoried in `App.jsx`; live inspection is blocked by the unconfigured auth/service realm and is outside the public landing page scope. No internal page was redesigned.
+- **Documents:** 379 docs were inventoried; the key contracts read were `VISIONARY_MASTER_v2.2.md`, `CURRENT_PRODUCT_STATUS.md`, `PRODUCT_GATE.md`, `SHARED_ACCEPTANCE.md`, `TRACEABILITY.md` and `AGI_LAUNCH_SEQUENCE.md`. They confirm that the learning/model experiences remain development/connected gates, so the landing does not claim a live AGI or completed model service.
+
+
 
 **Apple same-turn re-check:** Education’s live values row shows the same three-card, 28px-radius, icon → title → copy → Learn more grammar used by trust. iPhone’s live line-up shows large product images with names only and a pagination control; the landing path row uses the same names-only discipline. The loop chapter is original Visionary product vocabulary, not an Apple copy; no further source change was justified.
 
@@ -133,14 +143,14 @@ The five portraits repeat as the path line-up; keyboard focus order is the five 
 
 - `eslint . --quiet`: clean.
 - `tsc -p jsconfig.json` and `tsc -p tsconfig.domain.json`: clean.
-- `vite build`: clean (2,166 modules; 8.64s).
+- `vite build`: clean (2,166 modules; 12.84s).
 - `node --test --test-concurrency=2 tests/*.test.mjs`: **871/871 passed**.
 - `landing-v10-quality.mjs`: **PASS** — 9 viewports, 7 interaction groups, on dev and production builds. Asserts fold ownership, all five hero doors, all five path doors, all three trust links, rail controls, mobile menu, footer disclosures, returning-visitor fixtures, preload lifecycle, 200% text and zero overflow.
 - `qa-motion.mjs`, `qa-taps.mjs`, `qa-continuity.mjs`: all pass.
 - `landing-apple-audit.mjs`: 9 viewports + 200% at 390/1280; zero horizontal overflow, zero clipped visible text; the only console entry is the audit fixture's intentional 401.
 - `landing-five-audiences.mjs`: 10 destination screens plus keyboard, reduced motion and pause.
 - `landing-scroll-audit.mjs`: 12 real-user screen captures (six desktop, six phone); no clipped interactive content, the phone header stays quiet, and each screen keeps one dominant focus.
-- Lighthouse production `/` mobile: performance **0.86**, accessibility **1.00**, best practices **0.96**, SEO **1.00**; FCP 0.91s, TBT 30ms, CLS 0; LCP **4.22s** is recorded, not claimed as passed (the project does not gate performance; SPA boot remains the tracked LCP lever).
+- Lighthouse production `/` mobile: performance **0.86**, accessibility **1.00**, best practices **0.96**, SEO **1.00**; FCP 0.91s, TBT 46ms, CLS 0; LCP **4.24s** is recorded, not claimed as passed (the project does not gate performance; SPA boot remains the tracked LCP lever). The valid run is `lighthouse-product-audit-b`; parallel Lighthouse runs can produce a NO_NAVSTART trace flake.
 - Product-surface inventory refreshed: 67 routes, 55 endpoints, 1,534 control declarations.
 
 ## Evidence
@@ -152,10 +162,13 @@ Local (worktree) evidence set:
 - `shots/apple-pass-2026-11-24/final6-production-gate/` — production gate screenshots and `receipt.json`.
 - `shots/apple-pass-2026-11-24/final6-production-audiences/` — five visitor journeys, desktop + mobile, `receipt.json`.
 - `shots/apple-pass-2026-11-24/final6-production-audit/` — final nine-viewport audit and `receipt.json`.
-- `shots/apple-pass-2026-11-24/lighthouse-final6b/` — valid Lighthouse receipt.
+- `shots/apple-pass-2026-11-24/lighthouse-final6b/` - valid Lighthouse receipt.
+- `shots/apple-pass-2026-11-24/product-audit-gate/` - landing gate after the product/auth fixes.
+- `shots/apple-pass-2026-11-24/product-audit-audiences/` - five-persona gate after the fixes.
+- `shots/apple-pass-2026-11-24/lighthouse-product-audit-b/` - valid final Lighthouse receipt.
 
 ## Acceptance decision
 
 **ACTIVE IN THE CURRENT WORKTREE — implementer QA pass; independent review pending.** The landing follows the studied Apple chapter grammar from hero to footer, the five paths are now a single calm line-up, all five audience journeys reach a page that continues the story, the production build passes lint, both type checks, 871 tests, the landing quality gate and Lighthouse accessibility/SEO gates, and no design, navigation or accessibility regression was observed.
 
-Per the master directive, this is not self-certified for merge: an independent design/technical review of `fe05476a` is still required. Not merged into `dev`. Not promoted to `main`. No production deployment is claimed.
+Per the master directive, this is not self-certified for merge: an independent design/technical review of `e7864b49` is still required. Not merged into `dev`. Not promoted to `main`. No production deployment is claimed. Live internal dashboard acceptance remains blocked by the auth/service realm and belongs to the ordered internal phase.
