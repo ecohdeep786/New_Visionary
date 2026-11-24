@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronRight, Pause, Play } from "lucide-react";
+import { Pause, Play } from "lucide-react";
 import { useCycleIndex, usePrefersReducedMotion } from "./system/hooks";
 import { HERO_SRCSETS, HERO_SIZES, HERO_AVIF_SOURCES } from "@/lib/heroVariants";
 import { UNIVERSAL_HERO_SIZES } from "@/lib/universalHero";
@@ -51,6 +51,11 @@ function AudienceHero({ cast, audiences, ctaTo, ctaLabel }) {
   const { index, goTo } = useCycleIndex(audiences.length, paused || hovered ? 0 : 6500);
   const audience = audiences[index];
 
+  const preview = (i) => {
+    setHovered(true);
+    goTo(i);
+  };
+
   return (
     <section data-section="01-hero" className="home-hero"
       onFocusCapture={(event) => {
@@ -61,13 +66,37 @@ function AudienceHero({ cast, audiences, ctaTo, ctaLabel }) {
           <span>From a question</span>
           <span className="role-headlines">
             {audiences.map((role, i) => (
-              <span key={role.slug} className={i === index ? "is-current" : undefined}
+              <span key={role.slug} className={i === index ? "is-current accent-gradient" : undefined}
                 aria-hidden={i !== index}>{role.headline}</span>
             ))}
           </span>
         </h1>
         <p>A workspace for students, teachers, parents, professionals and organizations to learn, teach and build.</p>
         <Link className="home-action" to={ctaTo}>{ctaLabel}</Link>
+        {/* Apple's local audience row belongs on the first screen: every
+            visitor can recognise their own door without waiting for the
+            story rotation. Hover or focus previews the matching line. */}
+        <nav className="hero-paths" aria-label="Choose your audience"
+          onMouseLeave={() => setHovered(false)}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) setHovered(false);
+          }}>
+          {audiences.map((role, i) => (
+            <Link
+              key={role.slug}
+              to={`/${role.slug}`}
+              className="hero-path"
+              data-active={i === index ? "true" : undefined}
+              onMouseEnter={() => preview(i)}
+              onFocus={() => preview(i)}
+            >
+              {role.label}
+            </Link>
+          ))}
+        </nav>
+        <span className="sr-only" aria-live={paused ? "polite" : "off"}>
+          For {audience.label.toLowerCase()}.
+        </span>
       </div>
       <div className="family-stage" aria-hidden="true">
         <div className="relative flex items-end justify-center">
@@ -112,19 +141,11 @@ function AudienceHero({ cast, audiences, ctaTo, ctaLabel }) {
           })}
         </div>
       </div>
-      <div className="cast-caption" role="group" aria-label="Audience stories"
-        onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
-        <span className="cast-active" aria-live={paused ? "polite" : "off"}>For {audience.label.toLowerCase()}</span>
-        <button type="button" aria-label="Next audience"
-          onClick={() => { setPlayback(false); goTo(index + 1); }}>
-          <ChevronRight size={18} aria-hidden="true" />
-        </button>
-        <button type="button" data-playback className="cast-playback"
-          aria-label={paused ? "Play audience rotation" : "Pause audience rotation"}
-          onClick={() => setPlayback(paused)}>
-          {paused ? <Play size={16} aria-hidden="true" /> : <Pause size={16} aria-hidden="true" />}
-        </button>
-      </div>
+      <button type="button" data-playback className="hero-playback"
+        aria-label={paused ? "Play audience rotation" : "Pause audience rotation"}
+        onClick={() => setPlayback(paused)}>
+        {paused ? <Play size={16} aria-hidden="true" /> : <Pause size={16} aria-hidden="true" />}
+      </button>
     </section>
   );
 }

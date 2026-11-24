@@ -80,7 +80,7 @@ function SharedChallenge() {
       <div className="home-width journey-intro">
         <h2 id="journey-heading" data-type="section">Understanding is only the beginning.</h2>
         <p data-type="editorial-body">It’s hard to put an idea to work or see where someone needs help when learning and progress live in different places.</p>
-        <p data-type="editorial-body">Visionary brings learning, practical work and the people who support it into one workspace.</p>
+        <p className="journey-answer" data-type="lead">Visionary brings learning, practical work and the people who support it into one workspace.</p>
       </div>
     </section>
   );
@@ -90,7 +90,10 @@ function AudienceDirectory() {
   return (
     <section id="audiences" tabIndex={-1} data-section="13-explore" className="home-audiences" aria-labelledby="audiences-title">
       <div className="home-width audience-layout">
-        <h2 id="audiences-title" data-type="section">Find your path.</h2>
+        <div className="audience-intro">
+          <h2 id="audiences-title" data-type="section">Find your path.</h2>
+          <p data-type="editorial-body">One intelligence. Five ways to begin.</p>
+        </div>
         <nav aria-label="Audience pages">
           {AUDIENCES.map((role) => (
             <Link key={role.slug} to={`/${role.slug}`} tabIndex={0} className="audience-destination">
@@ -137,15 +140,18 @@ export default function LandingPage() {
         <AudienceDirectory />
         <section className="home-privacy" data-section="11-trust" aria-labelledby="privacy-heading">
           <div className="home-width">
-            <Lock className="privacy-mark" strokeWidth={1.6} size={32} aria-hidden="true" />
-            <h2 id="privacy-heading" data-type="section">Know what’s shared.</h2>
+            <Lock className="privacy-mark" strokeWidth={1.6} size={30} aria-hidden="true" />
+            <h2 id="privacy-heading" data-type="card-chapter">Know what’s shared.</h2>
             <p data-type="editorial-body">Teachers and connected parents can follow shared progress. Your private conversations stay out of those views.</p>
             <Link to="/privacy#sharing" className="home-text-link">How sharing works <ChevronRight aria-hidden="true" size={17} /></Link>
           </div>
         </section>
         <section className="home-closing" data-section="12-cta" aria-labelledby="closing-heading">
           <div className="home-width closing-layout">
-            <h2 id="closing-heading" data-type="section">{signedIn ? "Continue in Visionary." : "Start with your own question."}</h2>
+            <div className="closing-copy">
+              <h2 id="closing-heading" data-type="section">{signedIn ? "Continue in Visionary." : "Start with your own question."}</h2>
+              <p className="closing-line" data-type="editorial-body">Free to start. Private by design.</p>
+            </div>
             <Link className="home-action public-action" to={signedIn ? "/dashboard/home" : "/register"}>
               {signedIn ? "Open Visionary" : "Create an account"}
             </Link>

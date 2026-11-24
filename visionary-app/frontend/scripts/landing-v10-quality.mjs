@@ -55,7 +55,11 @@ async function inspectViewport(width, height) {
   const page = await openPage(width, height);
   const hero = page.locator('.home-hero');
   assert.deepEqual(await page.locator('main > section').evaluateAll(nodes => nodes.map(n => n.dataset.section)), sections);
-  assert.equal(await hero.getByRole('link').count(), 1);
+  assert.equal(await hero.getByRole('link').count(), 6, 'Hero carries the path CTA and five audience doors');
+  assert.deepEqual(
+    await hero.locator('.hero-path').evaluateAll(links => links.map(link => link.pathname)),
+    roles.map(role => '/' + role),
+  );
   assert.equal(await page.locator('main select, main [role="combobox"], main details').count(), 0);
   assert.equal(await page.locator('html').getAttribute('lang'), 'en');
   await checkHeader(page);
@@ -64,9 +68,14 @@ async function inspectViewport(width, height) {
   const geometry = await hero.evaluate(el => {
     const family = el.querySelector('.family-stage').getBoundingClientRect();
     const copy = el.querySelector('.home-hero-copy').getBoundingClientRect();
+    const rect = el.getBoundingClientRect();
+    const next = el.nextElementSibling.getBoundingClientRect();
     return {
       width: innerWidth, scrollWidth: document.documentElement.scrollWidth,
       clearance: family.top - copy.bottom,
+      heroBottom: rect.bottom,
+      nextTop: next.top,
+      viewport: innerHeight,
       portraits: [...el.querySelectorAll('.cast-person')].map(person => {
         const rect = person.getBoundingClientRect();
         return { center: (rect.left + rect.right) / 2, height: rect.height };
@@ -74,6 +83,8 @@ async function inspectViewport(width, height) {
     };
   });
   assert.ok(geometry.scrollWidth <= width && geometry.clearance >= 0, 'Hero reflow at ' + width);
+  assert.ok(geometry.heroBottom >= geometry.viewport - 1, 'Hero fills the first screen at ' + width + 'x' + height);
+  assert.ok(geometry.nextTop >= geometry.viewport - 1, 'The next chapter intrudes into the first screen at ' + width + 'x' + height);
   assert.equal(geometry.portraits.length, 5);
   assert.ok(geometry.portraits.every(p => p.height > 0 && p.center > 0 && p.center < width), 'Cast framing at ' + width);
   const capture = [390, 768, 1280, 1440].includes(width);
@@ -166,7 +177,7 @@ async function checkTextScaling() {
     await page.waitForFunction(() => getComputedStyle(document.documentElement).fontSize === '32px');
     await checkHeader(page);
     const overflow = await page.evaluate(() => {
-      const elements = document.querySelectorAll('main h1, main h2, main h3, main p, main a, main button, .destination-copy, .cast-active');
+      const elements = document.querySelectorAll('main h1, main h2, main h3, main p, main a, main button, .destination-copy, .hero-path');
       return [...elements].flatMap(element => {
         const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
         const clipped = [];
@@ -232,21 +243,26 @@ async function checkReturningVisitor() {
 
 async function checkRotation() {
   const page = await openPage(390, 844);
-  const next = page.getByRole('button', { name: 'Next audience', exact: true });
-  const caption = page.locator('.cast-active');
+  const active = page.locator('.hero-path[data-active="true"]');
+  const heroHeading = page.locator('.home-hero h1');
   await page.getByRole('button', { name: 'Play audience rotation' }).waitFor();
-  for (const role of roles) {
-    assert.equal(await caption.innerText(), 'For ' + role + 's');
+  const story = { student: 'project', teacher: 'lesson', parent: 'conversation', professional: 'new skill', organization: 'team plan' };
+  for (const [i, role] of roles.entries()) {
+    await page.locator('.hero-path').nth(i).focus();
+    await page.waitForFunction(label => document.querySelector('.hero-path[data-active="true"]')?.textContent.toLowerCase() === label, role + 's');
+    assert.equal((await active.innerText()).toLowerCase(), role + 's');
     assert.equal(await page.locator('.cast-person[data-current="true"]').count(), 1);
-    await next.press('Enter');
+    await page.waitForFunction(word => document.querySelector('.home-hero h1')?.innerText.toLowerCase().includes(word), story[role]);
+    assert.ok((await heroHeading.innerText()).toLowerCase().includes(story[role]), 'The ' + role + ' story is visible');
   }
-  assert.equal(await caption.innerText(), 'For students');
+  await page.evaluate(() => document.activeElement?.blur());
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.getByRole('button', { name: 'Pause audience rotation' }).waitFor();
-  await page.waitForFunction(() => document.querySelector('.cast-active').textContent === 'For teachers', null, { timeout: 8500 });
+  const before = (await active.innerText()).toLowerCase();
+  await page.waitForFunction(previous => document.querySelector('.hero-path[data-active="true"]')?.textContent.toLowerCase() !== previous, before, { timeout: 8500 });
   await page.getByRole('button', { name: 'Pause audience rotation' }).press('Enter');
   await page.getByRole('button', { name: 'Play audience rotation' }).waitFor();
-  receipt.interactions.push('Five manual hero stories, reduced motion, automatic advance and explicit pause');
+  receipt.interactions.push('Five audience paths preview their story, reduced motion holds the first, automatic advance and explicit pause');
   await page.close();
 }
 
