@@ -6,8 +6,10 @@ import PersonaHero from "@/components/landing/NewPersona";
 import { Link } from "react-router-dom";
 import heroBotWebp from "@/assets/brand/visionary-bot.webp";
 import heroBotAvif from "@/assets/brand/visionary-bot.avif";
-// Each audience destination keeps its original portrait.
-import studentmeet from "@/assets/audience-portraits/student.webp";
+// Each audience destination keeps its original portrait. The Student lineup
+// uses a normalized crop from the transparent hero cutout so all five
+// portraits share the same white studio ground.
+import studentLineup from "@/assets/audience-portraits/student-lineup.webp";
 import teachermeet from "@/assets/audience-portraits/teacher.webp";
 import parentmeet from "@/assets/audience-portraits/parent.webp";
 import promeet from "@/assets/audience-portraits/professional.webp";
@@ -18,7 +20,7 @@ import { useSignedIn } from "@/components/landing/AuthAwareLink";
 
 const AUDIENCES = [
   {
-    slug: "student", label: "Students", castLabel: "Student", portrait: studentmeet,
+    slug: "student", label: "Students", castLabel: "Student", portrait: studentLineup,
     headline: "to a project.", detail: "Work through a tough lesson and try it for yourself.",
   },
   {

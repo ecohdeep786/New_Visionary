@@ -99,7 +99,7 @@ async function inspectViewport(width, height) {
     if (capture) await target.screenshot({ path: path.join(output, section + '-' + width + '.png') });
   }
   await page.locator('footer').scrollIntoViewIfNeeded();
-  await page.locator('[data-scroll-action]:not([aria-hidden])').waitFor();
+  if (width >= 640) await page.locator('[data-scroll-action]:not([aria-hidden])').waitFor();
   await checkHeader(page);
   if (capture) {
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
@@ -217,7 +217,7 @@ async function checkTextScaling() {
     assert.deepEqual(overflow, [], 'Visible text fits at 200% on ' + width + 'px');
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     await page.locator('footer').scrollIntoViewIfNeeded();
-    await page.locator('[data-scroll-action]:not([aria-hidden])').waitFor();
+    if (width >= 640) await page.locator('[data-scroll-action]:not([aria-hidden])').waitFor();
     await checkHeader(page);
     await page.close();
   }

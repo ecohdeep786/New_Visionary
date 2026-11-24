@@ -490,7 +490,9 @@
 .page-landing header [data-public-nav-bar] button[aria-expanded] { width: 44px; height: 44px; }
 
 @media (max-width: 639px) {
-  .page-landing header [data-scroll-action][aria-hidden="true"] { display: none; }
+  /* The phone header keeps the quiet Apple chrome: logo + menu. The page
+     already carries the primary action in the hero and the close. */
+  .page-landing header [data-scroll-action] { display: none; }
   .page-landing header [data-public-nav-bar] { width: calc(100% - min(2.5rem, 10vw)); column-gap: min(0.5rem, 2vw); }
   .page-landing header [data-scroll-action] { margin-inline-start: 0; padding-inline: min(1.3125rem, 4vw); }
   .page-landing header [data-public-nav-bar] > div:last-child { gap: min(0.5rem, 2vw); }
