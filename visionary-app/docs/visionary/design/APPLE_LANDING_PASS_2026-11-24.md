@@ -2,7 +2,7 @@
 
 Date: 2026-11-24
 Base: `aae98fdc` (`origin/dev`, PR #66 — the accepted five-audience homepage)
-Implementation candidate: `f8ef025417a47902a0fd32dac45dd3d2c1fd5e17`
+Implementation candidate: `575d0533be5e1b756dd6d959df4206aeb26661fc`
 Branch: `deepseek/frontend-work`
 Merge target: `dev` only after explicit owner approval. **Not merged yet.** `main` was not promoted.
 
@@ -32,8 +32,8 @@ The common laws: chapter breath **140–144px desktop / 120px phone**; editorial
 | Statement tiers | 80 / 64 / 48 / 24 px | 64 / 56 / 48 px (hero 88) |
 | Body / lead | 17/25; 24/28–32 | 21/25; 24/600 |
 | Card / row gaps | 20–24px | 20–24px |
-| Section heights (desktop) | 608–1985px | 590–858px |
-| Page height | 7,657px education; 7,945px initiative | 5,284px front door |
+| Section heights (desktop) | 608–1985px | 590–832px |
+| Page height | 7,657px education; 7,945px initiative | 5,177px front door |
 
 The landing deliberately does not reproduce Apple's 12,000px product catalog. It takes the measured **chapter grammar** — 980 spine, 1264 wide row, 140 breath, 48–64 statements, 28px card radius, 5-up line-up and 3-up values row — and applies it to a six-beat front door. The only full-bleed surfaces are the hero and the dark Intelligence chapter, so media stays meaningful.
 
@@ -52,7 +52,7 @@ Measured rendered line widths at 1440:
 - **Five audience doors on arrival.** Quiet 12–13px local row; hover/focus previews the matching story; Enter opens the category page; active underline and a visible pause/play control.
 - **One Intelligence is a full product chapter.** 94svh dark stage capped at 52rem, 64px statement, 24/600 lead, complete guide on the band floor with a soft product glow.
 - **Shared challenge is an Apple story split.** 64px statement left on a 980px spine, supporting copy and 24/600 answer right. No centered text corridor.
-- **Five paths are an iPhone-style five-up lineup.** 1264px row, 4:5 portraits at 28px radius, 28px names, 17/25 copy and arrows. The Student card uses a normalized crop from the transparent hero cutout so all five portraits share the same white studio ground. Below 1280 it becomes a snap rail with quiet previous/next controls; desktop keeps all five visible.
+- **Five paths are an iPhone-style five-up lineup.** 1264px row, 4:5 portraits at 28px radius, 28px names and arrows. After the live user review, the abstract subhead and the five per-card descriptions were removed: the section now carries one heading, five faces, five clear role names and a single arrow per door. The Student card uses a normalized crop from the transparent hero cutout so all five portraits share the same white studio ground. Below 1280 it becomes a snap rail with quiet previous/next controls; desktop keeps all five visible.
 - **Trust is an Education-style values row.** 1264px row, three white 28px-radius cards on #f5f5f7: Private by design / Safe to learn / Open to everyone, each with a 32px icon, 28px title, 17/25 copy and a real page link. Below 900 it becomes an Apple-style card rail with controls.
 - **Close is a 1264px, 28px-radius panel** with the trust line “Free to start. Private by design.”, the primary action and a quiet “See how it works” door.
 - **The phone header stays quiet.** The scroll-only black “Get started” pill is hidden below 640px, leaving logo + menu; the hero and close carry the action instead.
@@ -73,7 +73,7 @@ Measured rendered line widths at 1440:
 | 320×568 | 512px | no | 540px (scrolls 28px past the fold) | no |
 | 844×390 | 592px | no | 633px | no |
 
-Final desktop chapters: **hero 844 · Intelligence 832 · shared challenge 608 · five paths 858 · trust 799 · close 590**. Page height **5,284px**. Mobile page height **4,537px**.
+Final desktop chapters: **hero 844 · Intelligence 832 · shared challenge 608 · five paths 752 · trust 799 · close 590**. Page height **5,177px**. Mobile page height **4,457px**.
 
 ## Five real-user journeys (production build)
 
@@ -91,14 +91,14 @@ The five portraits repeat as the path line-up; keyboard focus order is the five 
 
 - `eslint . --quiet`: clean.
 - `tsc -p jsconfig.json` and `tsc -p tsconfig.domain.json`: clean.
-- `vite build`: clean (2,166 modules; 10.68s).
+- `vite build`: clean (2,166 modules; 10.13s).
 - `node --test --test-concurrency=2 tests/*.test.mjs`: **871/871 passed**.
 - `landing-v10-quality.mjs`: **PASS** — 9 viewports, 7 interaction groups, on dev and production builds. Asserts fold ownership, all five hero doors, all five path doors, all three trust links, rail controls, mobile menu, footer disclosures, returning-visitor fixtures, preload lifecycle, 200% text and zero overflow.
 - `qa-motion.mjs`, `qa-taps.mjs`, `qa-continuity.mjs`: all pass.
 - `landing-apple-audit.mjs`: 9 viewports + 200% at 390/1280; zero horizontal overflow, zero clipped visible text; the only console entry is the audit fixture's intentional 401.
 - `landing-five-audiences.mjs`: 10 destination screens plus keyboard, reduced motion and pause.
 - `landing-scroll-audit.mjs`: 12 real-user screen captures (six desktop, six phone); no clipped interactive content, the phone header stays quiet, and each screen keeps one dominant focus.
-- Lighthouse production `/` mobile: performance **0.86**, accessibility **1.00**, best practices **0.96**, SEO **1.00**; FCP 0.91s, TBT 32ms, CLS 0; LCP **4.22s** is recorded, not claimed as passed (the project does not gate performance; SPA boot remains the tracked LCP lever).
+- Lighthouse production `/` mobile: performance **0.86**, accessibility **1.00**, best practices **0.96**, SEO **1.00**; FCP 0.91s, TBT 30ms, CLS 0; LCP **4.22s** is recorded, not claimed as passed (the project does not gate performance; SPA boot remains the tracked LCP lever).
 - Product-surface inventory refreshed: 67 routes, 55 endpoints, 1,533 control declarations.
 
 ## Evidence
@@ -106,15 +106,15 @@ The five portraits repeat as the path line-up; keyboard focus order is the five 
 Local (worktree) evidence set:
 
 - `shots/apple-refs/` — Apple references, `spacing.json`, and the pre-change landing.
-- `shots/apple-pass-2026-11-24/iteration-13/` — final section and viewport captures at nine sizes plus 200% text.
-- `shots/apple-pass-2026-11-24/final4-real-user/` — 12 real-user scroll screens (desktop + phone).
-- `shots/apple-pass-2026-11-24/final4-production-gate/` — production gate screenshots and `receipt.json`.
-- `shots/apple-pass-2026-11-24/final4-production-audiences/` — five visitor journeys, desktop + mobile, `receipt.json`.
-- `shots/apple-pass-2026-11-24/final4-production-audit/` — final nine-viewport audit and `receipt.json`.
-- `shots/apple-pass-2026-11-24/lighthouse-final4/` — Lighthouse receipt.
+- `shots/apple-pass-2026-11-24/iteration-14/` — final section and viewport captures at nine sizes plus 200% text.
+- `shots/apple-pass-2026-11-24/final5-real-user/` — 12 real-user scroll screens (desktop + phone).
+- `shots/apple-pass-2026-11-24/final5-production-gate/` — production gate screenshots and `receipt.json`.
+- `shots/apple-pass-2026-11-24/final5-production-audiences/` — five visitor journeys, desktop + mobile, `receipt.json`.
+- `shots/apple-pass-2026-11-24/final5-production-audit/` — final nine-viewport audit and `receipt.json`.
+- `shots/apple-pass-2026-11-24/lighthouse-final5/` — Lighthouse receipt.
 
 ## Acceptance decision
 
-**PASS; awaiting the owner's explicit dev merge instruction.** The landing now follows the studied Apple chapter grammar from hero to footer, all five audience journeys reach a page that continues the story, the production build passes lint, both type checks, 871 tests, the landing quality gate and Lighthouse accessibility/SEO gates, and no design, navigation or accessibility regression was observed.
+**ACTIVE IN THE CURRENT WORKTREE — implementer QA pass; independent review pending.** The landing follows the studied Apple chapter grammar from hero to footer, the five paths are now a single calm line-up, all five audience journeys reach a page that continues the story, the production build passes lint, both type checks, 871 tests, the landing quality gate and Lighthouse accessibility/SEO gates, and no design, navigation or accessibility regression was observed.
 
-Not merged into `dev`. Not promoted to `main`. No production deployment is claimed.
+Per the master directive, this is not self-certified for merge: an independent design/technical review of `575d0533` is still required. Not merged into `dev`. Not promoted to `main`. No production deployment is claimed.
