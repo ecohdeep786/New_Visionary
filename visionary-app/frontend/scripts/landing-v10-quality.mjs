@@ -79,6 +79,8 @@ async function inspectViewport(width, height) {
       heroBottom: rect.bottom,
       pathsBottom: el.querySelector('.hero-paths').getBoundingClientRect().bottom,
       playbackVisible: !!el.querySelector('.hero-playback')?.getClientRects().length,
+      playbackTop: el.querySelector('.hero-playback').getBoundingClientRect().top,
+      playbackBottom: el.querySelector('.hero-playback').getBoundingClientRect().bottom,
       actionHeight: el.querySelector('.home-action').getBoundingClientRect().height,
       pathHeights: [...el.querySelectorAll('.hero-path')].map(link => link.getBoundingClientRect().height),
       nextTop: next.top,
@@ -92,7 +94,7 @@ async function inspectViewport(width, height) {
   assert.ok(geometry.scrollWidth <= width && (!geometry.castVisible || geometry.clearance >= 0), 'Hero reflow at ' + width);
   assert.ok(geometry.heroBottom >= geometry.viewport - 1, 'Hero fills the first screen at ' + width + 'x' + height);
   assert.ok(geometry.pathsBottom <= geometry.viewport + 1, 'Five audience doors inside the first screen at ' + width + 'x' + height);
-  assert.ok(geometry.playbackVisible, 'Pause/play control stays visible at ' + width + 'x' + height);
+  assert.ok(geometry.playbackVisible && geometry.playbackTop >= 0 && geometry.playbackBottom <= geometry.viewport, 'Pause/play control stays fully visible at ' + width + 'x' + height);
   assert.ok(geometry.actionHeight >= 43.5, 'Primary action keeps a 44px target at ' + width + 'x' + height);
   assert.ok(geometry.pathHeights.every(value => value >= 43.5), 'Audience doors keep a 44px target at ' + width + 'x' + height);
   assert.ok(geometry.nextTop >= geometry.viewport - 1, 'The next chapter intrudes into the first screen at ' + width + 'x' + height);
