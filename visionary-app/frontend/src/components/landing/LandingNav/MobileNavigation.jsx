@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ChevronRight, CircleHelp, X } from "lucide-react";
 import { CATEGORIES } from "@/data/landingCategories";
@@ -24,7 +24,12 @@ export default function MobileNavigation({ open, onClose, pathname, signedIn }) 
     onCloseRef.current = onClose;
   }, [onClose]);
 
-  useEffect(() => {
+  /* Layout effect: the inert/scroll lock must land before paint and release
+     in the same commit that removes the dialog. A passive cleanup left
+     `main` inert for a frame after a resize closed the drawer (caught by
+     the production gate), briefly removing the whole page from the a11y
+     tree and keyboard order. */
+  useLayoutEffect(() => {
     if (!open) return undefined;
 
     const previousOverflow = document.body.style.overflow;

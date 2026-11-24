@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import "./landing-home.css";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
@@ -5,36 +6,38 @@ import PersonaHero from "@/components/landing/NewPersona";
 import { Link } from "react-router-dom";
 import heroBotWebp from "@/assets/brand/visionary-bot.webp";
 import heroBotAvif from "@/assets/brand/visionary-bot.avif";
-// Each audience destination keeps its original portrait.
-import studentmeet from "@/assets/audience-portraits/student.webp";
+// Each audience destination keeps its original portrait. The Student lineup
+// uses a normalized crop from the transparent hero cutout so all five
+// portraits share the same white studio ground.
+import studentLineup from "@/assets/audience-portraits/student-lineup.webp";
 import teachermeet from "@/assets/audience-portraits/teacher.webp";
 import parentmeet from "@/assets/audience-portraits/parent.webp";
 import promeet from "@/assets/audience-portraits/professional.webp";
 import orgmeet from "@/assets/audience-portraits/organization.webp";
-import { ChevronRight, Lock } from "lucide-react";
+import { Accessibility, ChevronLeft, ChevronRight, Lock, ShieldCheck } from "lucide-react";
 
 import { useSignedIn } from "@/components/landing/AuthAwareLink";
 
 const AUDIENCES = [
   {
-    slug: "student", label: "Students", castLabel: "Student", portrait: studentmeet,
-    headline: "to a project.", detail: "Work through a tough lesson and try it for yourself.",
+    slug: "student", label: "Students", castLabel: "Student", portrait: studentLineup,
+    headline: "to a project.", outcome: "Try a different explanation, then use the idea in a project.",
   },
   {
     slug: "teacher", label: "Teachers", castLabel: "Teacher", portrait: teachermeet,
-    headline: "to a lesson.", detail: "Plan lessons and see where learners need support.",
+    headline: "to a lesson.", outcome: "See where the class is stuck and adapt your next lesson.",
   },
   {
     slug: "parent", label: "Parents", castLabel: "Parent", portrait: parentmeet,
-    headline: "to a conversation.", detail: "Follow your child’s shared progress and see where you can help.",
+    headline: "to a conversation.", outcome: "See what your child understands and how to help at home.",
   },
   {
     slug: "professional", label: "Professionals", castLabel: "Professional", portrait: promeet,
-    headline: "to a new skill.", detail: "Put a new skill to work on a project.",
+    headline: "to a new skill.", outcome: "Turn today’s work into skills you can reuse.",
   },
   {
     slug: "organization", label: "Organizations", castLabel: "Organization", portrait: orgmeet,
-    headline: "to a team plan.", detail: "Coordinate learning across classes or teams.",
+    headline: "to a team plan.", outcome: "Spot gaps across teams and plan what to teach next.",
   },
 ];
 
@@ -74,35 +77,149 @@ const LANDING_HERO_LINEUP = [
   { label: "Organization", src: orgCut800, srcSet: cutSet(orgCut480, orgCut800), avifSrcSet: cutSet(orgCut480Avif, orgCut800Avif) },
 ];
 
+const LOOP_STEPS = [
+  { title: "Ask", copy: "Start with a question, a gap or a goal." },
+  { title: "Understand", copy: "Work through an explanation that makes sense." },
+  { title: "Practise", copy: "Try it and see where you need help." },
+  { title: "Build", copy: "Use what you learned in a lesson, a project or a decision." },
+];
+
+const TRUST_VALUES = [
+  {
+    title: "Private by design.",
+    copy: "Your private work stays private. When you choose to share, the people you authorize see only what you shared.",
+    link: "How sharing works",
+    to: "/privacy#sharing",
+    Icon: Lock,
+  },
+  {
+    title: "Safe to learn.",
+    copy: "Designed with controls and protections for learners, families and schools.",
+    link: "How safety works",
+    to: "/safety",
+    Icon: ShieldCheck,
+  },
+  {
+    title: "Open to everyone.",
+    copy: "A learning experience designed to adapt to how you learn.",
+    link: "Accessibility",
+    to: "/accessibility",
+    Icon: Accessibility,
+  },
+];
+
 function SharedChallenge() {
   return (
     <section data-section="06-journey" className="home-journey" aria-labelledby="journey-heading">
-      <div className="home-width journey-intro">
-        <h2 id="journey-heading" data-type="section">Understanding is only the beginning.</h2>
-        <p data-type="editorial-body">It’s hard to put an idea to work or see where someone needs help when learning and progress live in different places.</p>
-        <p data-type="editorial-body">Visionary brings learning, practical work and the people who support it into one workspace.</p>
+      <div className="home-width journey-layout">
+        <h2 id="journey-heading" data-type="display">Learning gets scattered.</h2>
+        <div className="journey-copy">
+          <p data-type="editorial-body">Explanations, practice and feedback often live in different places. It gets harder to know who needs help or what to try next.</p>
+          <p className="journey-answer" data-type="lead">Visionary is designed to keep the question, the work and the next step together.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function scrollRail(ref, direction) {
+  const rail = ref.current;
+  const [first, second] = rail?.children ?? [];
+  if (!first || !second) return;
+  const step = second.getBoundingClientRect().left - first.getBoundingClientRect().left;
+  rail.scrollBy({
+    left: direction * step,
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+  });
+}
+
+function RailControls({ id, label, railRef, className }) {
+  const [canGoBack, setCanGoBack] = useState(false);
+  const [canGoForward, setCanGoForward] = useState(false);
+
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return undefined;
+    const update = () => {
+      setCanGoBack(rail.scrollLeft > 1);
+      setCanGoForward(rail.scrollLeft + rail.clientWidth < rail.scrollWidth - 1);
+    };
+    update();
+    const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(update);
+    observer?.observe(rail);
+    for (const item of rail.children) observer?.observe(item);
+    window.addEventListener("resize", update);
+    rail.addEventListener("scroll", update, { passive: true });
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("resize", update);
+      rail.removeEventListener("scroll", update);
+    };
+  }, [railRef]);
+
+  if (!canGoBack && !canGoForward) return null;
+
+  return (
+    <div className={`rail-controls ${className}`}>
+      <button type="button" aria-label={`Previous ${label}`} aria-controls={id} aria-disabled={!canGoBack} onClick={() => canGoBack && scrollRail(railRef, -1)}>
+        <ChevronLeft size={18} aria-hidden="true" />
+      </button>
+      <button type="button" aria-label={`Next ${label}`} aria-controls={id} aria-disabled={!canGoForward} onClick={() => canGoForward && scrollRail(railRef, 1)}>
+        <ChevronRight size={18} aria-hidden="true" />
+      </button>
+    </div>
+  );
+}
+
+function LearningLoop() {
+  return (
+    <section data-section="07-loop" className="home-loop" aria-labelledby="loop-heading">
+      <div className="home-width">
+        <h2 id="loop-heading" data-type="section">Put understanding to work.</h2>
+        <p className="loop-lead" data-type="editorial-body">A student asks. A teacher explains. A parent supports. A professional builds. An organization learns what to change.</p>
+        <ol className="loop-steps" role="list" aria-label="Learning loop steps">
+          {LOOP_STEPS.map(({ title, copy }) => (
+            <li key={title} className="loop-step">
+              <h3 data-type="feature">{title}</h3>
+              <p data-type="body">{copy}</p>
+            </li>
+          ))}
+        </ol>
+        <div className="loop-actions">
+          <Link to="/how-it-works" className="home-text-link">
+            See the full learning loop <ChevronRight aria-hidden="true" size={17} />
+          </Link>
+        </div>
       </div>
     </section>
   );
 }
 
 function AudienceDirectory() {
+  const pathRow = useRef(null);
   return (
     <section id="audiences" tabIndex={-1} data-section="13-explore" className="home-audiences" aria-labelledby="audiences-title">
-      <div className="home-width audience-layout">
-        <h2 id="audiences-title" data-type="section">Find your path.</h2>
-        <nav aria-label="Audience pages">
+      <div className="path-frame">
+        <div className="path-intro">
+          <h2 id="audiences-title" data-type="section">Find your path.</h2>
+        </div>
+        <nav id="audience-paths" aria-label="Audience pages" className="path-row" ref={pathRow}>
           {AUDIENCES.map((role) => (
-            <Link key={role.slug} to={`/${role.slug}`} tabIndex={0} className="audience-destination">
-              <span className="destination-portrait"><img src={role.portrait} width="224" height="224" alt="" loading="lazy" decoding="async" /></span>
-              <span className="destination-copy">
-                <strong>{role.label}</strong>
-                <span>{role.detail}</span>
+            <Link key={role.slug} to={`/${role.slug}`} tabIndex={0} className="path-card">
+              <span className="path-media">
+                <img src={role.portrait} width="224" height="224" alt="" loading="lazy" decoding="async" />
               </span>
-              <ChevronRight className="destination-arrow" size={21} aria-hidden="true" />
+              <span className="path-body">
+                <span className="path-title">
+                  <strong>{role.label}</strong>
+                  <ChevronRight className="path-arrow" size={20} aria-hidden="true" />
+                </span>
+                <span className="path-outcome" data-type="body">{role.outcome}</span>
+              </span>
             </Link>
           ))}
         </nav>
+        <RailControls id="audience-paths" label="audience" railRef={pathRow} className="path-controls" />
       </div>
     </section>
   );
@@ -110,6 +227,7 @@ function AudienceDirectory() {
 
 export default function LandingPage() {
   const signedIn = useSignedIn();
+  const trustRow = useRef(null);
   return (
     <div className="page-landing min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
@@ -123,8 +241,9 @@ export default function LandingPage() {
         <section id="intelligence" tabIndex={-1} data-section="05-intelligence" className="scene-dark home-intelligence" aria-labelledby="intelligence-heading">
           <div className="home-width intelligence-layout">
             <div className="intelligence-copy">
-              <h2 id="intelligence-heading" data-type="section">One Intelligence.</h2>
-              <p data-type="editorial-body">One AI guide for learning, teaching and building. Use the workspace in English, Hindi or Bengali.</p>
+              <h2 id="intelligence-heading" data-type="display">One Intelligence.</h2>
+              <p data-type="editorial-body">One workspace designed to adapt explanations, show where help is needed and put learning to work.</p>
+              <p className="intelligence-note" data-type="body">The guided experience is in development. Today, you can create an account and view saved learning history. Selected workspace screens support English, Hindi and Bengali.</p>
               <Link to="/how-it-works" className="home-text-link">How it works <ChevronRight aria-hidden="true" size={17} /></Link>
             </div>
             <picture className="intelligence-portrait" aria-hidden="true">
@@ -134,21 +253,40 @@ export default function LandingPage() {
           </div>
         </section>
         <SharedChallenge />
+        <LearningLoop />
         <AudienceDirectory />
-        <section className="home-privacy" data-section="11-trust" aria-labelledby="privacy-heading">
-          <div className="home-width">
-            <Lock className="privacy-mark" strokeWidth={1.6} size={32} aria-hidden="true" />
-            <h2 id="privacy-heading" data-type="section">Know what’s shared.</h2>
-            <p data-type="editorial-body">Teachers and connected parents can follow shared progress. Your private conversations stay out of those views.</p>
-            <Link to="/privacy#sharing" className="home-text-link">How sharing works <ChevronRight aria-hidden="true" size={17} /></Link>
+        <section className="home-privacy" data-section="11-trust" aria-labelledby="trust-heading">
+          <div className="trust-frame">
+            <h2 id="trust-heading" data-type="card-chapter">Your learning stays yours.</h2>
+            <div id="trust-values" className="trust-row" ref={trustRow}>
+              {TRUST_VALUES.map(({ title, copy, link, to, Icon }) => (
+                <div key={title} className="trust-card">
+                  <Icon className="trust-icon" strokeWidth={1.7} size={32} aria-hidden="true" />
+                  <h3 data-type="feature">{title}</h3>
+                  <p data-type="value-body">{copy}</p>
+                  <Link to={to} className="home-text-link">{link} <ChevronRight aria-hidden="true" size={17} /></Link>
+                </div>
+              ))}
+            </div>
+            <RailControls id="trust-values" label="value" railRef={trustRow} className="trust-controls" />
           </div>
         </section>
         <section className="home-closing" data-section="12-cta" aria-labelledby="closing-heading">
-          <div className="home-width closing-layout">
-            <h2 id="closing-heading" data-type="section">{signedIn ? "Continue in Visionary." : "Start with your own question."}</h2>
-            <Link className="home-action public-action" to={signedIn ? "/dashboard/home" : "/register"}>
-              {signedIn ? "Open Visionary" : "Create an account"}
-            </Link>
+          <div className="closing-frame">
+            <div className="closing-panel closing-layout">
+              <div className="closing-copy">
+                <h2 id="closing-heading" data-type="section">{signedIn ? "Continue in Visionary." : "Keep your learning in reach."}</h2>
+                <p className="closing-line" data-type="editorial-body">{signedIn ? "Return to your workspace." : "A free account gives you access to saved learning history."}</p>
+              </div>
+              <div className="closing-actions">
+                <Link className="home-action public-action" to={signedIn ? "/dashboard/home" : "/register"}>
+                  {signedIn ? "Open Visionary" : "Create an account"}
+                </Link>
+                <Link className="home-text-link closing-secondary" to="/how-it-works">
+                  See how it works <ChevronRight aria-hidden="true" size={16} />
+                </Link>
+              </div>
+            </div>
           </div>
         </section>
       </main>

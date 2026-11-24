@@ -1,141 +1,573 @@
 .page-landing {
-  --public-section-py: clamp(4rem, 7vw, 7rem);
+  /* Apple's measured chapter breath: 112px on phones, 140px on desktop. */
+  --public-section-py: clamp(7rem, 10vw, 8.75rem);
 }
-.page-landing #audiences, .page-landing #intelligence { scroll-margin-top: 3.5rem; }
+.page-landing #intelligence { scroll-margin-top: 4.5rem; }
+.page-landing #audiences { scroll-margin-top: calc(4.5rem - var(--public-section-py)); }
+.page-landing main > section[data-section]:not([data-section="01-hero"]) { scroll-margin-top: 4.5rem; }
 
 /* The same reading edge runs through the product, audience and privacy chapters. */
-.home-width { width: min(calc(100% - 3rem), 68rem); margin-inline: auto; }
-.page-landing #main .home-intelligence { padding: 0; overflow: hidden; background: #101114; color: #fafafa; }
-.intelligence-layout { min-height: clamp(29rem, 68svh, 39rem); display: grid; grid-template-columns: 1fr .9fr; align-items: center; gap: 3rem; }
-.intelligence-copy { padding-block: clamp(4.5rem, 8.5vw, 8rem); }
-.page-landing #main .intelligence-copy h2 { margin: 0; color: #fafafa; }
-.page-landing #main .intelligence-copy p { max-width: 35ch; margin: 1.25rem 0 .7rem; color: #d0d1d6; line-height: 1.48; }
-.home-text-link { display: inline-flex; align-items: center; gap: .15rem; min-height: 2.75rem; color: #155da9; font-weight: 500; text-decoration: none; }
-.home-text-link:hover { text-decoration: underline; text-underline-offset: .2em; }
-.home-text-link:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; border-radius: .2rem; }
-.home-intelligence .home-text-link { color: #a3d0ff; }
-.intelligence-portrait { display: block; align-self: end; width: min(100%, 24rem); justify-self: center; margin-bottom: -3rem; }
+.home-width { width: min(calc(100% - 3rem), 61.25rem); margin-inline: auto; }
+
+/* ── 05 · One Intelligence ────────────────────────────────────────────────
+   The one dark product chapter: a complete stage, its copy held to the
+   reading edge and the guide standing on the band's floor. ─────────────── */
+.page-landing #main .home-intelligence {
+  position: relative;
+  display: flex;
+  min-height: clamp(38rem, 94svh, 52rem);
+  padding: 0;
+  overflow: hidden;
+  border-top: 0;
+  background: #050506;
+  color: #f5f5f7;
+}
+.home-intelligence::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(48% 62% at 74% 66%, rgba(92, 105, 130, 0.28) 0%, rgba(5, 5, 6, 0) 72%);
+  pointer-events: none;
+}
+.intelligence-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 6rem);
+  width: min(calc(100% - 3rem), 68rem);
+  min-height: inherit;
+  margin-inline: auto;
+  padding-block: clamp(4rem, 8.5svh, 6rem) 0;
+}
+.intelligence-copy { align-self: center; max-width: 34rem; }
+.page-landing #main .intelligence-copy h2 { margin: 0; color: #fafafa; text-wrap: balance; overflow-wrap: normal; }
+.page-landing #main .intelligence-copy p {
+  max-width: 34ch;
+  margin: 1.35rem 0 0.75rem;
+  color: #c7c8cd;
+  line-height: 1.32;
+}
+.page-landing #main .intelligence-copy .intelligence-note {
+  max-width: 39ch;
+  margin: 1rem 0 0.85rem;
+  color: #b5b6bc;
+}
+.home-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  min-height: 2.75rem;
+  color: #0066cc;
+  font-weight: 500;
+  text-decoration: none;
+}
+.home-text-link:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.home-text-link:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; border-radius: 0.2rem; }
+.home-intelligence .home-text-link { color: #2997ff; }
+.intelligence-stage {
+  position: relative;
+  display: flex;
+  align-self: stretch;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 0;
+}
+.intelligence-stage::before {
+  content: "";
+  position: absolute;
+  bottom: 4%;
+  width: min(86%, 30rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(150, 170, 210, 0.22) 0%, rgba(150, 170, 210, 0) 68%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+.intelligence-portrait {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: min(100%, 24rem);
+  margin: 0;
+}
 .intelligence-portrait img { display: block; width: 100%; height: auto; }
-@media (max-width: 699px) {
-  .home-width { width: calc(100% - min(3rem, 12vw)); }
-  .intelligence-layout { min-height: 0; grid-template-columns: 1fr; gap: 1rem; }
-  .intelligence-copy { padding-block: clamp(3.5rem, 12vw, 5rem) 0; }
-  .intelligence-portrait { width: min(65%, 14rem); margin-right: 2%; margin-bottom: -2rem; }
+
+@media (max-width: 767px) {
+  .page-landing #main .home-intelligence { min-height: 0; }
+  .intelligence-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-block: clamp(3.5rem, 8svh, 5rem) 0;
+  }
+  .intelligence-copy { max-width: none; }
+  .page-landing #main .intelligence-copy p { max-width: 38ch; }
+  .intelligence-stage { min-height: 16rem; }
+  .intelligence-portrait { width: min(62%, 14rem); }
 }
 
+/* ── 01 · The universal hero ──────────────────────────────────────────────
+   One complete first-screen composition. The hero owns the remaining
+   viewport, so the next chapter never intrudes on arrival. ─────────────── */
 .page-landing #main .home-hero {
-  --cast-h: clamp(12rem, min(22vw, 35svh), 21rem);
+  --cast-h: clamp(12rem, min(23vw, 35svh), 22rem);
+  position: relative;
   display: flex;
   flex-direction: column;
-  min-height: min(calc(100svh - 3.5rem), 51rem);
+  min-height: calc(100vh - 3.5rem);
+  min-height: calc(100dvh - 3.5rem);
   margin-top: 3.5rem;
-  padding: clamp(2.8rem, 6svh, 5.25rem) 0 0;
+  padding: clamp(1.5rem, 3svh, 2.5rem) 0 0;
   overflow: hidden;
   background: #fff;
+  isolation: isolate;
 }
 .home-hero-copy { width: min(92%, 62rem); margin: auto; text-align: center; }
 .page-landing #main .home-hero-copy h1 {
-  margin: 0; max-width: none; font-weight: 600; font-size: clamp(3.6rem, 6.3vw, 6.1rem);
-  line-height: 1.02; letter-spacing: -.055em;
+  margin: 0;
+  max-width: none;
+  font-weight: 600;
+  font-size: clamp(3.2rem, 6.1vw, 5.9rem);
+  line-height: 1.02;
+  letter-spacing: -0.055em;
 }
 .home-hero-copy h1 > span { display: block; overflow-wrap: anywhere; }
-.home-hero-copy h1 .role-headlines { display: grid; grid-template-columns: minmax(0, 1fr); overflow-wrap: anywhere; color: #1468bf; }
+.home-hero-copy h1 .role-headlines {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  overflow-wrap: anywhere;
+  color: #0066cc;
+}
 .role-headlines > span { grid-area: 1 / 1; visibility: hidden; }
 .role-headlines .is-current { visibility: visible; animation: audience-arrive var(--motion-duration-slow) var(--ease-out-apple); }
-@keyframes audience-arrive { from { opacity: .35; transform: translateY(.09em); } to { opacity: 1; transform: none; } }
+@keyframes audience-arrive {
+  from { opacity: 0.35; transform: translateY(0.09em); }
+  to { opacity: 1; transform: none; }
+}
 .page-landing #main .home-hero-copy p {
-  margin: 1.2rem auto 1.45rem; max-width: 48ch; color: #424247;
-  font-size: clamp(1.0625rem, 1.5vw, 1.3rem); font-weight: 400; line-height: 1.4; text-wrap: balance;
+  margin: 1.25rem auto 1.5rem;
+  max-width: 38ch;
+  color: #6e6e73;
+  font-size: clamp(1.0625rem, 1.5vw, 1.3125rem);
+  font-weight: 400;
+  line-height: 1.42;
+  text-wrap: balance;
 }
 .page-landing .home-action {
-  display: inline-flex; align-items: center; justify-content: center; min-height: 2.85rem;
-  padding: .65rem 1.45rem; border-radius: 2rem; background: #1d1d1f; color: white;
-  font-size: 1.0625rem; line-height: 1.25; font-weight: 550; text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.65rem 1.5rem;
+  border-radius: 2rem;
+  background: #1d1d1f;
+  color: white;
+  font-size: 1.0625rem;
+  line-height: 1.25;
+  font-weight: 550;
+  text-decoration: none;
   transition: background-color var(--motion-duration-fast) var(--ease-out-apple);
 }
 .page-landing .home-action:hover { background: #38383c; }
-.family-stage { width: 100%; margin: clamp(1.75rem, 4svh, 3rem) auto 0; padding-top: .85rem; overflow: hidden; }
-@media (min-width: 1024px) {
-  .home-hero .cast-person + .cast-person { margin-left: calc(var(--cast-h) * -.09); }
+
+/* Apple's local audience row: five quiet doors, all present on arrival. */
+.hero-paths {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem 0.95rem;
+  max-width: 46rem;
+  margin: 1.2rem auto 0;
+}
+.hero-path {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.25rem 0.1rem;
+  border-radius: 0.3rem;
+  color: #6e6e73;
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: color var(--motion-duration-fast) var(--ease-out-apple);
+}
+.hero-path:hover { color: #0066cc; }
+.hero-path[data-active="true"] {
+  color: #1d1d1f;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.42em;
+}
+.hero-path:focus-visible { outline: 3px solid #0066cc; outline-offset: 2px; }
+
+.home-hero .hero-playback {
+  position: absolute;
+  right: max(1.25rem, 4vw);
+  bottom: max(1rem, 3.5svh);
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(29, 29, 31, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.84);
+  color: #6e6e73;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(12px);
+  transition: color var(--motion-duration-fast) var(--ease-out-apple), background-color var(--motion-duration-fast) var(--ease-out-apple);
+}
+.home-hero .hero-playback:hover { background: #fff; color: #1d1d1f; }
+.home-hero .hero-playback:focus-visible { outline: 3px solid #0066cc; outline-offset: 2px; }
+
+.family-stage {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: clamp(1.25rem, 3svh, 2.25rem);
+  overflow: hidden;
+  /* The studio floor: the cutout tail dissolves into the page instead of
+     ending on a hard horizontal crop. The mask fades the pixels themselves,
+     so no white fog band sits across the subjects. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 62%, rgba(0, 0, 0, 0.72) 78%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 62%, rgba(0, 0, 0, 0.72) 78%, rgba(0, 0, 0, 0) 100%);
+}
+@media (min-width: 640px) {
+  .home-hero .cast-person + .cast-person { margin-left: calc(var(--cast-h) * -0.09); }
 }
 .cast-person { transition: transform var(--motion-duration-slow) var(--ease-out-apple); transform-origin: 50% 100%; }
 .cast-person[data-current="true"] { transform: scale(1.035); }
-.cast-caption { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .35rem; padding: .2rem 1.25rem; background: #fafafa; }
-.cast-caption button { display: inline-flex; align-items: center; justify-content: center; gap: .3rem; min-height: 44px; min-width: 44px; border-radius: .5rem; color: #4d4d53; }
-.cast-active { margin-right: .35rem; color: #505057; font-size: .9375rem; }
-.cast-caption button:hover { color: #125aab; }
-.page-landing .home-action:focus-visible, .cast-caption button:focus-visible {
-  outline: 3px solid #0066cc; outline-offset: 2px;
-}
+.page-landing .home-action:focus-visible { outline: 3px solid #0066cc; outline-offset: 2px; }
+
 @media (min-width: 640px) and (max-width: 1023px) {
-  .page-landing #main .home-hero { --cast-h: 24vw; min-height: min(calc(100svh - 3.5rem), 47rem); }
+  .page-landing #main .home-hero {
+    --cast-h: min(26vw, 16rem);
+  }
+  .page-landing #main .home-hero-copy h1 { font-size: clamp(3.4rem, 6.5vw, 4.6rem); }
 }
 @media (max-width: 639px) {
-  .page-landing #main .home-hero { --cast-h: 36vw; min-height: min(calc(100svh - 3.5rem), 38rem); padding-top: 2.8rem; }
+  .page-landing #main .home-hero {
+    --cast-h: 36vw;
+    padding-top: 1.75rem;
+  }
   .page-landing #main .home-hero-copy h1 { font-size: min(clamp(2.15rem, 10.5vw, 3.8rem), 16vw); }
-  .page-landing #main .home-hero-copy p { max-width: 33ch; margin: 1rem auto 1.4rem; }
-  .family-stage { margin-top: clamp(1.75rem, 4svh, 2.5rem); }
-  .home-hero .cast-slot-1 { margin-left: calc(var(--cast-h) * -.39); }
-  .home-hero .cast-slot-2 { margin-left: calc(var(--cast-h) * -.26); }
-  .home-hero .cast-slot-3 { margin-left: calc(var(--cast-h) * -.42); }
-  .home-hero .cast-slot-4 { margin-left: calc(var(--cast-h) * -.34); }
+  .page-landing #main .home-hero-copy p { max-width: 32ch; margin: 1rem auto 1.25rem; }
+  .hero-paths { gap: 0.1rem 0.7rem; margin-top: 0.9rem; }
+  .hero-path { min-height: 2.75rem; font-size: 0.75rem; }
+  .home-hero .hero-playback { right: 1rem; bottom: 1rem; }
+  .family-stage { padding-top: clamp(1.25rem, 3.5svh, 2rem); }
+  .home-hero .cast-slot-1 { margin-left: calc(var(--cast-h) * -0.39); }
+  .home-hero .cast-slot-2 { margin-left: calc(var(--cast-h) * -0.26); }
+  .home-hero .cast-slot-3 { margin-left: calc(var(--cast-h) * -0.42); }
+  .home-hero .cast-slot-4 { margin-left: calc(var(--cast-h) * -0.34); }
+}
+@media (max-width: 380px) {
+  .hero-paths { max-width: 15.5rem; }
+}
+/* A short landscape phone cannot carry the full cast and still show all five
+   doors on arrival. The words, the action and the five audience doors stay;
+   the studio image steps aside so the shared story remains complete. */
+@media (max-height: 520px) and (orientation: landscape) {
+  .page-landing #main .home-hero {
+    --cast-h: 0px;
+    min-height: calc(100svh - 3.5rem);
+    padding-top: 0.75rem;
+  }
+  .home-hero-copy { width: min(94%, 62rem); }
+  .page-landing #main .home-hero-copy h1 { font-size: clamp(2.25rem, 7svh, 3.5rem); }
+  .page-landing #main .home-hero-copy p { margin: 0.55rem auto 0.8rem; max-width: 58ch; font-size: 0.9375rem; line-height: 1.35; }
+  .page-landing .home-action { min-height: 2.75rem; padding: 0.4rem 1.1rem; font-size: 0.9375rem; }
+  .hero-paths { margin-top: 0.35rem; gap: 0 0.8rem; }
+  .hero-path { min-height: 2.75rem; font-size: 0.75rem; }
+  .family-stage { display: none; }
+  .home-hero .hero-playback {
+    top: 0.5rem;
+    right: 0.75rem;
+    bottom: auto;
+  }
+}
+/* On the narrowest portrait phone the hero can extend a little past the
+   viewport; keep the 44px pause control itself fully inside the screen. */
+@media (max-width: 359px) and (orientation: portrait) {
+  .home-hero .hero-playback { bottom: 2rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .role-headlines .is-current { animation: none; }
-  .cast-person, .page-landing .home-action { transition: none; }
+  .cast-person, .page-landing .home-action, .hero-path, .home-hero .hero-playback { transition: none; }
+}
+@media (forced-colors: active) {
+  .role-headlines .is-current.accent-gradient {
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    color: CanvasText;
+  }
 }
 
+/* ── 06 · The shared challenge ────────────────────────────────────────────
+   A quiet grey statement between the product and the fork. ─────────────── */
 .page-landing #main .home-journey {
-  padding-block: clamp(4rem, 8svh + 3vw, 8rem);
+  display: flex;
+  align-items: center;
+  min-height: 38rem;
+  padding-block: clamp(7rem, 10vw, 8.75rem);
   border-top: 0;
   background: #f5f5f7;
 }
-.journey-intro { max-width: 48rem; margin-inline: auto; text-align: center; }
-.journey-intro h2 { max-width: 17ch; margin: 0 auto; text-wrap: balance; }
-.page-landing #main .journey-intro p { max-width: 40ch; margin: 1.25rem auto 0; text-wrap: pretty; }
-.page-landing #main .journey-intro p + p { margin-top: .7rem; }
-
-/* Use the whole row as the destination. The short statement replaces a separate problem card. */
-.page-landing #main .home-audiences { background: #fff; padding-block: clamp(4.5rem, 8.5vw, 8rem); }
-.audience-layout { display: grid; grid-template-columns: minmax(13rem, .68fr) minmax(0, 1.5fr); gap: clamp(2rem, 7vw, 7rem); align-items: start; }
-.audience-layout h2 { margin: 0; }
-.audience-layout nav { min-width: 0; }
-.page-landing .audience-destination {
-  display: grid; grid-template-columns: 5.5rem minmax(0, 1fr) 1.5rem; align-items: center;
-  gap: clamp(1rem, 2.5vw, 2rem); min-height: 7.2rem; padding: .65rem .25rem;
-  border-top: 1px solid #d5d7da; color: #1d1d1f; text-decoration: none;
+.journey-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+  align-items: start;
+  gap: clamp(3rem, 7vw, 7rem);
 }
-.audience-destination:last-child { border-bottom: 1px solid #d5d7da; }
-.destination-portrait { display: block; width: 5.5rem; height: 5.5rem; overflow: hidden; border-radius: .85rem; background: #f4f4f6; }
-.destination-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center; mix-blend-mode: multiply; }
-.destination-copy { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; overflow-wrap: anywhere; gap: .3rem; padding-inline-start: min(.5rem, 2vw); }
-.destination-copy strong { font-size: clamp(1.45rem, 2.4vw, 2rem); line-height: 1.12; font-weight: 600; letter-spacing: -.035em; }
-.destination-copy > span { color: #505057; font-size: 1.0625rem; line-height: 1.4; }
-.destination-arrow { justify-self: end; color: #606068; }
-.audience-destination:is(:hover, :focus-visible) :is(strong, .destination-arrow) { color: #155da9; }
-.audience-destination:focus-visible { outline: 3px solid #0066cc; outline-offset: 2px; }
-@media (max-width: 849px) {
-  .audience-layout { grid-template-columns: 1fr; gap: 2rem; }
+.journey-layout h2 { min-width: 0; max-width: 13ch; margin: 0; text-wrap: balance; overflow-wrap: anywhere; }
+.journey-copy { min-width: 0; padding-top: 0.35rem; }
+.page-landing #main .journey-copy p { max-width: 38ch; margin: 0; color: #424247; text-wrap: pretty; overflow-wrap: anywhere; }
+.page-landing #main .journey-copy .journey-answer { max-width: 34ch; margin-top: 1.6rem; color: #1d1d1f; }
+@media (max-width: 1023px) {
+  .journey-layout { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .journey-layout h2 { max-width: 17ch; }
+  .journey-copy { padding-top: 0; }
+}
+
+/* ── 07 · The learning loop ──────────────────────────────────────────────── */
+.page-landing #main .home-loop {
+  padding-block: clamp(7rem, 10vw, 8.75rem);
+  border-top: 0;
+  background: #fff;
+  text-align: center;
+  container-type: inline-size;
+}
+.home-loop .home-width { width: min(calc(100% - min(3rem, 12vw)), 61.25rem); }
+.home-loop h2 { max-width: 24ch; margin: 0 auto; text-wrap: balance; }
+.loop-lead {
+  max-width: 50ch;
+  margin: 1.25rem auto 0;
+  color: #6e6e73;
+  text-wrap: balance;
+}
+.loop-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin: clamp(2.75rem, 5vw, 4.5rem) 0 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+.loop-step {
+  padding-top: 1rem;
+  border-top: 1px solid #d2d2d7;
+}
+.loop-step h3 { margin: 0; overflow-wrap: normal; }
+.loop-step p { max-width: 28ch; margin: 0.55rem 0 0; color: #515154; }
+.loop-actions { margin-top: clamp(2rem, 4vw, 3.5rem); }
+@container (max-width: 64rem) {
+  .loop-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container (max-width: 40rem) {
+  .loop-steps { grid-template-columns: minmax(0, 1fr); gap: 1.1rem; }
+  .loop-step p { max-width: none; }
+}
+
+/* ── 13 · The five paths ──────────────────────────────────────────────────
+   One quiet editorial directory, not five category pages in one place. ─── */
+.page-landing #main .home-audiences {
+  padding-block: clamp(7rem, 10vw, 8.75rem);
+  border-top: 0;
+  background: #fff;
+}
+.path-frame { width: min(calc(100% - 3rem), 79rem); margin-inline: auto; container-type: inline-size; }
+.path-intro { max-width: 38rem; margin: 0 0 clamp(3.5rem, 5vw, 5rem); }
+.path-intro h2 { margin: 0; }
+.path-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(1.75rem, 2.4vw, 2.25rem);
+}
+.path-card { display: flex; flex-direction: column; min-width: 0; color: #1d1d1f; text-decoration: none; }
+.path-media {
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 1.75rem;
+  background: #f4f4f6;
+}
+.path-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  mix-blend-mode: multiply;
+  transition: transform var(--motion-duration-slow) var(--ease-out-apple);
+}
+.path-body { display: flex; flex-direction: column; padding: 1.2rem 0.1rem 0; }
+.path-outcome { display: block; margin-top: 0.5rem; color: #515154; }
+.path-title { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.path-title strong {
+  min-width: 0;
+  font-size: clamp(1.5rem, 1.8vw, 1.75rem);
+  line-height: 1.12;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  overflow-wrap: normal;
+  transition: color var(--motion-duration-fast) var(--ease-out-apple);
+}
+.path-arrow {
+  flex: none;
+  color: #606068;
+  transition: transform var(--motion-duration-fast) var(--ease-out-apple), color var(--motion-duration-fast) var(--ease-out-apple);
+}
+.path-card:is(:hover, :focus-visible) :is(.path-title strong, .path-arrow) { color: #155da9; }
+.path-card:is(:hover, :focus-visible) .path-arrow { transform: translateX(3px); }
+.path-card:is(:hover, :focus-visible) .path-media img { transform: scale(1.03); }
+.path-card:focus-visible { outline: 3px solid #0066cc; outline-offset: 4px; border-radius: 1.75rem; }
+.path-row:focus-visible, .trust-row:focus-visible { outline: 3px solid #0066cc; outline-offset: -3px; }
+@media (max-width: 1279px) {
+  .path-row {
+    display: flex;
+    gap: 1.25rem;
+    margin-inline: -1.5rem;
+    padding-inline: 1.5rem;
+    padding-bottom: 0.75rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1.5rem;
+    scrollbar-width: none;
+  }
+  .path-row::-webkit-scrollbar { display: none; }
+  .path-card { flex: 0 0 min(72vw, 15rem); scroll-snap-align: start; }
 }
 @media (max-width: 639px) {
-  .page-landing .audience-destination { grid-template-columns: min(3.75rem, 16vw) minmax(0, 1fr) min(1rem, 5vw); gap: min(.9rem, 3vw); min-height: 6rem; }
-  .destination-portrait { width: min(3.75rem, 16vw); height: min(4.25rem, 19vw); border-radius: .6rem; }
-  .destination-copy strong { font-size: 1.35rem; overflow-wrap: anywhere; }
-  .destination-copy > span { font-size: .9375rem; }
-  .destination-arrow { width: 1rem; }
+  .path-frame { width: calc(100% - 2.5rem); }
+  .path-row { margin-inline: -1.25rem; padding-inline: 1.25rem; scroll-padding-inline: 1.25rem; }
+  .path-intro { margin-bottom: 2.5rem; }
+  .path-title strong { font-size: 1.45rem; }
+}
+/* Text-size-aware path reflow: at 200% the five-up becomes a three-up and,
+   on the narrowest frames, a compact list — names never split mid-word. */
+@container (max-width: 75rem) {
+  .path-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@container (max-width: 17rem) {
+  .path-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    margin-inline: 0;
+    padding-inline: 0;
+    overflow: visible;
+  }
+  .path-card {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.9rem;
+  }
+  .path-media { aspect-ratio: 1; border-radius: 0.75rem; }
+  .path-body { padding: 0; }
+  .path-title strong { font-size: 1rem; letter-spacing: -0.02em; }
+  .path-controls { display: none; }
+}
+@container (max-width: 13rem) {
+  .path-card { grid-template-columns: 1fr; gap: 0; }
+  .path-media { display: none; }
+  .path-body { padding: 0.35rem 0; }
+  .path-title { gap: 0; }
+  .path-title strong { font-size: 1.1rem; }
+  .path-arrow { display: none; }
 }
 
-.page-landing #main .home-privacy { padding-block: clamp(3.75rem, 7vw, 6rem); background: #f4f5f7; text-align: center; }
-.privacy-mark { margin: 0 auto 1.2rem; color: #3c4651; }
-.page-landing #main .home-privacy h2 { margin: 0 auto; }
-.page-landing #main .home-privacy p { max-width: 43ch; margin: .95rem auto .55rem; color: #424245; text-wrap: balance; }
+.rail-controls { display: none; justify-content: flex-end; gap: 0.5rem; margin-top: 1rem; }
+.rail-controls button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid #d2d2d7;
+  border-radius: 999px;
+  background: #fff;
+  color: #1d1d1f;
+  transition: background-color var(--motion-duration-fast) var(--ease-out-apple);
+}
+.rail-controls button[aria-disabled="false"]:hover { background: #f5f5f7; }
+.rail-controls button[aria-disabled="true"] { opacity: 0.45; cursor: default; }
+.rail-controls button:focus-visible { outline: 3px solid #0066cc; outline-offset: 2px; }
+@media (max-width: 1279px) { .path-controls { display: flex; } }
+@media (max-width: 899px) { .trust-controls { display: flex; } }
 
-.page-landing #main .home-closing { padding-block: clamp(3.75rem, 7.5vw, 7rem); background: white; }
-.closing-layout { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem; }
+/* ── 11 · Trust ───────────────────────────────────────────────────────────
+   The quiet privacy beat; one idea, one room. ──────────────────────────── */
+.page-landing #main .home-privacy {
+  padding-block: clamp(7rem, 10vw, 8.75rem);
+  border-top: 0;
+  background: #f5f5f7;
+}
+.trust-frame { width: min(calc(100% - 3rem), 79rem); margin-inline: auto; }
+.trust-frame h2 { max-width: 18ch; margin: 0 0 clamp(2.5rem, 4vw, 3.5rem); }
+.trust-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 1.7vw, 1.5rem); }
+.trust-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(2rem, 3.5vw, 2.5rem);
+  border-radius: 1.75rem;
+  background: #fff;
+}
+.trust-icon { margin-bottom: clamp(1.75rem, 3vw, 2.25rem); color: #3c4651; }
+.trust-card h3 { margin: 0 0 0.9rem; max-width: 16ch; overflow-wrap: anywhere; }
+.trust-card p { margin: 0 0 1.35rem; max-width: 30ch; color: #6e6e73; overflow-wrap: anywhere; }
+.trust-card .home-text-link { margin-top: auto; }
+@media (max-width: 899px) {
+  .trust-frame { width: calc(100% - 2.5rem); }
+  .trust-row {
+    display: flex;
+    gap: 1rem;
+    margin-inline: -1.25rem;
+    padding-inline: 1.25rem;
+    padding-bottom: 0.75rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1.25rem;
+    scrollbar-width: none;
+  }
+  .trust-row::-webkit-scrollbar { display: none; }
+  .trust-card { flex: 0 0 min(82vw, 22rem); scroll-snap-align: start; padding: 1.75rem 1.5rem; }
+}
+
+/* ── 12 · The close ───────────────────────────────────────────────────────*/
+.page-landing #main .home-closing {
+  padding-block: clamp(7rem, 10vw, 8.75rem);
+  border-top: 0;
+  background: white;
+}
+.closing-frame { width: min(calc(100% - 3rem), 79rem); margin-inline: auto; }
+.closing-panel {
+  padding: clamp(2.75rem, 5vw, 4.5rem);
+  border: 1px solid rgba(29, 29, 31, 0.04);
+  border-radius: 1.75rem;
+  background: #f5f5f7;
+}
+.closing-layout { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: clamp(2rem, 5vw, 5rem); }
+.closing-copy { max-width: 34rem; }
 .closing-layout h2 { margin: 0; max-width: 17ch; text-wrap: balance; }
+.closing-line { margin: 1.1rem 0 0; color: #6e6e73; font-size: 1.0625rem; line-height: 1.5; }
+.closing-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem; }
 .page-landing .closing-layout .home-action { flex: none; margin-top: 0; }
+.closing-secondary { min-height: 2.75rem; }
 @media (max-width: 639px) {
-  .closing-layout { align-items: flex-start; flex-direction: column; gap: 1.25rem; }
+  .closing-frame { width: calc(100% - 2.5rem); }
+  .closing-panel { padding: 2rem 1.5rem; border-radius: 1.5rem; }
+  .closing-layout { align-items: flex-start; flex-direction: column; gap: 1.75rem; }
+  .closing-actions { gap: 0.5rem; }
 }
 
 .page-landing footer[data-compact] .public-frame { width: min(calc(100% - 3rem), 68rem); margin-inline: auto; }
@@ -146,7 +578,7 @@
   footer[data-compact] .footer-group { padding: 0; border-bottom: 1px solid #d2d2d7; }
   footer[data-compact] h3 { margin: 0; }
   footer[data-compact] .footer-label { display: none; }
-  footer[data-compact] .footer-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 3.15rem; padding: .5rem 0; text-align: left; font-size: 1rem; }
+  footer[data-compact] .footer-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 3.15rem; padding: 0.5rem 0; text-align: left; font-size: 1rem; }
   footer[data-compact] .footer-toggle:focus-visible { outline: 3px solid #0066cc; }
   footer[data-compact] [data-open="false"] ul { display: none; }
   footer[data-compact] [data-open="true"] .footer-toggle svg { transform: rotate(180deg); }
@@ -162,20 +594,21 @@
 .page-landing header [data-public-nav-bar] nav { gap: 2px; }
 .page-landing header [data-scroll-action] { margin-inline-start: 8px; gap: 6px; }
 .page-landing header [data-scroll-action] svg { width: 14px; height: 14px; }
-.page-landing header [aria-label="Visionary home"] > svg { width: min(109px, 29vw); height: auto; }
-.page-landing header [aria-label="Visionary home"]::after { inset-inline: 0; }
+.page-landing header [data-public-brand] > svg { width: min(109px, 29vw); height: auto; }
+.page-landing header [data-public-brand]::after { inset-inline: 0; }
 .page-landing header [data-public-nav-bar] button[aria-expanded] { width: 44px; height: 44px; }
 
 @media (max-width: 639px) {
-  .page-landing header [data-scroll-action][aria-hidden="true"] { display: none; }
-  .page-landing header [data-public-nav-bar] { width: calc(100% - min(2.5rem, 10vw)); column-gap: min(.5rem, 2vw); }
+  /* The phone header keeps the quiet Apple chrome: logo + menu. The page
+     already carries the primary action in the hero and the close. */
+  .page-landing header [data-scroll-action] { display: none; }
+  .page-landing header [data-public-nav-bar] { width: calc(100% - min(2.5rem, 10vw)); column-gap: min(0.5rem, 2vw); }
   .page-landing header [data-scroll-action] { margin-inline-start: 0; padding-inline: min(1.3125rem, 4vw); }
-  .page-landing header [data-public-nav-bar] > div:last-child { gap: min(.5rem, 2vw); }
-  .page-landing header [aria-label="Visionary home"]::after { inset-inline: 0; }
+  .page-landing header [data-public-nav-bar] > div:last-child { gap: min(0.5rem, 2vw); }
 }
 @media (max-width: 374px) {
   .page-landing header [data-public-nav-bar] { width: calc(100% - min(1.5rem, 6vw)); }
-  .page-landing header [data-scroll-action] { min-width: 0; margin-left: 0; padding-inline: min(.75rem, 3vw); font-size: min(.9375rem, 6vw); }
+  .page-landing header [data-scroll-action] { min-width: 0; margin-left: 0; padding-inline: min(0.75rem, 3vw); font-size: min(0.9375rem, 6vw); }
   .page-landing header [data-scroll-action] svg { display: none; }
-  .page-landing header [data-public-nav-bar] > div:last-child { gap: .25rem; }
+  .page-landing header [data-public-nav-bar] > div:last-child { gap: 0.25rem; }
 }

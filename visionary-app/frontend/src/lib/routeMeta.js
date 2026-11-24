@@ -197,7 +197,7 @@ export const PERSONA_OG = {
 };
 
 /* 404 fallback applies to any path that is not an internal or auth surface. */
-const AUTH_PATHS = ["/login", "/signin", "/register", "/forgot-password", "/forgot-user-id", "/reset-password"];
+const AUTH_PATHS = ["/login", "/signin", "/register", "/forgot-password", "/forgot-user-id", "/reset-password", "/auth/action"];
 export const ROUTE_EXACT = (pathname) =>
   !pathname.startsWith("/dashboard") && !pathname.startsWith("/onboarding") && !pathname.startsWith("/dev") &&
   !AUTH_PATHS.some((p) => pathname === p || pathname.startsWith(p + "/"));
