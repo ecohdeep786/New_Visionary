@@ -14,7 +14,7 @@ import teachermeet from "@/assets/audience-portraits/teacher.webp";
 import parentmeet from "@/assets/audience-portraits/parent.webp";
 import promeet from "@/assets/audience-portraits/professional.webp";
 import orgmeet from "@/assets/audience-portraits/organization.webp";
-import { Accessibility, ChevronLeft, ChevronRight, Lock, ShieldCheck } from "lucide-react";
+import { Accessibility, BookOpen, ChevronLeft, ChevronRight, Hammer, Lock, MessageCircle, RefreshCw, ShieldCheck } from "lucide-react";
 
 import { useSignedIn } from "@/components/landing/AuthAwareLink";
 
@@ -60,6 +60,13 @@ const LANDING_HERO_LINEUP = [
   { label: "Student", src: studentCut800, srcSet: cutSet(studentCut480, studentCut800), avifSrcSet: UNIVERSAL_HERO_AVIF_SRCSET },
   { label: "Parent", src: parentCut800, srcSet: cutSet(parentCut480, parentCut800), avifSrcSet: cutSet(parentCut480Avif, parentCut800Avif) },
   { label: "Organization", src: orgCut800, srcSet: cutSet(orgCut480, orgCut800), avifSrcSet: cutSet(orgCut480Avif, orgCut800Avif) },
+];
+
+const LOOP_STEPS = [
+  { number: "01", title: "Ask", copy: "Bring a question or a goal.", Icon: MessageCircle },
+  { number: "02", title: "Understand", copy: "See it explained your way.", Icon: BookOpen },
+  { number: "03", title: "Practise", copy: "Try it with feedback.", Icon: RefreshCw },
+  { number: "04", title: "Build", copy: "Use it in real work.", Icon: Hammer },
 ];
 
 const TRUST_VALUES = [
@@ -122,6 +129,33 @@ function RailControls({ id, label, onStep, className }) {
   );
 }
 
+function LearningLoop() {
+  return (
+    <section data-section="07-loop" className="home-loop" aria-labelledby="loop-heading">
+      <div className="home-width">
+        <p className="loop-eyebrow" data-type="metadata">The learning loop</p>
+        <h2 id="loop-heading" data-type="section">One loop. Every subject.</h2>
+        <div className="loop-row">
+          {LOOP_STEPS.map(({ number, title, copy, Icon }) => (
+            <div key={title} className="loop-step">
+              <span className="loop-number" aria-hidden="true">{number}</span>
+              <Icon className="loop-icon" strokeWidth={1.7} size={28} aria-hidden="true" />
+              <h3 data-type="feature">{title}</h3>
+              <p data-type="value-body">{copy}</p>
+            </div>
+          ))}
+        </div>
+        <div className="loop-actions">
+          <Link to="/how-it-works" className="home-text-link">
+            See the full learning loop <ChevronRight aria-hidden="true" size={17} />
+          </Link>
+          <p className="loop-note">The guided learning journey is in development. Today, you can create an account and view saved learning history.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function AudienceDirectory() {
   const pathRow = useRef(null);
   return (
@@ -178,6 +212,7 @@ export default function LandingPage() {
           </div>
         </section>
         <SharedChallenge />
+        <LearningLoop />
         <AudienceDirectory />
         <section className="home-privacy" data-section="11-trust" aria-labelledby="trust-heading">
           <div className="trust-frame">
