@@ -128,6 +128,7 @@ async function journeys(width, height) {
   assert.deepEqual(await directory.locator('a').evaluateAll(links => links.map(link => link.pathname)), roles.map(r => '/' + r));
   for (const role of roles) await follow(page, directory.locator('[href="/' + role + '"]'), '/' + role);
   await follow(page, page.locator('#intelligence').getByRole('link'), '/how-it-works');
+  await follow(page, page.locator('.home-loop').getByRole('link', { name: 'See the full learning loop', exact: true }), '/how-it-works');
   await follow(page, page.locator('.home-privacy').getByRole('link', { name: 'How sharing works', exact: true }), '/privacy#sharing');
   await follow(page, page.locator('.home-privacy').getByRole('link', { name: 'How safety works', exact: true }), '/safety');
   await follow(page, page.locator('.home-privacy').getByRole('link', { name: 'Accessibility', exact: true }), '/accessibility');
