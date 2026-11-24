@@ -82476,7 +82476,7 @@
     },
     {
       "file": "frontend/src/lib/routeMeta.js",
-      "sourceSha256": "97091415378a79c3a37b3a05af783894d0bef84c941122efacefe60e670f9803"
+      "sourceSha256": "95700cb084d1c7942d89794a6d3e1cca3408bccb7673d1b2a9089270f8bd9822"
     },
     {
       "file": "frontend/src/lib/RoutePrefetcher.jsx",
@@ -82704,7 +82704,7 @@
     },
     {
       "file": "frontend/src/pages/landing/CollegePage.jsx",
-      "sourceSha256": "0f382ee12e77b808ea9dff6abb0ccbde54f39ca95d5b59c70baf7b09eda48ef6"
+      "sourceSha256": "0f5d182db6144033b131754b1d3f5ffc0a106c95670fbc4923982d51623df922"
     },
     {
       "file": "frontend/src/pages/landing/CommunityPage.jsx",
