@@ -308,6 +308,91 @@
   }
 }
 
+/* ── 06 · One question from every path ───────────────────────────────────
+   The recognition chapter. Five portraits with the real question each
+   audience brings; the doors themselves live in Find your path below. ──── */
+.page-landing #main .home-questions {
+  padding-block: var(--public-section-py);
+  border-top: 0;
+  background: #f5f5f7;
+}
+.questions-frame {
+  width: min(calc(100% - min(3rem, 12vw)), 79rem);
+  margin-inline: auto;
+  container-type: inline-size;
+}
+.questions-intro { max-width: 38rem; margin: 0 0 clamp(3.5rem, 5vw, 5rem); }
+.questions-intro h2 { margin: 0; }
+.questions-intro p {
+  max-width: 32ch;
+  margin: 1rem 0 0;
+  color: #515154;
+  text-wrap: pretty;
+}
+.questions-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(1.75rem, 2.4vw, 2.25rem);
+}
+.question-card { display: flex; flex-direction: column; min-width: 0; }
+.question-media {
+  display: block;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 1.75rem;
+  background: #f4f4f6;
+}
+.question-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  mix-blend-mode: multiply;
+}
+.question-role {
+  display: block;
+  margin-top: 1.05rem;
+  color: #6e6e73;
+  font-weight: 600 !important;
+}
+.question-text {
+  min-height: 3.5em;
+  max-width: 24ch;
+  margin: 0.35rem 0 0;
+  color: #1d1d1f;
+  text-wrap: pretty;
+}
+@media (max-width: 1199px) {
+  .questions-row {
+    display: flex;
+    align-items: stretch;
+    gap: 1.25rem;
+    margin-inline: -1.5rem;
+    padding-inline: 1.5rem;
+    padding-bottom: 0.75rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1.5rem;
+    scrollbar-width: none;
+  }
+  .questions-row::-webkit-scrollbar { display: none; }
+  .question-card {
+    flex: 0 0 min(72vw, 15rem);
+    min-width: min-content;
+    scroll-snap-align: start;
+  }
+}
+@media (max-width: 639px) {
+  .questions-frame { width: calc(100% - 2.5rem); }
+  .questions-row { margin-inline: -1.25rem; padding-inline: 1.25rem; scroll-padding-inline: 1.25rem; }
+  .questions-intro { margin-bottom: 2.5rem; }
+}
+@container (max-width: 64rem) {
+  .questions-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
 /* ── 13 · The five paths ──────────────────────────────────────────────────
    One quiet editorial directory, not five category pages in one place. ─── */
 .page-landing #main .home-audiences {
@@ -318,12 +403,6 @@
 .path-frame { width: min(calc(100% - 3rem), 79rem); margin-inline: auto; container-type: inline-size; }
 .path-intro { max-width: 38rem; margin: 0 0 clamp(3.5rem, 5vw, 5rem); }
 .path-intro h2 { margin: 0; }
-.path-intro-copy {
-  max-width: 36ch;
-  margin: 1.1rem 0 0;
-  color: #515154;
-  text-wrap: pretty;
-}
 .path-row {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -347,14 +426,6 @@
   transition: transform var(--motion-duration-slow) var(--ease-out-apple);
 }
 .path-body { display: flex; flex-direction: column; padding: 1.2rem 0.1rem 0; }
-.path-question {
-  display: block;
-  min-height: 2.5em;
-  margin-top: 0.55rem;
-  color: #1d1d1f;
-  text-wrap: pretty;
-}
-.path-glimpse { display: block; margin-top: 0.5rem; color: #515154; }
 .path-title { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
 .path-title strong {
   min-width: 0;
@@ -458,7 +529,7 @@
 .rail-controls button[aria-disabled="false"]:hover { background: #f5f5f7; }
 .rail-controls button[aria-disabled="true"] { opacity: 0.45; cursor: default; }
 .rail-controls button:focus-visible { outline: 3px solid #0066cc; outline-offset: 2px; }
-@media (max-width: 1199px) { .path-controls { display: flex; } }
+@media (max-width: 1199px) { .questions-controls, .path-controls { display: flex; } }
 @media (max-width: 899px) { .trust-controls { display: flex; } }
 
 /* ── 11 · Trust ───────────────────────────────────────────────────────────

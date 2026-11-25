@@ -13,7 +13,7 @@ const browsers = { chromium, firefox, webkit };
 assert.ok(Object.hasOwn(browsers, engine), 'Choose chromium, firefox or webkit');
 const browser = await browsers[engine].launch(engine === 'chromium' ? { channel: 'msedge' } : {});
 const roles = ['student', 'teacher', 'parent', 'professional', 'organization'];
-const sections = ['01-hero', '05-intelligence', '13-explore', '11-trust', '12-cta'];
+const sections = ['01-hero', '05-intelligence', '06-questions', '13-explore', '11-trust', '12-cta'];
 const receipt = { base, engine, viewports: [], interactions: [], errors: [], failedRequests: [] };
 await mkdir(output, { recursive: true });
 
@@ -75,6 +75,20 @@ async function inspectViewport(width, height) {
   await checkHeader(page);
   const introduction = await hero.locator(".home-hero-copy p").innerText();
   for (const role of roles) assert.ok(introduction.toLowerCase().includes(role + "s"), "Hero identifies " + role);
+  const questionCards = page.locator('#question-cards .question-card');
+  assert.equal(await questionCards.count(), 5, 'The five audience questions are present');
+  assert.deepEqual(
+    await questionCards.evaluateAll(cards => cards.map(card => card.dataset.audience)),
+    roles,
+  );
+  for (const card of await questionCards.all()) {
+    assert.equal(await card.locator('.question-media img').count(), 1, 'Every question carries its approved portrait');
+    const questionRole = (await card.locator('.question-role').innerText()).trim();
+    assert.ok(questionRole.length > 0, 'Every question names its audience');
+    const question = (await card.locator('.question-text').innerText()).trim();
+    assert.ok(question.endsWith('?'), 'Every question card carries a real audience question: ' + question);
+    assert.equal(await card.locator('a, button').count(), 0, 'Question cards are not doors');
+  }
   const pathCards = page.locator('#audience-paths .path-card');
   assert.equal(await pathCards.count(), 5, 'The five audience doors are present');
   assert.deepEqual(
@@ -83,10 +97,10 @@ async function inspectViewport(width, height) {
   );
   for (const card of await pathCards.all()) {
     assert.equal(await card.locator('.path-media img').count(), 1, 'Every path carries its approved portrait');
-    const question = (await card.locator('.path-question').innerText()).trim();
-    assert.ok(question.endsWith('?'), 'Every path carries a real audience question: ' + question);
-    const hint = (await card.locator('.path-glimpse').innerText()).trim();
-    assert.ok(hint.length > 12, 'Every path carries a meaningful solution hint: ' + hint);
+    const title = (await card.locator('.path-title strong').innerText()).trim();
+    assert.ok(title.length > 0, 'Every path names its audience');
+    assert.equal(await card.locator('.path-question, .path-glimpse').count(), 0, 'Path cards are pure doors with no explanatory subcopy');
+    assert.equal((await card.innerText()).trim(), title, 'Path cards carry only the role name');
   }
   assert.match(await page.locator('#path-status').innerText(), /in development/);
   assert.equal(await page.locator('#audience-paths').getAttribute('aria-describedby'), 'path-status');
@@ -274,11 +288,11 @@ async function checkTextScaling() {
            still have to contain their own text at 200%; a card that continues
            beyond the viewport is checked against its own box, not the viewport. */
         let bounds = { left: -1, right: innerWidth + 1 };
-        const card = element.closest('.path-card, .trust-card');
+        const card = element.closest('.path-card, .trust-card, .question-card');
         if (card) {
           const rect = card.getBoundingClientRect();
           if (rect.right < 0 || rect.left > innerWidth) return [];
-          const rail = card.closest('.path-row, .trust-row');
+          const rail = card.closest('.path-row, .trust-row, .questions-row');
           if (rail && rail.scrollWidth > rail.clientWidth + 1) bounds = { left: rect.left - 1, right: rect.right + 1 };
         }
         const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
@@ -297,8 +311,8 @@ async function checkTextScaling() {
     assert.deepEqual(overflow, [], 'Visible text fits at 200% on ' + width + 'px');
     const broken = await page.evaluate(() => {
       const broken = [];
-      for (const element of document.querySelectorAll('.path-title strong, .path-question')) {
-        const card = element.closest('.path-card');
+      for (const element of document.querySelectorAll('.path-title strong, .question-text')) {
+        const card = element.closest('.path-card, .question-card');
         if (card) {
           const rect = card.getBoundingClientRect();
           if (rect.right < 0 || rect.left > innerWidth) continue;
@@ -342,6 +356,15 @@ async function checkTextScaling() {
     });
     assert.ok(!pathChrome.controlsVisible || pathChrome.scrollable, 'Path controls only appear when the path row scrolls at 200% on ' + width + 'px');
     assert.deepEqual(pathChrome.titleOverflow, [], 'Path titles stay inside their cards at 200% on ' + width + 'px');
+    const questionChrome = await page.evaluate(() => {
+      const row = document.querySelector('#question-cards');
+      const controls = document.querySelector('.questions-controls');
+      return {
+        scrollable: row.scrollWidth > row.clientWidth + 1,
+        controlsVisible: !!controls && controls.getClientRects().length > 0 && getComputedStyle(controls).display !== 'none',
+      };
+    });
+    assert.ok(!questionChrome.controlsVisible || questionChrome.scrollable, 'Question controls only appear when the question row scrolls at 200% on ' + width + 'px');
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     await checkScrolledHeader(page);
     await page.close();
@@ -353,11 +376,11 @@ async function checkDirectoryEntry() {
   const page = await openPage(1280, 720);
   await page.locator('.home-hero').getByRole('link', { name: 'Find your path' }).click();
   await page.waitForFunction(() => document.activeElement?.id === 'audiences');
-  const copy = page.locator('#audience-paths .path-glimpse');
+  const copy = page.locator('#audience-paths .path-title strong');
   assert.equal(await copy.count(), 5);
-  assert.ok(await copy.evaluateAll(hints => hints.every(hint => hint.getBoundingClientRect().bottom <= innerHeight)),
-    'A laptop visitor can read every role hint directly after using Find your path');
-  receipt.interactions.push('Direct audience entry shows five complete solution hints at 1280×720');
+  assert.ok(await copy.evaluateAll(titles => titles.every(title => title.getBoundingClientRect().bottom <= innerHeight)),
+    'A laptop visitor can see every role door directly after using Find your path');
+  receipt.interactions.push('Direct audience entry shows five role doors at 1280×720');
   await page.close();
 }
 

@@ -23,31 +23,26 @@ const AUDIENCES = [
     slug: "student", label: "Students", castLabel: "Student", portrait: studentLineup,
     headline: "to a project.",
     question: "Why doesn’t this make sense yet?",
-    glimpse: "Understand. Ask. Practise. Build.",
   },
   {
     slug: "teacher", label: "Teachers", castLabel: "Teacher", portrait: teachermeet,
     headline: "to a lesson.",
     question: "Who needs another explanation?",
-    glimpse: "Plan. Explain. Know who’s with you.",
   },
   {
     slug: "parent", label: "Parents", castLabel: "Parent", portrait: parentmeet,
     headline: "to a conversation.",
     question: "What did they really understand?",
-    glimpse: "See what they understood. Know how to help.",
   },
   {
     slug: "professional", label: "Professionals", castLabel: "Professional", portrait: promeet,
     headline: "to a new skill.",
     question: "How do I use this in my work?",
-    glimpse: "Turn your work into skills you can reuse.",
   },
   {
     slug: "organization", label: "Organizations", castLabel: "Organization", portrait: orgmeet,
     headline: "to a team plan.",
     question: "Where are the gaps across our teams?",
-    glimpse: "See capability across teams. Find gaps early.",
   },
 ];
 
@@ -111,6 +106,32 @@ const TRUST_VALUES = [
   },
 ];
 
+function AudienceQuestions() {
+  const questionRow = useRef(null);
+  return (
+    <section data-section="06-questions" className="home-questions" aria-labelledby="questions-heading">
+      <div className="questions-frame">
+        <div className="questions-intro">
+          <h2 id="questions-heading" data-type="section">Every path starts with a question.</h2>
+          <p data-type="editorial-body">One intelligence meets you there.</p>
+        </div>
+        <ul id="question-cards" className="questions-row" role="list" aria-label="Audience questions" ref={questionRow}>
+          {AUDIENCES.map((role) => (
+            <li key={role.slug} className="question-card" data-audience={role.slug}>
+              <span className="question-media">
+                <img src={role.portrait} width="224" height="224" alt="" loading="lazy" decoding="async" />
+              </span>
+              <span className="question-role" data-type="body">{role.label}</span>
+              <p className="question-text" data-type="lead">{role.question}</p>
+            </li>
+          ))}
+        </ul>
+        <RailControls id="question-cards" label="question" railRef={questionRow} className="questions-controls" />
+      </div>
+    </section>
+  );
+}
+
 function scrollRail(ref, direction) {
   const rail = ref.current;
   const [first, second] = rail?.children ?? [];
@@ -167,7 +188,6 @@ function AudienceDirectory() {
       <div className="path-frame">
         <div className="path-intro">
           <h2 id="audiences-title" data-type="section">Find your path.</h2>
-          <p className="path-intro-copy" data-type="editorial-body">Every path starts with a question. One intelligence meets you there.</p>
         </div>
         <nav id="audience-paths" aria-label="Audience pages" aria-describedby="path-status" className="path-row" ref={pathRow}>
           {AUDIENCES.map((role) => (
@@ -180,8 +200,6 @@ function AudienceDirectory() {
                   <strong>{role.label}</strong>
                   <ChevronRight className="path-arrow" size={20} aria-hidden="true" />
                 </span>
-                <span className="path-question" data-type="editorial-body">{role.question}</span>
-                <span className="path-glimpse" data-type="body">{role.glimpse}</span>
               </span>
             </Link>
           ))}
@@ -220,6 +238,7 @@ export default function LandingPage() {
             </picture>
           </div>
         </section>
+        <AudienceQuestions />
         <AudienceDirectory />
         <section className="home-privacy" data-section="11-trust" aria-labelledby="trust-heading">
           <div className="trust-frame">
