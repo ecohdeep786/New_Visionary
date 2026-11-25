@@ -6,6 +6,8 @@ import PersonaHero from "@/components/landing/NewPersona";
 import { Link } from "react-router-dom";
 import heroBotWebp from "@/assets/brand/visionary-bot.webp";
 import heroBotAvif from "@/assets/brand/visionary-bot.avif";
+import cubeThree from "@/assets/lesson-cube-3.webp";
+import cubeSix from "@/assets/lesson-cube-6.webp";
 // Each audience destination keeps its original portrait. The Student lineup
 // uses a normalized crop from the transparent hero cutout so all five
 // portraits share the same white studio ground.
@@ -22,22 +24,32 @@ const AUDIENCES = [
   {
     slug: "student", label: "Students", castLabel: "Student", portrait: studentLineup,
     headline: "to a project.", outcome: "Try a different explanation, then use the idea in a project.",
+    situation: "The lesson still hasn’t clicked.",
+    nextStep: "Try another explanation, check what you remember and use the idea in a project.",
   },
   {
     slug: "teacher", label: "Teachers", castLabel: "Teacher", portrait: teachermeet,
     headline: "to a lesson.", outcome: "See where the class is stuck and adapt your next lesson.",
+    situation: "Several students missed the same idea.",
+    nextStep: "Review each student’s work to see what to explain differently tomorrow.",
   },
   {
     slug: "parent", label: "Parents", castLabel: "Parent", portrait: parentmeet,
     headline: "to a conversation.", outcome: "See what your child understands and how to help at home.",
+    situation: "“I got it” leaves you guessing.",
+    nextStep: "Use a shared progress summary to guide a conversation at home.",
   },
   {
     slug: "professional", label: "Professionals", castLabel: "Professional", portrait: promeet,
     headline: "to a new skill.", outcome: "Turn today’s work into skills you can reuse.",
+    situation: "You solved a problem at work.",
+    nextStep: "Save what worked so you can reuse it on the next project.",
   },
   {
     slug: "organization", label: "Organizations", castLabel: "Organization", portrait: orgmeet,
     headline: "to a team plan.", outcome: "Spot gaps across teams and plan what to teach next.",
+    situation: "Several teams need training.",
+    nextStep: "Spot shared skill gaps and decide where training would help first.",
   },
 ];
 
@@ -77,13 +89,6 @@ const LANDING_HERO_LINEUP = [
   { label: "Organization", src: orgCut800, srcSet: cutSet(orgCut480, orgCut800), avifSrcSet: cutSet(orgCut480Avif, orgCut800Avif) },
 ];
 
-const LOOP_STEPS = [
-  { title: "Ask", copy: "Start with a question, a gap or a goal." },
-  { title: "Understand", copy: "Work through an explanation that makes sense." },
-  { title: "Practise", copy: "Try it and see where you need help." },
-  { title: "Build", copy: "Use what you learned in a lesson, a project or a decision." },
-];
-
 const TRUST_VALUES = [
   {
     title: "Private by design.",
@@ -108,14 +113,45 @@ const TRUST_VALUES = [
   },
 ];
 
-function SharedChallenge() {
+function AudienceNextSteps() {
   return (
-    <section data-section="06-journey" className="home-journey" aria-labelledby="journey-heading">
-      <div className="home-width journey-layout">
-        <h2 id="journey-heading" data-type="display">Learning gets scattered.</h2>
-        <div className="journey-copy">
-          <p data-type="editorial-body">Explanations, practice and feedback often live in different places. It gets harder to know who needs help or what to try next.</p>
-          <p className="journey-answer" data-type="lead">Visionary is designed to keep the question, the work and the next step together.</p>
+    <section data-section="06-next-steps" className="home-next-steps" aria-labelledby="next-steps-heading">
+      <div className="next-steps-frame">
+        <div className="next-steps-layout">
+          <div className="next-steps-intro">
+            <h2 id="next-steps-heading" data-type="display">Know what to do next.</h2>
+            <p data-type="editorial-body">Keep questions, work and feedback together so you can see where to focus.</p>
+            <p id="next-steps-status" data-type="metadata">Guided experiences are in development.</p>
+          </div>
+          <ul className="next-steps-list" role="list" aria-label="Audience needs" aria-describedby="next-steps-status">
+            {AUDIENCES.map(({ slug, label, situation, nextStep }) => (
+              <li key={slug} data-audience={slug}>
+                <h3 data-type="feature">
+                  <span className="next-steps-role">{label}</span>{" "}
+                  <span>{situation}</span>
+                </h3>
+                <p data-type="body">{nextStep}</p>
+              </li>
+            ))}
+          </ul>
+          <figure className="next-steps-example">
+            <div className="cube-example">
+              <h3 data-type="card-name">Doubling a cube’s side.</h3>
+              <div className="cube-example-models">
+                <div>
+                  <img src={cubeThree} width="452" height="416" alt="" loading="lazy" decoding="async" />
+                  <p data-type="body">3 × 3 × 3</p>
+                  <p data-type="body"><strong>27</strong> cubic units</p>
+                </div>
+                <div>
+                  <img src={cubeSix} width="452" height="416" alt="" loading="lazy" decoding="async" />
+                  <p data-type="body">6 × 6 × 6</p>
+                  <p data-type="body"><strong>216</strong> cubic units</p>
+                </div>
+              </div>
+            </div>
+            <figcaption data-type="metadata">In a Visionary development exercise, learners compare cube volumes before designing a storage box.</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -168,30 +204,6 @@ function RailControls({ id, label, railRef, className }) {
         <ChevronRight size={18} aria-hidden="true" />
       </button>
     </div>
-  );
-}
-
-function LearningLoop() {
-  return (
-    <section data-section="07-loop" className="home-loop" aria-labelledby="loop-heading">
-      <div className="home-width">
-        <h2 id="loop-heading" data-type="section">Put understanding to work.</h2>
-        <p className="loop-lead" data-type="editorial-body">A student asks. A teacher explains. A parent supports. A professional builds. An organization learns what to change.</p>
-        <ol className="loop-steps" role="list" aria-label="Learning loop steps">
-          {LOOP_STEPS.map(({ title, copy }) => (
-            <li key={title} className="loop-step">
-              <h3 data-type="feature">{title}</h3>
-              <p data-type="body">{copy}</p>
-            </li>
-          ))}
-        </ol>
-        <div className="loop-actions">
-          <Link to="/how-it-works" className="home-text-link">
-            See the full learning loop <ChevronRight aria-hidden="true" size={17} />
-          </Link>
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -252,8 +264,7 @@ export default function LandingPage() {
             </picture>
           </div>
         </section>
-        <SharedChallenge />
-        <LearningLoop />
+        <AudienceNextSteps />
         <AudienceDirectory />
         <section className="home-privacy" data-section="11-trust" aria-labelledby="trust-heading">
           <div className="trust-frame">
