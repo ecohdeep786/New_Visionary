@@ -13,7 +13,7 @@ const browsers = { chromium, firefox, webkit };
 assert.ok(Object.hasOwn(browsers, engine), 'Choose chromium, firefox or webkit');
 const browser = await browsers[engine].launch(engine === 'chromium' ? { channel: 'msedge' } : {});
 const roles = ['student', 'teacher', 'parent', 'professional', 'organization'];
-const sections = ['01-hero', '05-intelligence', '06-journey', '07-loop', '13-explore', '11-trust', '12-cta'];
+const sections = ['01-hero', '05-intelligence', '06-next-steps', '13-explore', '11-trust', '12-cta'];
 const receipt = { base, engine, viewports: [], interactions: [], errors: [], failedRequests: [] };
 await mkdir(output, { recursive: true });
 
@@ -75,10 +75,13 @@ async function inspectViewport(width, height) {
   await checkHeader(page);
   const introduction = await hero.locator(".home-hero-copy p").innerText();
   for (const role of roles) assert.ok(introduction.toLowerCase().includes(role + "s"), "Hero identifies " + role);
-  const loopLead = await page.locator(".home-loop .loop-lead").innerText();
-  for (const role of roles) assert.ok(loopLead.toLowerCase().includes(role), "The shared loop names " + role);
-  const steps = page.getByRole('list', { name: 'Learning loop steps' });
-  assert.deepEqual(await steps.getByRole('heading').allTextContents(), ['Ask', 'Understand', 'Practise', 'Build']);
+  const story = page.getByRole('region', { name: 'Know what to do next.' });
+  const needs = story.getByRole('list', { name: 'Audience needs' });
+  assert.deepEqual(await needs.getByRole('listitem').evaluateAll(items => items.map(item => item.dataset.audience)), roles);
+  assert.match(await story.locator('#next-steps-status').innerText(), /in development/);
+  assert.equal(await needs.getAttribute('aria-describedby'), 'next-steps-status');
+  assert.equal(await story.getByRole('link').count(), 0, 'The story leads directly into the directory');
+  assert.equal(await story.getByRole('button').count(), 0, 'Every audience story can be read without operating a control');
   const geometry = await hero.evaluate(el => {
     const familyEl = el.querySelector('.family-stage');
     const family = familyEl.getBoundingClientRect();
@@ -97,10 +100,10 @@ async function inspectViewport(width, height) {
       playbackBottom: el.querySelector('.hero-playback').getBoundingClientRect().bottom,
       actionHeight: el.querySelector('.home-action').getBoundingClientRect().height,
       pathHeights: [...el.querySelectorAll('.hero-path')].map(link => link.getBoundingClientRect().height),
-      pathGaps: (() => {
-        const cards = [...el.querySelectorAll('.path-card')];
+      pathGaps: matchMedia('(min-width: 1280px)').matches ? (() => {
+        const cards = [...document.querySelectorAll('#audience-paths .path-card')];
         return cards.slice(1).map((card, index) => Math.round(card.getBoundingClientRect().left - cards[index].getBoundingClientRect().right));
-      })(),
+      })() : null,
       nextTop: next.top,
       viewport: innerHeight,
       portraits: [...el.querySelectorAll('.cast-person')].map(person => {
@@ -115,7 +118,10 @@ async function inspectViewport(width, height) {
   assert.ok(geometry.playbackVisible && geometry.playbackTop >= 0 && geometry.playbackBottom <= geometry.viewport, 'Pause/play control stays fully visible at ' + width + 'x' + height);
   assert.ok(geometry.actionHeight >= 43.5, 'Primary action keeps a 44px target at ' + width + 'x' + height);
   assert.ok(geometry.pathHeights.every(value => value >= 43.5), 'Audience doors keep a 44px target at ' + width + 'x' + height);
-  if (width >= 1280) assert.ok(geometry.pathGaps.every(gap => gap >= 28), 'Path cards keep at least 28px of breathing room at ' + width + ': ' + geometry.pathGaps.join(', '));
+  if (geometry.pathGaps) {
+    assert.equal(geometry.pathGaps.length, 4, 'The desktop directory displays five cards');
+    assert.ok(geometry.pathGaps.every(gap => gap >= 28), 'Path cards keep at least 28px of breathing room at ' + width + ': ' + geometry.pathGaps.join(', '));
+  }
   assert.ok(geometry.nextTop >= geometry.viewport - 1, 'The next chapter intrudes into the first screen at ' + width + 'x' + height);
   if (geometry.castVisible) {
     assert.equal(geometry.portraits.length, 5);
@@ -175,7 +181,7 @@ async function journeys(width, height) {
   assert.deepEqual(await directory.locator('a').evaluateAll(links => links.map(link => link.pathname)), roles.map(r => '/' + r));
   for (const role of roles) await follow(page, directory.locator('[href="/' + role + '"]'), '/' + role);
   await follow(page, page.locator('#intelligence').getByRole('link'), '/how-it-works');
-  await follow(page, page.locator('.home-loop').getByRole('link', { name: 'See the full learning loop', exact: true }), '/how-it-works');
+  await follow(page, page.locator('.home-closing').getByRole('link', { name: 'See how it works', exact: true }), '/how-it-works');
   await follow(page, page.locator('.home-privacy').getByRole('link', { name: 'How sharing works', exact: true }), '/privacy#sharing');
   await follow(page, page.locator('.home-privacy').getByRole('link', { name: 'How safety works', exact: true }), '/safety');
   await follow(page, page.locator('.home-privacy').getByRole('link', { name: 'Accessibility', exact: true }), '/accessibility');
@@ -251,7 +257,7 @@ async function checkTextScaling() {
     await page.waitForFunction(() => getComputedStyle(document.documentElement).fontSize === '32px');
     await checkHeader(page);
     const overflow = await page.evaluate(() => {
-      const elements = document.querySelectorAll('main h1, main h2, main h3, main p, main a, main button, .hero-path');
+      const elements = document.querySelectorAll('main h1, main h2, main h3, main p, main figcaption, main a, main button, .hero-path');
       return [...elements].flatMap(element => {
         /* Off-screen rail cards are reachable by swipe or keys. Visible cards
            still have to contain their own text at 200%; a card that continues
@@ -280,7 +286,7 @@ async function checkTextScaling() {
     assert.deepEqual(overflow, [], 'Visible text fits at 200% on ' + width + 'px');
     const broken = await page.evaluate(() => {
       const broken = [];
-      for (const element of document.querySelectorAll('.path-title strong, .loop-step h3')) {
+      for (const element of document.querySelectorAll('.path-title strong, .next-steps-list h3 span, .cube-example h3')) {
         const card = element.closest('.path-card');
         if (card) {
           const rect = card.getBoundingClientRect();
@@ -301,7 +307,7 @@ async function checkTextScaling() {
       }
       return broken;
     });
-    assert.deepEqual(broken, [], 'Role and stage names stay whole at 200% on ' + width + 'px');
+    assert.deepEqual(broken, [], 'Audience and example headings stay whole at 200% on ' + width + 'px');
     const pathChrome = await page.evaluate(() => {
       const row = document.querySelector('#audience-paths');
       const controls = document.querySelector('.path-controls');

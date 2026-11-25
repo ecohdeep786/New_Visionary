@@ -125,14 +125,13 @@
         "frontend/src/components/landing/system/ui.jsx:276:9",
         "frontend/src/components/landing/system/ui.jsx:309:9",
         "frontend/src/components/landing/system/ui.jsx:340:5",
-        "frontend/src/pages/Landing.jsx:164:7",
-        "frontend/src/pages/Landing.jsx:167:7",
-        "frontend/src/pages/Landing.jsx:189:11",
-        "frontend/src/pages/Landing.jsx:208:13",
-        "frontend/src/pages/Landing.jsx:247:15",
-        "frontend/src/pages/Landing.jsx:267:19",
-        "frontend/src/pages/Landing.jsx:282:17",
-        "frontend/src/pages/Landing.jsx:285:17"
+        "frontend/src/pages/Landing.jsx:200:7",
+        "frontend/src/pages/Landing.jsx:203:7",
+        "frontend/src/pages/Landing.jsx:220:13",
+        "frontend/src/pages/Landing.jsx:259:15",
+        "frontend/src/pages/Landing.jsx:278:19",
+        "frontend/src/pages/Landing.jsx:293:17",
+        "frontend/src/pages/Landing.jsx:296:17"
       ],
       "operations": [
         "public-discovery",
@@ -79049,9 +79048,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:164:7",
+      "id": "frontend/src/pages/Landing.jsx:200:7",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 164,
+      "line": 200,
       "column": 7,
       "tag": "button",
       "events": [
@@ -79080,9 +79079,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:167:7",
+      "id": "frontend/src/pages/Landing.jsx:203:7",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 167,
+      "line": 203,
       "column": 7,
       "tag": "button",
       "events": [
@@ -79111,34 +79110,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:189:11",
+      "id": "frontend/src/pages/Landing.jsx:220:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 189,
-      "column": 11,
-      "tag": "Link",
-      "events": [],
-      "calls": [],
-      "destination": "/how-it-works",
-      "disabled": null,
-      "declarationSha256": "bb2fe3c07a5e728cae6ff6cab9c7ab729ec7815834a75fb7e329f6f5087aa933",
-      "routeIds": [
-        "/"
-      ],
-      "reviewProfile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ],
-      "endpointEvidence": [],
-      "hostedVerified": false
-    },
-    {
-      "id": "frontend/src/pages/Landing.jsx:208:13",
-      "file": "frontend/src/pages/Landing.jsx",
-      "line": 208,
+      "line": 220,
       "column": 13,
       "tag": "Link",
       "events": [],
@@ -79160,9 +79134,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:247:15",
+      "id": "frontend/src/pages/Landing.jsx:259:15",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 247,
+      "line": 259,
       "column": 15,
       "tag": "Link",
       "events": [],
@@ -79185,9 +79159,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:267:19",
+      "id": "frontend/src/pages/Landing.jsx:278:19",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 267,
+      "line": 278,
       "column": 19,
       "tag": "Link",
       "events": [],
@@ -79209,9 +79183,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:282:17",
+      "id": "frontend/src/pages/Landing.jsx:293:17",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 282,
+      "line": 293,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -79233,9 +79207,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:285:17",
+      "id": "frontend/src/pages/Landing.jsx:296:17",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 285,
+      "line": 296,
       "column": 17,
       "tag": "Link",
       "events": [],
@@ -82712,7 +82686,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "9b475c97d45eb6c1399efd81b08ec75fa34ba2788fa598c6ec88c03c88fd258e"
+      "sourceSha256": "bed8ab6316acd92d985ee6a0ed60fea0a75112da191ea465395c1021476a07ec"
     },
     {
       "file": "frontend/src/pages/Login.jsx",
@@ -85991,11 +85965,11 @@
   "counts": {
     "routes": 67,
     "registeredEndpoints": 55,
-    "controlDeclarations": 1532,
-    "routeReachableDeclarations": 1529,
+    "controlDeclarations": 1531,
+    "routeReachableDeclarations": 1528,
     "controlFiles": 193,
     "states": {
-      "connected": 531,
+      "connected": 530,
       "preview": 924,
       "missing": 74,
       "intentionally-unreleased": 3
