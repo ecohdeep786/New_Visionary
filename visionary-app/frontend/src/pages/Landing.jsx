@@ -6,8 +6,6 @@ import PersonaHero from "@/components/landing/NewPersona";
 import { Link } from "react-router-dom";
 import heroBotWebp from "@/assets/brand/visionary-bot.webp";
 import heroBotAvif from "@/assets/brand/visionary-bot.avif";
-import cubeThree from "@/assets/lesson-cube-3.webp";
-import cubeSix from "@/assets/lesson-cube-6.webp";
 // Each audience destination keeps its original portrait. The Student lineup
 // uses a normalized crop from the transparent hero cutout so all five
 // portraits share the same white studio ground.
@@ -23,33 +21,33 @@ import { useSignedIn } from "@/components/landing/AuthAwareLink";
 const AUDIENCES = [
   {
     slug: "student", label: "Students", castLabel: "Student", portrait: studentLineup,
-    headline: "to a project.", outcome: "Try a different explanation, then use the idea in a project.",
-    situation: "The lesson still hasn’t clicked.",
-    nextStep: "Try another explanation, check what you remember and use the idea in a project.",
+    headline: "to a project.",
+    question: "Why doesn’t this make sense yet?",
+    glimpse: "Understand. Ask. Practise. Build.",
   },
   {
     slug: "teacher", label: "Teachers", castLabel: "Teacher", portrait: teachermeet,
-    headline: "to a lesson.", outcome: "See where the class is stuck and adapt your next lesson.",
-    situation: "Several students missed the same idea.",
-    nextStep: "Review each student’s work to see what to explain differently tomorrow.",
+    headline: "to a lesson.",
+    question: "Who needs another explanation?",
+    glimpse: "Plan. Explain. Know who’s with you.",
   },
   {
     slug: "parent", label: "Parents", castLabel: "Parent", portrait: parentmeet,
-    headline: "to a conversation.", outcome: "See what your child understands and how to help at home.",
-    situation: "“I got it” leaves you guessing.",
-    nextStep: "Use a shared progress summary to guide a conversation at home.",
+    headline: "to a conversation.",
+    question: "What did they really understand?",
+    glimpse: "See what they understood. Know how to help.",
   },
   {
     slug: "professional", label: "Professionals", castLabel: "Professional", portrait: promeet,
-    headline: "to a new skill.", outcome: "Turn today’s work into skills you can reuse.",
-    situation: "You solved a problem at work.",
-    nextStep: "Save what worked so you can reuse it on the next project.",
+    headline: "to a new skill.",
+    question: "How do I use this in my work?",
+    glimpse: "Turn your work into skills you can reuse.",
   },
   {
     slug: "organization", label: "Organizations", castLabel: "Organization", portrait: orgmeet,
-    headline: "to a team plan.", outcome: "Spot gaps across teams and plan what to teach next.",
-    situation: "Several teams need training.",
-    nextStep: "Spot shared skill gaps and decide where training would help first.",
+    headline: "to a team plan.",
+    question: "Where are the gaps across our teams?",
+    glimpse: "See capability across teams. Find gaps early.",
   },
 ];
 
@@ -113,45 +111,23 @@ const TRUST_VALUES = [
   },
 ];
 
-function AudienceNextSteps() {
+function AudienceQuestions() {
   return (
-    <section data-section="06-next-steps" className="home-next-steps" aria-labelledby="next-steps-heading">
-      <div className="next-steps-frame">
-        <div className="next-steps-layout">
-          <div className="next-steps-intro">
-            <h2 id="next-steps-heading" data-type="display">Know what to do next.</h2>
-            <p data-type="editorial-body">Keep questions, work and feedback together so you can see where to focus.</p>
-            <p id="next-steps-status" data-type="metadata">Guided experiences are in development.</p>
+    <section data-section="06-questions" className="home-questions" aria-labelledby="questions-heading">
+      <div className="questions-shell">
+        <div className="questions-frame">
+          <div className="questions-intro">
+            <h2 id="questions-heading" data-type="section">Every path starts with a question.</h2>
+            <p data-type="editorial-body">One intelligence meets you there.</p>
           </div>
-          <ul className="next-steps-list" role="list" aria-label="Audience needs" aria-describedby="next-steps-status">
-            {AUDIENCES.map(({ slug, label, situation, nextStep }) => (
+          <ul className="questions-list" role="list" aria-label="Audience questions">
+            {AUDIENCES.map(({ slug, label, question }) => (
               <li key={slug} data-audience={slug}>
-                <h3 data-type="feature">
-                  <span className="next-steps-role">{label}</span>{" "}
-                  <span>{situation}</span>
-                </h3>
-                <p data-type="body">{nextStep}</p>
+                <span className="questions-role" data-type="body">{label}</span>
+                <p className="questions-text" data-type="feature">{question}</p>
               </li>
             ))}
           </ul>
-          <figure className="next-steps-example">
-            <div className="cube-example">
-              <h3 data-type="card-name">Doubling a cube’s side.</h3>
-              <div className="cube-example-models">
-                <div>
-                  <img src={cubeThree} width="452" height="416" alt="" loading="lazy" decoding="async" />
-                  <p data-type="body">3 × 3 × 3</p>
-                  <p data-type="body"><strong>27</strong> cubic units</p>
-                </div>
-                <div>
-                  <img src={cubeSix} width="452" height="416" alt="" loading="lazy" decoding="async" />
-                  <p data-type="body">6 × 6 × 6</p>
-                  <p data-type="body"><strong>216</strong> cubic units</p>
-                </div>
-              </div>
-            </div>
-            <figcaption data-type="metadata">In a Visionary development exercise, learners compare cube volumes before designing a storage box.</figcaption>
-          </figure>
         </div>
       </div>
     </section>
@@ -214,8 +190,9 @@ function AudienceDirectory() {
       <div className="path-frame">
         <div className="path-intro">
           <h2 id="audiences-title" data-type="section">Find your path.</h2>
+          <p className="path-intro-copy" data-type="editorial-body">One intelligence, shaped to what you do.</p>
         </div>
-        <nav id="audience-paths" aria-label="Audience pages" className="path-row" ref={pathRow}>
+        <nav id="audience-paths" aria-label="Audience pages" aria-describedby="path-status" className="path-row" ref={pathRow}>
           {AUDIENCES.map((role) => (
             <Link key={role.slug} to={`/${role.slug}`} tabIndex={0} className="path-card">
               <span className="path-media">
@@ -226,12 +203,13 @@ function AudienceDirectory() {
                   <strong>{role.label}</strong>
                   <ChevronRight className="path-arrow" size={20} aria-hidden="true" />
                 </span>
-                <span className="path-outcome" data-type="body">{role.outcome}</span>
+                <span className="path-glimpse" data-type="body">{role.glimpse}</span>
               </span>
             </Link>
           ))}
         </nav>
         <RailControls id="audience-paths" label="audience" railRef={pathRow} className="path-controls" />
+        <p id="path-status" className="path-note" data-type="metadata">Guided experiences are in development.</p>
       </div>
     </section>
   );
@@ -264,7 +242,7 @@ export default function LandingPage() {
             </picture>
           </div>
         </section>
-        <AudienceNextSteps />
+        <AudienceQuestions />
         <AudienceDirectory />
         <section className="home-privacy" data-section="11-trust" aria-labelledby="trust-heading">
           <div className="trust-frame">

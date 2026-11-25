@@ -308,116 +308,70 @@
   }
 }
 
-/* ── 06 · Audience needs and one example ───────────────────────────────── */
-.page-landing #main .home-next-steps {
+/* ── 06 · One question from every path ───────────────────────────────────
+   The recognition chapter. Five questions, one reading spine, no cards and
+   no solution detail — the answers live on the category pages. ─────────── */
+.page-landing #main .home-questions {
   padding-block: var(--public-section-py);
   border-top: 0;
   background: #f5f5f7;
 }
-.next-steps-frame {
-  width: min(calc(100% - min(3rem, 12vw)), 79rem);
+.questions-shell {
+  width: min(calc(100% - min(3rem, 12vw)), 61.25rem);
   margin-inline: auto;
   container-type: inline-size;
 }
-.next-steps-intro h2 {
+.questions-frame {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  align-items: start;
+  gap: clamp(2.5rem, 6vw, 6rem);
+}
+.questions-intro h2 {
   margin: 0;
-  max-width: 13ch;
+  max-width: 12ch;
   text-wrap: balance;
 }
-.next-steps-intro p {
-  max-width: 43ch;
-  margin: 1rem 0 0;
+.questions-intro p {
+  max-width: 24ch;
+  margin: 1.15rem 0 0;
   color: #515154;
   text-wrap: pretty;
 }
-.next-steps-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  align-items: start;
-  gap: clamp(2rem, 4vw, 3rem);
-  max-width: 42rem;
-  margin-inline: auto;
-}
-.next-steps-list {
+.questions-list {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-.next-steps-list li {
-  padding-block: 1rem;
   border-top: 1px solid #d2d2d7;
 }
-.next-steps-list h3 { margin: 0; }
-.next-steps-list h3 span { display: block; }
-.next-steps-role {
-  margin-bottom: 0.35rem;
-  color: #515154;
-  font-size: 0.875rem;
-  line-height: 1.3;
-  font-weight: 600;
+.questions-list li {
+  padding-block: clamp(1.15rem, 2vw, 1.55rem);
+  border-bottom: 1px solid #d2d2d7;
 }
-.next-steps-list p {
-  margin: 0.4rem 0 0;
-  max-width: 56ch;
-  color: #515154;
-  text-wrap: pretty;
-}
-.next-steps-example {
-  max-width: 29rem;
-  min-width: 0;
-  margin: 0;
-}
-.cube-example {
-  padding: clamp(1rem, 3vw, 1.75rem);
-  border-radius: 1.75rem;
-  background: #edf3ff;
-  text-align: center;
-}
-.cube-example h3 {
-  max-width: 23ch;
-  margin: 0 auto;
-  text-wrap: balance;
-}
-.cube-example-models {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-}
-.cube-example-models img {
+.questions-role {
   display: block;
-  width: min(100%, 11rem);
-  height: auto;
-  margin-inline: auto;
+  margin-bottom: 0.32rem;
+  color: #6e6e73;
+  font-weight: 600 !important;
 }
-.cube-example-models p { margin: 0; }
-.cube-example-models p:first-of-type { color: #515154; }
-.cube-example-models strong { font-size: var(--fs-lead); }
-.next-steps-example figcaption {
-  max-width: 54ch;
-  margin: 0.75rem 0 0;
-  color: #515154;
+.questions-text {
+  max-width: 26ch;
+  margin: 0;
+  color: #1d1d1f;
   text-wrap: pretty;
 }
-@container (min-width: 53rem) {
-  .next-steps-layout {
-    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
-    grid-template-areas: "intro needs" "example needs";
-    grid-template-rows: auto 1fr;
-    column-gap: clamp(3rem, 6vw, 6rem);
-    max-width: none;
+@container (max-width: 40rem) {
+  .questions-frame {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.25rem;
   }
-  .next-steps-intro { grid-area: intro; }
-  .next-steps-list { grid-area: needs; }
-  .next-steps-example { grid-area: example; }
+  .questions-intro h2 { max-width: 14ch; }
+  .questions-intro p { max-width: 28ch; }
+  .questions-list li { padding-block: 1.05rem; }
+  .questions-text { max-width: 30ch; }
 }
-@container (max-width: 26rem) {
-  .next-steps-layout { gap: 1.75rem; }
-  .next-steps-list li { padding-block: 0.875rem; }
-  .cube-example-models img { max-width: 8rem; }
-}
-@container (max-width: 16rem) {
-  .cube-example-models { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+@media (max-width: 767px) {
+  .questions-shell { width: calc(100% - 2.5rem); }
 }
 
 /* ── 13 · The five paths ──────────────────────────────────────────────────
@@ -430,6 +384,12 @@
 .path-frame { width: min(calc(100% - 3rem), 79rem); margin-inline: auto; container-type: inline-size; }
 .path-intro { max-width: 38rem; margin: 0 0 clamp(3.5rem, 5vw, 5rem); }
 .path-intro h2 { margin: 0; }
+.path-intro-copy {
+  max-width: 32ch;
+  margin: 1.1rem 0 0;
+  color: #515154;
+  text-wrap: pretty;
+}
 .path-row {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -453,7 +413,7 @@
   transition: transform var(--motion-duration-slow) var(--ease-out-apple);
 }
 .path-body { display: flex; flex-direction: column; padding: 1.2rem 0.1rem 0; }
-.path-outcome { display: block; margin-top: 0.5rem; color: #515154; }
+.path-glimpse { display: block; margin-top: 0.5rem; color: #515154; }
 .path-title { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
 .path-title strong {
   min-width: 0;
@@ -474,7 +434,12 @@
 .path-card:is(:hover, :focus-visible) .path-media img { transform: scale(1.03); }
 .path-card:focus-visible { outline: 3px solid #0066cc; outline-offset: 4px; border-radius: 1.75rem; }
 .path-row:focus-visible, .trust-row:focus-visible { outline: 3px solid #0066cc; outline-offset: -3px; }
-@media (max-width: 1279px) {
+.path-note {
+  max-width: 52ch;
+  margin: 1.35rem 0 0;
+  color: #6e6e73;
+}
+@media (max-width: 1199px) {
   .path-row {
     display: flex;
     gap: 1.25rem;
@@ -502,7 +467,7 @@
 }
 /* Text-size-aware path reflow: at 200% the five-up becomes a three-up and,
    on the narrowest frames, a compact list — names never split mid-word. */
-@container (max-width: 75rem) {
+@container (max-width: 64rem) {
   .path-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @container (max-width: 17rem) {
@@ -551,7 +516,7 @@
 .rail-controls button[aria-disabled="false"]:hover { background: #f5f5f7; }
 .rail-controls button[aria-disabled="true"] { opacity: 0.45; cursor: default; }
 .rail-controls button:focus-visible { outline: 3px solid #0066cc; outline-offset: 2px; }
-@media (max-width: 1279px) { .path-controls { display: flex; } }
+@media (max-width: 1199px) { .path-controls { display: flex; } }
 @media (max-width: 899px) { .trust-controls { display: flex; } }
 
 /* ── 11 · Trust ───────────────────────────────────────────────────────────

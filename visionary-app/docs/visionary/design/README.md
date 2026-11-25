@@ -10,5 +10,6 @@ Read [current product status](../CURRENT_PRODUCT_STATUS.md) and the [review work
 | Frontend/reference finishing passes | [Frontend design](FRONTEND_DESIGN_HANDOFF.md), [reference design](REFERENCE_DESIGN_HANDOFF.md), [principal review](../PRINCIPAL_DESIGN_REVIEW_2026_10_10.md) |
 | Supporting premium design work | [Premium design](PREMIUM_DESIGN_HANDOFF.md), [premium workspace](PREMIUM_WORKSPACE_HANDOFF.md) |
 | Home and engagement specifications | [Home handoff](DESIGN_HOME_HANDOFF.md), [Home flow](UX_HOME_FLOW.md), [design inventory](DESIGN_INVENTORY.md), [engagement design](ENGAGEMENT_DESIGN_PLAN.md), [engagement implementation](ENGAGEMENT_IMPLEMENTATION_HANDOFF.md) |
+| Universal landing acceptance | [Five-path front door](UNIVERSAL_LANDING_2026-11-25.md) |
 
 Older original paths are compatibility pointers. Put new internal design handoffs here and record decisions/verification in the existing three logs. Keep captures in dated `baseline/` sets or ignored `artifacts/`; never add a competing product contract.

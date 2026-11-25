@@ -11,28 +11,33 @@ await mkdir(out, { recursive: true });
 const roles = [
   {
     slug: 'student', label: 'Students', story: 'to a project',
-    problem: /lesson still hasn’t clicked/, benefit: /explanation.*remember.*project/,
-    value: /different explanation.*project/, destination: 'Learning,', detail: /Build from what you know/,
+    question: /Why doesn’t this make sense yet\?/,
+    glimpse: /Understand[\s\S]*Ask[\s\S]*Practise[\s\S]*Build/,
+    destination: 'Learning,', detail: /Build from what you know/,
   },
   {
     slug: 'teacher', label: 'Teachers', story: 'to a lesson',
-    problem: /students missed the same idea/, benefit: /each student’s work.*explain differently tomorrow/,
-    value: /class is stuck.*next lesson/, destination: 'Teaching.', detail: /teach it another way/,
+    question: /Who needs another explanation\?/,
+    glimpse: /Plan[\s\S]*Explain[\s\S]*Know who’s with you/,
+    destination: 'Teaching.', detail: /teach it another way/,
   },
   {
     slug: 'parent', label: 'Parents', story: 'to a conversation',
-    problem: /I got it.*leaves you guessing/, benefit: /shared progress summary.*conversation at home/,
-    value: /child understands.*help at home/, destination: 'Parenting.', detail: /What your child understood this week/,
+    question: /What did they really understand\?/,
+    glimpse: /See what they understood[\s\S]*Know how to help/,
+    destination: 'Parenting.', detail: /What your child understood this week/,
   },
   {
     slug: 'professional', label: 'Professionals', story: 'to a new skill',
-    problem: /solved a problem at work/, benefit: /save what worked.*next project/i,
-    value: /work into skills you can reuse/, destination: 'Building.', detail: /Turn every project into a lesson/,
+    question: /How do I use this in my work\?/,
+    glimpse: /Turn your work into skills you can reuse/,
+    destination: 'Building.', detail: /Turn every project into a lesson/,
   },
   {
     slug: 'organization', label: 'Organizations', story: 'to a team plan',
-    problem: /teams need training/, benefit: /shared skill gaps.*training would help first/,
-    value: /gaps across teams.*what to teach next/, destination: 'Leading.', detail: /Find gaps before they spread/,
+    question: /Where are the gaps across our teams\?/,
+    glimpse: /See capability across teams[\s\S]*Find gaps early/,
+    destination: 'Leading.', detail: /Find gaps before they spread/,
   },
 ];
 
@@ -69,20 +74,20 @@ for (const [viewportName, width, height, hasTouch] of [
     await assertNoOverflow(page, `${role.label} hero`);
     await page.screenshot({ path: path.join(out, `${viewportName}-${role.slug}-hero.png`) });
 
-    const story = page.getByRole('region', { name: 'Know what to do next.' });
+    const story = page.getByRole('region', { name: 'Every path starts with a question.' });
     const scene = story.locator(`[data-audience="${role.slug}"]`);
     await scene.scrollIntoViewIfNeeded();
-    const problem = await scene.getByRole('heading').innerText();
-    const benefit = await scene.locator('p').innerText();
-    assert.match(problem, role.problem, `${role.label} can recognize a concrete situation`);
-    assert.match(benefit, role.benefit, `${role.label} can read a relevant next step`);
-    assert.match(await story.locator('#next-steps-status').innerText(), /in development/);
-    await assertNoOverflow(page, `${role.label} story`);
+    const question = await scene.locator('.questions-text').innerText();
+    const roleLabel = await scene.locator('.questions-role').innerText();
+    assert.equal(roleLabel, role.label, `${role.label} is named on their question`);
+    assert.match(question, role.question, `${role.label} can recognize a real question`);
+    assert.match(await page.locator('#path-status').innerText(), /in development/);
+    await assertNoOverflow(page, `${role.label} question`);
     await page.screenshot({ path: path.join(out, `${viewportName}-${role.slug}-story.png`) });
 
     const pathLink = page.getByRole('navigation', { name: 'Audience pages' }).locator(`[href="/${role.slug}"]`);
-    const outcome = await pathLink.locator('.path-outcome').innerText();
-    assert.match(outcome, role.value, `${role.label} sees a specific outcome before exploring`);
+    const glimpse = await pathLink.locator('.path-glimpse').innerText();
+    assert.match(glimpse, role.glimpse, `${role.label} sees a concise solution hint before exploring`);
     await pathLink.click();
     await page.waitForURL(url => url.pathname === `/${role.slug}`);
     await page.locator('.home-hero').waitFor({ state: 'detached' });
@@ -98,7 +103,7 @@ for (const [viewportName, width, height, hasTouch] of [
     const detail = await intelligence.getByRole('heading', { name: role.detail }).innerText();
     const availability = await intelligence.getByText(/(?:is|are) in development/i).innerText();
     receipt.journeys.push({
-      viewport: viewportName, role: role.slug, story: role.story, problem, benefit, outcome, destination: `/${role.slug}`,
+      viewport: viewportName, role: role.slug, story: role.story, question, glimpse, destination: `/${role.slug}`,
       destinationHeading: heading.split('\n')[0], intelligenceDetail: detail, availability,
     });
     if (viewportName === 'desktop') {

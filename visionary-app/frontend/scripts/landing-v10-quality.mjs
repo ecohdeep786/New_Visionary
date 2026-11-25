@@ -13,7 +13,7 @@ const browsers = { chromium, firefox, webkit };
 assert.ok(Object.hasOwn(browsers, engine), 'Choose chromium, firefox or webkit');
 const browser = await browsers[engine].launch(engine === 'chromium' ? { channel: 'msedge' } : {});
 const roles = ['student', 'teacher', 'parent', 'professional', 'organization'];
-const sections = ['01-hero', '05-intelligence', '06-next-steps', '13-explore', '11-trust', '12-cta'];
+const sections = ['01-hero', '05-intelligence', '06-questions', '13-explore', '11-trust', '12-cta'];
 const receipt = { base, engine, viewports: [], interactions: [], errors: [], failedRequests: [] };
 await mkdir(output, { recursive: true });
 
@@ -75,13 +75,20 @@ async function inspectViewport(width, height) {
   await checkHeader(page);
   const introduction = await hero.locator(".home-hero-copy p").innerText();
   for (const role of roles) assert.ok(introduction.toLowerCase().includes(role + "s"), "Hero identifies " + role);
-  const story = page.getByRole('region', { name: 'Know what to do next.' });
-  const needs = story.getByRole('list', { name: 'Audience needs' });
-  assert.deepEqual(await needs.getByRole('listitem').evaluateAll(items => items.map(item => item.dataset.audience)), roles);
-  assert.match(await story.locator('#next-steps-status').innerText(), /in development/);
-  assert.equal(await needs.getAttribute('aria-describedby'), 'next-steps-status');
-  assert.equal(await story.getByRole('link').count(), 0, 'The story leads directly into the directory');
-  assert.equal(await story.getByRole('button').count(), 0, 'Every audience story can be read without operating a control');
+  const story = page.getByRole('region', { name: 'Every path starts with a question.' });
+  const questions = story.getByRole('list', { name: 'Audience questions' });
+  assert.deepEqual(await questions.getByRole('listitem').evaluateAll(items => items.map(item => item.dataset.audience)), roles);
+  for (const item of await questions.getByRole('listitem').all()) {
+    const text = (await item.innerText()).trim();
+    assert.ok(text.endsWith('?'), 'Every audience question is a real question: ' + text);
+  }
+  assert.equal(await story.getByRole('link').count(), 0, 'The questions lead directly into the paths');
+  assert.equal(await story.getByRole('button').count(), 0, 'Every audience question can be read without operating a control');
+  assert.match(await page.locator('#path-status').innerText(), /in development/);
+  assert.equal(await page.locator('#audience-paths').getAttribute('aria-describedby'), 'path-status');
+  for (const glimpse of await page.locator('#audience-paths .path-glimpse').allInnerTexts()) {
+    assert.ok(glimpse.trim().length > 12, 'Every path carries a meaningful solution hint: ' + glimpse);
+  }
   const geometry = await hero.evaluate(el => {
     const familyEl = el.querySelector('.family-stage');
     const family = familyEl.getBoundingClientRect();
@@ -148,6 +155,9 @@ async function inspectViewport(width, height) {
         }
       });
     }
+    await page.evaluate(() => {
+      for (const rail of document.querySelectorAll('.path-row, .trust-row')) rail.scrollLeft = 0;
+    });
     if (capture) await target.screenshot({ path: path.join(output, section + '-' + width + '.png') });
   }
   await checkScrolledHeader(page);
@@ -286,7 +296,7 @@ async function checkTextScaling() {
     assert.deepEqual(overflow, [], 'Visible text fits at 200% on ' + width + 'px');
     const broken = await page.evaluate(() => {
       const broken = [];
-      for (const element of document.querySelectorAll('.path-title strong, .next-steps-list h3 span, .cube-example h3')) {
+      for (const element of document.querySelectorAll('.path-title strong, .questions-text')) {
         const card = element.closest('.path-card');
         if (card) {
           const rect = card.getBoundingClientRect();
@@ -307,7 +317,7 @@ async function checkTextScaling() {
       }
       return broken;
     });
-    assert.deepEqual(broken, [], 'Audience and example headings stay whole at 200% on ' + width + 'px');
+    assert.deepEqual(broken, [], 'Audience questions and path names stay whole at 200% on ' + width + 'px');
     const pathChrome = await page.evaluate(() => {
       const row = document.querySelector('#audience-paths');
       const controls = document.querySelector('.path-controls');
@@ -342,11 +352,11 @@ async function checkDirectoryEntry() {
   const page = await openPage(1280, 720);
   await page.locator('.home-hero').getByRole('link', { name: 'Find your path' }).click();
   await page.waitForFunction(() => document.activeElement?.id === 'audiences');
-  const copy = page.locator('#audience-paths .path-outcome');
+  const copy = page.locator('#audience-paths .path-glimpse');
   assert.equal(await copy.count(), 5);
-  assert.ok(await copy.evaluateAll(outcomes => outcomes.every(outcome => outcome.getBoundingClientRect().bottom <= innerHeight)),
-    'A laptop visitor can read every role outcome directly after using Find your path');
-  receipt.interactions.push('Direct audience entry shows five complete outcomes at 1280×720');
+  assert.ok(await copy.evaluateAll(hints => hints.every(hint => hint.getBoundingClientRect().bottom <= innerHeight)),
+    'A laptop visitor can read every role hint directly after using Find your path');
+  receipt.interactions.push('Direct audience entry shows five complete solution hints at 1280×720');
   await page.close();
 }
 
