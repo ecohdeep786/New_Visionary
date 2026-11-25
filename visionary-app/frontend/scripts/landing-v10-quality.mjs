@@ -104,6 +104,8 @@ async function inspectViewport(width, height) {
   }
   assert.match(await page.locator('#path-status').innerText(), /in development/);
   assert.equal(await page.locator('#audience-paths').getAttribute('aria-describedby'), 'path-status');
+  assert.equal(await page.locator('.question-progress span').count(), 5, 'The question carousel exposes five progress marks');
+  assert.equal(await page.locator('.question-progress span[data-active="true"]').count(), 1, 'One question progress mark is active');
   const geometry = await hero.evaluate(el => {
     const familyEl = el.querySelector('.family-stage');
     const family = familyEl.getBoundingClientRect();
@@ -215,6 +217,18 @@ async function journeys(width, height) {
   await page.waitForFunction(() => document.activeElement?.id === 'intelligence');
   receipt.interactions.push(width + 'px: five role journeys, product, privacy, registration, keyboard anchor and legacy deep link');
   if (width < 640) {
+    {
+      const questionPrevious = page.getByRole('button', { name: 'Previous question', exact: true });
+      const questionNext = page.getByRole('button', { name: 'Next question', exact: true });
+      await questionPrevious.waitFor();
+      assert.equal(await questionPrevious.isEnabled(), false, 'Previous is disabled at the beginning of question-cards');
+      await questionNext.click();
+      await page.waitForFunction(() => document.getElementById('question-cards')?.scrollLeft > 1);
+      await page.waitForFunction(() =>
+        [...document.querySelectorAll('.question-progress span')].findIndex(span => span.dataset.active === 'true') === 1);
+      await questionPrevious.click();
+      await page.waitForFunction(() => document.getElementById('question-cards')?.scrollLeft < 1);
+    }
     for (const [id, label] of [['audience-paths', 'audience'], ['trust-values', 'value']]) {
       const rail = page.locator('#' + id);
       const previous = page.getByRole('button', { name: 'Previous ' + label, exact: true });
@@ -264,7 +278,7 @@ async function journeys(width, height) {
       { timeout: 3000 },
     );
     assert.equal(await page.locator('main').evaluate(el => el.inert), false);
-    receipt.interactions.push('Path and trust rail endpoints, mobile menu, resize, focus restoration and five footer disclosures');
+    receipt.interactions.push('Question, path and trust rail endpoints, mobile menu, resize, focus restoration and five footer disclosures');
   }
   const who = page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'For you', exact: true });
   await who.focus();

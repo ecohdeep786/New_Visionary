@@ -14,11 +14,11 @@ import teachermeet from "@/assets/audience-portraits/teacher.webp";
 import parentmeet from "@/assets/audience-portraits/parent.webp";
 import promeet from "@/assets/audience-portraits/professional.webp";
 import orgmeet from "@/assets/audience-portraits/organization.webp";
-import studentQuestionImage from "@/assets/problem-understanding.webp";
-import teacherQuestionImage from "@/assets/teacher-problem-1.webp";
-import parentQuestionImage from "@/assets/parent-hero-main-1600w.webp";
-import professionalQuestionImage from "@/assets/professional-problem-1-1600w.webp";
-import organizationQuestionImage from "@/assets/organization-problem-2-1600w.webp";
+import studentQuestionImage from "@/assets/problem-cutouts/student-question.webp";
+import teacherQuestionImage from "@/assets/problem-cutouts/teacher-question.webp";
+import parentQuestionImage from "@/assets/problem-cutouts/parent-question.webp";
+import professionalQuestionImage from "@/assets/problem-cutouts/professional-question.webp";
+import organizationQuestionImage from "@/assets/problem-cutouts/organization-question.webp";
 import { Accessibility, ChevronLeft, ChevronRight, Lock, ShieldCheck } from "lucide-react";
 
 import { useSignedIn } from "@/components/landing/AuthAwareLink";
@@ -28,31 +28,31 @@ const AUDIENCES = [
     slug: "student", label: "Students", castLabel: "Student", portrait: studentLineup,
     headline: "to a project.",
     question: "Why doesn’t this make sense yet?",
-    questionImage: studentQuestionImage, questionPosition: "50% 20%",
+    questionImage: studentQuestionImage,
   },
   {
     slug: "teacher", label: "Teachers", castLabel: "Teacher", portrait: teachermeet,
     headline: "to a lesson.",
     question: "Who needs another explanation?",
-    questionImage: teacherQuestionImage, questionPosition: "50% 18%",
+    questionImage: teacherQuestionImage,
   },
   {
     slug: "parent", label: "Parents", castLabel: "Parent", portrait: parentmeet,
     headline: "to a conversation.",
     question: "What did they really understand?",
-    questionImage: parentQuestionImage, questionPosition: "50% 25%",
+    questionImage: parentQuestionImage,
   },
   {
     slug: "professional", label: "Professionals", castLabel: "Professional", portrait: promeet,
     headline: "to a new skill.",
     question: "How do I use this in my work?",
-    questionImage: professionalQuestionImage, questionPosition: "45% 20%",
+    questionImage: professionalQuestionImage,
   },
   {
     slug: "organization", label: "Organizations", castLabel: "Organization", portrait: orgmeet,
     headline: "to a team plan.",
     question: "Where are the gaps across our teams?",
-    questionImage: organizationQuestionImage, questionPosition: "50% 20%",
+    questionImage: organizationQuestionImage,
   },
 ];
 
@@ -136,7 +136,6 @@ function AudienceQuestions() {
                   alt=""
                   loading="lazy"
                   decoding="async"
-                  style={{ objectPosition: role.questionPosition }}
                 />
               </div>
               <div className="question-copy">
@@ -146,9 +145,46 @@ function AudienceQuestions() {
             </li>
           ))}
         </ul>
-        <RailControls id="question-cards" label="question" railRef={questionRow} className="questions-controls" />
+        <div className="questions-footer">
+          <RailProgress railRef={questionRow} total={AUDIENCES.length} />
+          <RailControls id="question-cards" label="question" railRef={questionRow} className="questions-controls" />
+        </div>
       </div>
     </section>
+  );
+}
+
+function RailProgress({ railRef, total }) {
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return undefined;
+    const update = () => {
+      const [first, second] = rail.children;
+      if (!first) return;
+      const step = second
+        ? second.getBoundingClientRect().left - first.getBoundingClientRect().left
+        : first.getBoundingClientRect().width;
+      if (!step) return;
+      setIndex(Math.max(0, Math.min(total - 1, Math.round(rail.scrollLeft / step))));
+    };
+    update();
+    const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(update);
+    observer?.observe(rail);
+    window.addEventListener("resize", update);
+    rail.addEventListener("scroll", update, { passive: true });
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("resize", update);
+      rail.removeEventListener("scroll", update);
+    };
+  }, [railRef, total]);
+  return (
+    <span className="question-progress" aria-hidden="true">
+      {Array.from({ length: total }, (_, i) => (
+        <span key={i} data-active={i === index ? "true" : undefined} />
+      ))}
+    </span>
   );
 }
 
