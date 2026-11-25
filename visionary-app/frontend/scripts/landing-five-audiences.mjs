@@ -74,20 +74,17 @@ for (const [viewportName, width, height, hasTouch] of [
     await assertNoOverflow(page, `${role.label} hero`);
     await page.screenshot({ path: path.join(out, `${viewportName}-${role.slug}-hero.png`) });
 
-    const story = page.getByRole('region', { name: 'Every path starts with a question.' });
-    const scene = story.locator(`[data-audience="${role.slug}"]`);
-    await scene.scrollIntoViewIfNeeded();
-    const question = await scene.locator('.questions-text').innerText();
-    const roleLabel = await scene.locator('.questions-role').innerText();
-    assert.equal(roleLabel, role.label, `${role.label} is named on their question`);
-    assert.match(question, role.question, `${role.label} can recognize a real question`);
-    assert.match(await page.locator('#path-status').innerText(), /in development/);
-    await assertNoOverflow(page, `${role.label} question`);
-    await page.screenshot({ path: path.join(out, `${viewportName}-${role.slug}-story.png`) });
-
     const pathLink = page.getByRole('navigation', { name: 'Audience pages' }).locator(`[href="/${role.slug}"]`);
+    await pathLink.scrollIntoViewIfNeeded();
+    const roleLabel = await pathLink.locator('.path-title strong').innerText();
+    const question = await pathLink.locator('.path-question').innerText();
     const glimpse = await pathLink.locator('.path-glimpse').innerText();
+    assert.equal(roleLabel, role.label, `${role.label} is named on their path`);
+    assert.match(question, role.question, `${role.label} can recognize a real question on their path`);
     assert.match(glimpse, role.glimpse, `${role.label} sees a concise solution hint before exploring`);
+    assert.match(await page.locator('#path-status').innerText(), /in development/);
+    await assertNoOverflow(page, `${role.label} path`);
+    await page.screenshot({ path: path.join(out, `${viewportName}-${role.slug}-path.png`) });
     await pathLink.click();
     await page.waitForURL(url => url.pathname === `/${role.slug}`);
     await page.locator('.home-hero').waitFor({ state: 'detached' });
@@ -117,7 +114,7 @@ for (const [viewportName, width, height, hasTouch] of [
 }
 
 /* The directory must be a second complete set of the same doors, with real
-   portraits and the role's own outcome. */
+   portraits and the role's own question and solution hint. */
 {
   const page = await open(390, 844);
   const directory = page.getByRole('navigation', { name: 'Audience pages' });

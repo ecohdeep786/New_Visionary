@@ -3,7 +3,7 @@
   --public-section-py: clamp(7rem, 10vw, 8.75rem);
 }
 .page-landing #intelligence { scroll-margin-top: 4.5rem; }
-.page-landing #audiences { scroll-margin-top: calc(4.5rem - var(--public-section-py)); }
+.page-landing #audiences { scroll-margin-top: calc(4.5rem - var(--public-section-py) - 4.5rem); }
 .page-landing main > section[data-section]:not([data-section="01-hero"]) { scroll-margin-top: 4.5rem; }
 
 /* The same reading edge runs through the product, audience and privacy chapters. */
@@ -308,72 +308,6 @@
   }
 }
 
-/* ── 06 · One question from every path ───────────────────────────────────
-   The recognition chapter. Five questions, one reading spine, no cards and
-   no solution detail — the answers live on the category pages. ─────────── */
-.page-landing #main .home-questions {
-  padding-block: var(--public-section-py);
-  border-top: 0;
-  background: #f5f5f7;
-}
-.questions-shell {
-  width: min(calc(100% - min(3rem, 12vw)), 61.25rem);
-  margin-inline: auto;
-  container-type: inline-size;
-}
-.questions-frame {
-  display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  align-items: start;
-  gap: clamp(2.5rem, 6vw, 6rem);
-}
-.questions-intro h2 {
-  margin: 0;
-  max-width: 12ch;
-  text-wrap: balance;
-}
-.questions-intro p {
-  max-width: 24ch;
-  margin: 1.15rem 0 0;
-  color: #515154;
-  text-wrap: pretty;
-}
-.questions-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid #d2d2d7;
-}
-.questions-list li {
-  padding-block: clamp(1.15rem, 2vw, 1.55rem);
-  border-bottom: 1px solid #d2d2d7;
-}
-.questions-role {
-  display: block;
-  margin-bottom: 0.32rem;
-  color: #6e6e73;
-  font-weight: 600 !important;
-}
-.questions-text {
-  max-width: 26ch;
-  margin: 0;
-  color: #1d1d1f;
-  text-wrap: pretty;
-}
-@container (max-width: 40rem) {
-  .questions-frame {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 2.25rem;
-  }
-  .questions-intro h2 { max-width: 14ch; }
-  .questions-intro p { max-width: 28ch; }
-  .questions-list li { padding-block: 1.05rem; }
-  .questions-text { max-width: 30ch; }
-}
-@media (max-width: 767px) {
-  .questions-shell { width: calc(100% - 2.5rem); }
-}
-
 /* ── 13 · The five paths ──────────────────────────────────────────────────
    One quiet editorial directory, not five category pages in one place. ─── */
 .page-landing #main .home-audiences {
@@ -385,7 +319,7 @@
 .path-intro { max-width: 38rem; margin: 0 0 clamp(3.5rem, 5vw, 5rem); }
 .path-intro h2 { margin: 0; }
 .path-intro-copy {
-  max-width: 32ch;
+  max-width: 36ch;
   margin: 1.1rem 0 0;
   color: #515154;
   text-wrap: pretty;
@@ -413,6 +347,13 @@
   transition: transform var(--motion-duration-slow) var(--ease-out-apple);
 }
 .path-body { display: flex; flex-direction: column; padding: 1.2rem 0.1rem 0; }
+.path-question {
+  display: block;
+  min-height: 2.5em;
+  margin-top: 0.55rem;
+  color: #1d1d1f;
+  text-wrap: pretty;
+}
 .path-glimpse { display: block; margin-top: 0.5rem; color: #515154; }
 .path-title { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
 .path-title strong {
@@ -442,6 +383,7 @@
 @media (max-width: 1199px) {
   .path-row {
     display: flex;
+    align-items: stretch;
     gap: 1.25rem;
     margin-inline: -1.5rem;
     padding-inline: 1.5rem;

@@ -111,29 +111,6 @@ const TRUST_VALUES = [
   },
 ];
 
-function AudienceQuestions() {
-  return (
-    <section data-section="06-questions" className="home-questions" aria-labelledby="questions-heading">
-      <div className="questions-shell">
-        <div className="questions-frame">
-          <div className="questions-intro">
-            <h2 id="questions-heading" data-type="section">Every path starts with a question.</h2>
-            <p data-type="editorial-body">One intelligence meets you there.</p>
-          </div>
-          <ul className="questions-list" role="list" aria-label="Audience questions">
-            {AUDIENCES.map(({ slug, label, question }) => (
-              <li key={slug} data-audience={slug}>
-                <span className="questions-role" data-type="body">{label}</span>
-                <p className="questions-text" data-type="feature">{question}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function scrollRail(ref, direction) {
   const rail = ref.current;
   const [first, second] = rail?.children ?? [];
@@ -190,7 +167,7 @@ function AudienceDirectory() {
       <div className="path-frame">
         <div className="path-intro">
           <h2 id="audiences-title" data-type="section">Find your path.</h2>
-          <p className="path-intro-copy" data-type="editorial-body">One intelligence, shaped to what you do.</p>
+          <p className="path-intro-copy" data-type="editorial-body">Every path starts with a question. One intelligence meets you there.</p>
         </div>
         <nav id="audience-paths" aria-label="Audience pages" aria-describedby="path-status" className="path-row" ref={pathRow}>
           {AUDIENCES.map((role) => (
@@ -203,6 +180,7 @@ function AudienceDirectory() {
                   <strong>{role.label}</strong>
                   <ChevronRight className="path-arrow" size={20} aria-hidden="true" />
                 </span>
+                <span className="path-question" data-type="editorial-body">{role.question}</span>
                 <span className="path-glimpse" data-type="body">{role.glimpse}</span>
               </span>
             </Link>
@@ -242,7 +220,6 @@ export default function LandingPage() {
             </picture>
           </div>
         </section>
-        <AudienceQuestions />
         <AudienceDirectory />
         <section className="home-privacy" data-section="11-trust" aria-labelledby="trust-heading">
           <div className="trust-frame">
