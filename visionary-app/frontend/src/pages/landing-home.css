@@ -309,8 +309,9 @@
 }
 
 /* ── 06 · One question from every path ───────────────────────────────────
-   The recognition chapter. Five portraits with the real question each
-   audience brings; the doors themselves live in Find your path below. ──── */
+   An Apple-style story carousel: two large cards at a time, each pairing a
+   category's problem image with its real question. Read-only; the doors live
+   in Find your path below. ───────────────────────────────────────────────── */
 .page-landing #main .home-questions {
   padding-block: var(--public-section-py);
   border-top: 0;
@@ -330,67 +331,80 @@
   text-wrap: pretty;
 }
 .questions-row {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  align-items: start;
-  gap: clamp(1.75rem, 2.4vw, 2.25rem);
+  display: flex;
+  gap: clamp(1rem, 1.6vw, 1.5rem);
+  padding-bottom: 0.5rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
 }
-.question-card { display: flex; flex-direction: column; min-width: 0; }
-.question-media {
-  display: block;
-  aspect-ratio: 1;
+.questions-row::-webkit-scrollbar { display: none; }
+.question-card {
+  flex: 0 0 min(46%, 38rem);
+  display: grid;
+  grid-template-columns: 45% 55%;
+  min-height: 22rem;
   overflow: hidden;
+  border: 1px solid rgba(29, 29, 31, 0.05);
   border-radius: 1.75rem;
-  background: #f4f4f6;
+  background: #fff;
+  scroll-snap-align: start;
+}
+.question-media {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  background: #f5f5f7;
 }
 .question-media img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 30%;
-  mix-blend-mode: multiply;
+}
+.question-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: clamp(1.75rem, 3vw, 2.5rem);
 }
 .question-role {
   display: block;
-  margin-top: 1.05rem;
+  margin-bottom: 0.55rem;
   color: #6e6e73;
   font-weight: 600 !important;
 }
 .question-text {
-  min-height: 3.5em;
-  max-width: 24ch;
-  margin: 0.35rem 0 0;
+  max-width: 20ch;
+  margin: 0;
   color: #1d1d1f;
   text-wrap: pretty;
 }
 @media (max-width: 1199px) {
-  .questions-row {
-    display: flex;
-    align-items: stretch;
-    gap: 1.25rem;
-    margin-inline: -1.5rem;
-    padding-inline: 1.5rem;
-    padding-bottom: 0.75rem;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: 1.5rem;
-    scrollbar-width: none;
-  }
-  .questions-row::-webkit-scrollbar { display: none; }
-  .question-card {
-    flex: 0 0 min(72vw, 15rem);
-    min-width: min-content;
-    scroll-snap-align: start;
-  }
+  .question-card { flex-basis: min(72vw, 38rem); }
 }
 @media (max-width: 639px) {
   .questions-frame { width: calc(100% - 2.5rem); }
-  .questions-row { margin-inline: -1.25rem; padding-inline: 1.25rem; scroll-padding-inline: 1.25rem; }
   .questions-intro { margin-bottom: 2.5rem; }
+  .question-card {
+    flex-basis: 84vw;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .question-media { flex: none; aspect-ratio: 3 / 2; }
+  .question-copy { padding: 1.5rem 1.35rem 1.75rem; }
 }
-@container (max-width: 64rem) {
-  .questions-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@container (max-width: 60rem) {
+  .question-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .question-media { flex: none; aspect-ratio: 3 / 2; }
+  .question-copy { padding: 1.5rem 1.35rem 1.75rem; }
 }
 
 /* ── 13 · The five paths ──────────────────────────────────────────────────
@@ -514,6 +528,7 @@
 }
 
 .rail-controls { display: none; justify-content: flex-end; gap: 0.5rem; margin-top: 1rem; }
+.rail-controls.questions-controls { display: flex; }
 .rail-controls button {
   display: inline-flex;
   align-items: center;

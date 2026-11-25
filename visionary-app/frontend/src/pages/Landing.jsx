@@ -14,6 +14,11 @@ import teachermeet from "@/assets/audience-portraits/teacher.webp";
 import parentmeet from "@/assets/audience-portraits/parent.webp";
 import promeet from "@/assets/audience-portraits/professional.webp";
 import orgmeet from "@/assets/audience-portraits/organization.webp";
+import studentQuestionImage from "@/assets/problem-understanding.webp";
+import teacherQuestionImage from "@/assets/teacher-problem-1.webp";
+import parentQuestionImage from "@/assets/parent-hero-main-1600w.webp";
+import professionalQuestionImage from "@/assets/professional-problem-1-1600w.webp";
+import organizationQuestionImage from "@/assets/organization-problem-2-1600w.webp";
 import { Accessibility, ChevronLeft, ChevronRight, Lock, ShieldCheck } from "lucide-react";
 
 import { useSignedIn } from "@/components/landing/AuthAwareLink";
@@ -23,26 +28,31 @@ const AUDIENCES = [
     slug: "student", label: "Students", castLabel: "Student", portrait: studentLineup,
     headline: "to a project.",
     question: "Why doesn’t this make sense yet?",
+    questionImage: studentQuestionImage, questionPosition: "50% 20%",
   },
   {
     slug: "teacher", label: "Teachers", castLabel: "Teacher", portrait: teachermeet,
     headline: "to a lesson.",
     question: "Who needs another explanation?",
+    questionImage: teacherQuestionImage, questionPosition: "50% 18%",
   },
   {
     slug: "parent", label: "Parents", castLabel: "Parent", portrait: parentmeet,
     headline: "to a conversation.",
     question: "What did they really understand?",
+    questionImage: parentQuestionImage, questionPosition: "50% 25%",
   },
   {
     slug: "professional", label: "Professionals", castLabel: "Professional", portrait: promeet,
     headline: "to a new skill.",
     question: "How do I use this in my work?",
+    questionImage: professionalQuestionImage, questionPosition: "45% 20%",
   },
   {
     slug: "organization", label: "Organizations", castLabel: "Organization", portrait: orgmeet,
     headline: "to a team plan.",
     question: "Where are the gaps across our teams?",
+    questionImage: organizationQuestionImage, questionPosition: "50% 20%",
   },
 ];
 
@@ -118,11 +128,21 @@ function AudienceQuestions() {
         <ul id="question-cards" className="questions-row" role="list" aria-label="Audience questions" ref={questionRow}>
           {AUDIENCES.map((role) => (
             <li key={role.slug} className="question-card" data-audience={role.slug}>
-              <span className="question-media">
-                <img src={role.portrait} width="224" height="224" alt="" loading="lazy" decoding="async" />
-              </span>
-              <span className="question-role" data-type="body">{role.label}</span>
-              <p className="question-text" data-type="lead">{role.question}</p>
+              <div className="question-media">
+                <img
+                  src={role.questionImage}
+                  width="800"
+                  height="800"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  style={{ objectPosition: role.questionPosition }}
+                />
+              </div>
+              <div className="question-copy">
+                <span className="question-role" data-type="body">{role.label}</span>
+                <p className="question-text" data-type="feature">{role.question}</p>
+              </div>
             </li>
           ))}
         </ul>
