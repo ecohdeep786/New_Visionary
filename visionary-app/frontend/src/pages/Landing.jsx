@@ -128,6 +128,10 @@ function AudienceQuestions() {
         <ul id="question-cards" className="questions-row" role="list" aria-label="Audience questions" ref={questionRow}>
           {AUDIENCES.map((role) => (
             <li key={role.slug} className="question-card" data-audience={role.slug}>
+              <div className="question-copy">
+                <span className="question-role" data-type="body">{role.label}</span>
+                <p className="question-text" data-type="feature">{role.question}</p>
+              </div>
               <div className="question-media">
                 <img
                   src={role.questionImage}
@@ -137,10 +141,6 @@ function AudienceQuestions() {
                   loading="lazy"
                   decoding="async"
                 />
-              </div>
-              <div className="question-copy">
-                <span className="question-role" data-type="body">{role.label}</span>
-                <p className="question-text" data-type="feature">{role.question}</p>
               </div>
             </li>
           ))}
