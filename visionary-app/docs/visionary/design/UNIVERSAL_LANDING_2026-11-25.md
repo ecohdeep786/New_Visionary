@@ -21,7 +21,7 @@ The earlier question chapter was a five-up portrait row, almost identical to the
 
 The universal page follows that separation:
 
-1. **Every path starts with a question.** A grey chapter with a large horizontal story carousel. Each card is a white 28px-radius surface with the audience name and real question at the top-left, and the background-removed problem portrait large at the bottom-right. Two cards are visible at desktop; one card plus a peek on tablet and phone. A centered progress pill and circular previous/next controls scroll the set. The cards are read-only — no arrows, no links, no solution hint.
+1. **Every path starts with a question.** A white chapter with a large horizontal story carousel. Each card is a light-grey 28px-radius surface with the audience name and real question at the top-left, and the background-removed problem portrait large at the bottom-right. One large card is visible at desktop, with the next card peeking at the viewport edge; one card plus a peek on tablet and phone. A centered progress pill and circular previous/next controls scroll the set. The cards are read-only — no arrows, no links, no solution hint.
 2. **Find your path.** A white chapter with five small portrait doors. Each card is only the approved portrait, the role name and the arrow. No question, no hint, no lead line.
 
 The questions make the visitor feel seen. The paths are the doors. The solution lives on the category page.
@@ -40,7 +40,7 @@ The whole asset library was reviewed before choosing.
 | `hero-stage` | Rejected: a single learner. |
 | Visionary guide | The product guide, not an audience. It stays in One Intelligence. |
 
-The five question cutouts were derived locally by removing the studio background from the existing problem images. No new subject, stock photo or generated person was introduced. The cutouts are displayed on a white card so the professional and organization images no longer show their grey photographic background as a rectangle.
+The five question cutouts were derived locally by removing the studio background from the existing problem images. No new subject, stock photo or generated person was introduced. The cutouts are displayed on a light-grey card so the professional and organization images no longer show their grey photographic background as a rectangle.
 
 ## Apple study
 
@@ -63,7 +63,7 @@ The comparison image pairs Apple's Education audience chapter and iPhone line-up
 | --- | --- | --- | --- |
 | 01 Hero | What is this, and is it for me? | Centred statement, one support line, one action, five quiet audience links, the five-person studio cast. First screen only. | Find your path → `#audiences`; five audience links |
 | 05 One Intelligence | What is the product? | Dark product chapter; guide on the band floor; one promise; availability note. | How it works |
-| 06 Questions | Does it understand my situation? | Grey chapter; large white story carousel. Role + real question top-left, background-removed problem portrait bottom-right. Two cards visible at desktop; one + peek on tablet/phone; centered progress pill and previous/next controls. Read-only. | None in the cards |
+| 06 Questions | Does it understand my situation? | White chapter; large light-grey story carousel. Role + real question top-left, background-removed problem portrait bottom-right. One large card visible at desktop with the next peeking at the viewport edge; one + peek on tablet/phone; centered progress pill and previous/next controls. Read-only. | None in the cards |
 | 13 Find your path | Where do I begin? | White chapter; 1264px five-up of 4:5 portraits, role names and arrows. No subcopy. | Five category pages |
 | 11 Trust | Can I trust it? | Three values on the measured grey ground. | Sharing, safety, accessibility |
 | 12 Close | What do I do now? | Quiet grey panel, one statement, primary account action and a secondary how-it-works link. | Register, how it works |
@@ -93,10 +93,10 @@ The path cards carry only the role name and arrow. No solution hint is placed on
 | Question chapter height (1440) | 913px (solution chapter) | 1,016px |
 | Path chapter height (1440) | 825px | 781px |
 | Desktop page height (1440) | 5,580px | 5,640px |
-| Mobile page height (390) | 5,532px | 4,818px |
+| Mobile page height (390) | 5,532px | 4,816px |
 | First screen | Hero only | Hero only |
 
-The desktop page is 60px taller because the question card grew into the iPhone-style large card. The mobile page is 714px shorter because the detailed solution copy and cube are gone and the path directory no longer repeats explanatory lines.
+The desktop page is 60px taller because the question card grew into the iPhone-style large card. The mobile page is 716px shorter because the detailed solution copy and cube are gone and the path directory no longer repeats explanatory lines.
 
 ## Verification
 
@@ -110,7 +110,7 @@ Production build, `dist` served on `127.0.0.1:4310`:
 - `landing-five-audiences.mjs`: **PASS**; 20 role/viewport journeys, keyboard order, reduced motion, pause and all five destinations. Each audience is checked on its question card (image, role, question, no door) and its path door (image, role, name-only, no subcopy).
 - `landing-apple-audit.mjs`: 9 viewports + 200% at 390/1280; **0 horizontal overflow, 0 clipped visible text**. The only console entry is the audit's intentional 401 auth fixture.
 - `landing-scroll-audit.mjs`: real-user screen captures.
-- Lighthouse mobile production `/`: performance **0.85**, accessibility **1.00**, best practices **0.96**, SEO **1.00**; accessibility and SEO gates pass.
+- Lighthouse mobile production `/`: performance **0.84**, accessibility **1.00**, best practices **0.96**, SEO **1.00**; accessibility and SEO gates pass.
 - `qa-motion.mjs`, `qa-taps.mjs`, `qa-continuity.mjs`: pass.
 
 Direct "Find your path" entry at 1280×720 lands with the path heading and all five role doors inside the viewport (the gate asserts every role-name bottom is within the 720px fold).
@@ -137,13 +137,13 @@ The remaining restraint is deliberate: the question cards do not open a page, an
 ## Evidence
 
 - `shots/apple-study-redesign/before-final/` — pre-change full pages, 1440 and 390.
-- `shots/apple-study-redesign/largecard-final/` — production full pages and section crops, 1440 and 390.
+- `shots/apple-study-redesign/onecard-final/` — production full pages and section crops, 1440 and 390.
 - `shots/apple-study-redesign/compare/before-after-desktop.png` and `before-after-mobile.png`.
-- `shots/apple-study-redesign/compare/apple-reference-comparison-largecard.png`.
-- `shots/apple-study-redesign/largecard-prod-gate-{chromium,firefox,webkit}/` — per-browser gates and receipts.
-- `shots/apple-study-redesign/largecard-prod-audiences/` — five-audience journeys and receipt.
-- `shots/apple-study-redesign/largecard-prod-audit/` — nine-viewport and 200% audit.
-- `shots/apple-study-redesign/largecard-prod-lighthouse-b/` — valid Lighthouse receipt.
+- `shots/apple-study-redesign/compare/apple-reference-comparison-onecard.png`.
+- `shots/apple-study-redesign/final-prod-gate-{chromium,firefox,webkit}/` — per-browser gates and receipts.
+- `shots/apple-study-redesign/final-prod-audiences/` — five-audience journeys and receipt.
+- `shots/apple-study-redesign/final-prod-audit/` — nine-viewport and 200% audit.
+- `shots/apple-study-redesign/final-prod-lighthouse/` — valid Lighthouse receipt.
 - `shots/apple-study-redesign/walkthrough/` — five first-time audience walkthroughs at desktop and phone.
 - `shots/cutouts/` — cutout inspection previews on white.
 - `shots/apple-study-redesign/walkthrough/` — five first-time audience walkthroughs at desktop and phone.
