@@ -27,30 +27,35 @@ const AUDIENCES = [
   {
     slug: "student", label: "Students", castLabel: "Student", portrait: studentLineup,
     headline: "to a project.",
+    roleLabel: "For every student, at every stage",
     question: "Why doesn’t this make sense yet?",
     questionImage: studentQuestionImage,
   },
   {
     slug: "teacher", label: "Teachers", castLabel: "Teacher", portrait: teachermeet,
     headline: "to a lesson.",
-    question: "Who needs another explanation?",
+    roleLabel: "For every teacher, in every classroom",
+    question: "Did it land with everyone?",
     questionImage: teacherQuestionImage,
   },
   {
     slug: "parent", label: "Parents", castLabel: "Parent", portrait: parentmeet,
     headline: "to a conversation.",
+    roleLabel: "For every parent, at every age",
     question: "What did they really understand?",
     questionImage: parentQuestionImage,
   },
   {
     slug: "professional", label: "Professionals", castLabel: "Professional", portrait: promeet,
     headline: "to a new skill.",
+    roleLabel: "For every professional, in every field",
     question: "How do I use this in my work?",
     questionImage: professionalQuestionImage,
   },
   {
     slug: "organization", label: "Organizations", castLabel: "Organization", portrait: orgmeet,
     headline: "to a team plan.",
+    roleLabel: "For every organization, across every team",
     question: "Where are the gaps across our teams?",
     questionImage: organizationQuestionImage,
   },
@@ -129,8 +134,8 @@ function AudienceQuestions() {
           {AUDIENCES.map((role) => (
             <li key={role.slug} className="question-card" data-audience={role.slug}>
               <div className="question-copy">
-                <span className="question-role" data-type="body">{role.label}</span>
-                <p className="question-text" data-type="feature">{role.question}</p>
+                <span className="question-role" data-type="body">{role.roleLabel}</span>
+                <p className="question-text" data-type="editorial-card">{role.question}</p>
               </div>
               <div className="question-media">
                 <img
@@ -207,8 +212,11 @@ function RailControls({ id, label, railRef, className }) {
     const rail = railRef.current;
     if (!rail) return undefined;
     const update = () => {
+      const last = rail.lastElementChild;
+      const railRight = rail.getBoundingClientRect().left + rail.clientWidth;
+      const lastIsVisible = last ? last.getBoundingClientRect().right <= railRight + 1 : false;
       setCanGoBack(rail.scrollLeft > 1);
-      setCanGoForward(rail.scrollLeft + rail.clientWidth < rail.scrollWidth - 1);
+      setCanGoForward(!lastIsVisible);
     };
     update();
     const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(update);
@@ -244,6 +252,7 @@ function AudienceDirectory() {
       <div className="path-frame">
         <div className="path-intro">
           <h2 id="audiences-title" data-type="section">Find your path.</h2>
+          <p className="path-intro-copy" data-type="editorial-body">One intelligence. Five ways in.</p>
         </div>
         <nav id="audience-paths" aria-label="Audience pages" aria-describedby="path-status" className="path-row" ref={pathRow}>
           {AUDIENCES.map((role) => (

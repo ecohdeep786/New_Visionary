@@ -331,13 +331,15 @@
   text-wrap: pretty;
 }
 .questions-row {
+  --questions-gutter: max(1.5rem, calc((100vw - 79rem) / 2));
+  --question-peek: clamp(205px, 20vw, 300px);
   display: flex;
   gap: clamp(1rem, 1.6vw, 1.5rem);
   width: 100vw;
   margin-inline: calc(50% - 50vw);
-  padding-left: max(1.5rem, calc((100vw - 79rem) / 2));
-  padding-right: 0;
-  scroll-padding-left: max(1.5rem, calc((100vw - 79rem) / 2));
+  padding-left: var(--questions-gutter);
+  padding-right: var(--question-peek);
+  scroll-padding-left: var(--questions-gutter);
   padding-bottom: 0.5rem;
   overflow-x: auto;
   overscroll-behavior-x: contain;
@@ -347,8 +349,8 @@
 .questions-row::-webkit-scrollbar { display: none; }
 .question-card {
   position: relative;
-  flex: 0 0 calc(100% - 208px);
-  height: clamp(22rem, 30vw, 30rem);
+  flex: 0 0 calc(100vw - var(--questions-gutter) - var(--question-peek));
+  height: clamp(24rem, 38vw, 40rem);
   overflow: hidden;
   border-radius: 1.75rem;
   background: #f5f5f7;
@@ -367,7 +369,7 @@
   color: #6e6e73;
   font-weight: 600 !important;
 }
-.question-text {
+.page-landing #main .question-text {
   max-width: 20ch;
   margin: 0;
   color: #1d1d1f;
@@ -390,7 +392,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: 50% 100%;
+  object-position: 72% 100%;
 }
 .questions-footer {
   display: flex;
@@ -422,8 +424,12 @@
 }
 .questions-footer .rail-controls { margin-top: 0; }
 @media (max-width: 767px) {
-  .question-card { flex-basis: min(80vw, 30rem); }
-  .page-landing #main .question-text { font-size: min(1.75rem, 7vw) !important; }
+  .questions-row { --question-peek: calc(100vw - min(80vw, 30rem)); }
+  .question-card {
+    flex-basis: min(80vw, 30rem);
+    --fs-large-card: min(1.75rem, 7vw);
+    --fs-body: min(1.0625rem, 5vw);
+  }
 }
 @media (max-width: 639px) {
   .questions-frame { width: calc(100% - 2.5rem); }
@@ -436,8 +442,9 @@
     right: auto;
     bottom: auto;
     width: 100%;
-    height: clamp(12rem, 45vw, 18rem);
+    height: clamp(14rem, 60vw, 20rem);
   }
+  .question-media img { object-position: 50% 100%; }
 }
 @container (max-width: 60rem) {
   .question-card { height: auto; }
@@ -447,8 +454,9 @@
     right: auto;
     bottom: auto;
     width: 100%;
-    height: clamp(12rem, 45vw, 18rem);
+    height: clamp(14rem, 60vw, 20rem);
   }
+  .question-media img { object-position: 50% 100%; }
 }
 
 /* ── 13 · The five paths ──────────────────────────────────────────────────
@@ -461,6 +469,12 @@
 .path-frame { width: min(calc(100% - 3rem), 79rem); margin-inline: auto; container-type: inline-size; }
 .path-intro { max-width: 38rem; margin: 0 0 clamp(3.5rem, 5vw, 5rem); }
 .path-intro h2 { margin: 0; }
+.path-intro-copy {
+  max-width: 36ch;
+  margin: 1rem 0 0;
+  color: #515154;
+  text-wrap: pretty;
+}
 .path-row {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -506,8 +520,9 @@
 .path-row:focus-visible, .trust-row:focus-visible { outline: 3px solid #0066cc; outline-offset: -3px; }
 .path-note {
   max-width: 52ch;
-  margin: 1.35rem 0 0;
+  margin: 1.35rem auto 0;
   color: #6e6e73;
+  text-align: center;
 }
 @media (max-width: 1199px) {
   .path-row {

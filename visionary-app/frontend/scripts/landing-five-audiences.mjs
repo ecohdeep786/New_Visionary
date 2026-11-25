@@ -11,26 +11,31 @@ await mkdir(out, { recursive: true });
 const roles = [
   {
     slug: 'student', label: 'Students', story: 'to a project',
+    questionRole: 'For every student, at every stage',
     question: /Why doesn’t this make sense yet\?/,
     destination: 'Learning,', detail: /Build from what you know/,
   },
   {
     slug: 'teacher', label: 'Teachers', story: 'to a lesson',
-    question: /Who needs another explanation\?/,
+    questionRole: 'For every teacher, in every classroom',
+    question: /Did it land with everyone\?/,
     destination: 'Teaching.', detail: /teach it another way/,
   },
   {
     slug: 'parent', label: 'Parents', story: 'to a conversation',
+    questionRole: 'For every parent, at every age',
     question: /What did they really understand\?/,
     destination: 'Parenting.', detail: /What your child understood this week/,
   },
   {
     slug: 'professional', label: 'Professionals', story: 'to a new skill',
+    questionRole: 'For every professional, in every field',
     question: /How do I use this in my work\?/,
     destination: 'Building.', detail: /Turn every project into a lesson/,
   },
   {
     slug: 'organization', label: 'Organizations', story: 'to a team plan',
+    questionRole: 'For every organization, across every team',
     question: /Where are the gaps across our teams\?/,
     destination: 'Leading.', detail: /Find gaps before they spread/,
   },
@@ -75,7 +80,7 @@ for (const [viewportName, width, height, hasTouch] of [
     const question = await questionCard.locator('.question-text').innerText();
     const questionImage = questionCard.locator('img');
     await questionImage.evaluate(image => image.decode());
-    assert.equal(questionRole, role.label, `${role.label} is named on their question`);
+    assert.equal(questionRole.toLowerCase(), role.questionRole.toLowerCase(), `${role.label} is named on their question`);
     assert.match(question, role.question, `${role.label} can recognize a real question`);
     assert.ok(await questionImage.evaluate(image => image.complete && image.naturalWidth > 0), `${role.label} question portrait loads`);
     assert.equal(await questionCard.locator('a, button').count(), 0, 'Question cards are not doors');

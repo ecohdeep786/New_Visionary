@@ -228,6 +228,25 @@ async function journeys(width, height) {
         [...document.querySelectorAll('.question-progress span')].findIndex(span => span.dataset.active === 'true') === 1);
       await questionPrevious.click();
       await page.waitForFunction(() => document.getElementById('question-cards')?.scrollLeft < 1);
+      await page.evaluate(() => { const rail = document.getElementById('question-cards'); rail.scrollLeft = rail.scrollWidth; });
+      await page.waitForFunction(() => {
+        const rail = document.getElementById('question-cards');
+        const last = rail?.lastElementChild;
+        if (!last) return false;
+        const gutter = parseFloat(getComputedStyle(rail).scrollPaddingLeft) || 0;
+        return Math.abs(last.getBoundingClientRect().left - (rail.getBoundingClientRect().left + gutter)) <= 2;
+      });
+      const lastQuestionOffset = await page.evaluate(() => {
+        const rail = document.getElementById('question-cards');
+        const last = rail.lastElementChild;
+        const gutter = parseFloat(getComputedStyle(rail).scrollPaddingLeft) || 0;
+        return Math.round(last.getBoundingClientRect().left - rail.getBoundingClientRect().left - gutter);
+      });
+      assert.ok(Math.abs(lastQuestionOffset) <= 2, 'The last question card aligns to the chapter gutter: ' + lastQuestionOffset);
+      await page.waitForFunction(() =>
+        document.querySelector('button[aria-label="Next question"]')?.getAttribute('aria-disabled') === 'true');
+      assert.equal(await questionNext.getAttribute('aria-disabled'), 'true', 'Next is disabled at the end of question-cards');
+      await page.evaluate(() => { document.getElementById('question-cards').scrollLeft = 0; });
     }
     for (const [id, label] of [['audience-paths', 'audience'], ['trust-values', 'value']]) {
       const rail = page.locator('#' + id);
