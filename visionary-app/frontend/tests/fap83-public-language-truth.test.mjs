@@ -16,7 +16,7 @@ test("FAP-83: the language picker offers every served language, with honest avai
   const picker = gallery.match(/const languages = \[([\s\S]+?)\];/)?.[1];
   assert.ok(picker);
   assert.deepEqual([...picker.matchAll(/code: "([a-z]+)"/g)].map((m) => m[1]).sort(), served);
-  assert.match(gallery, /English, Hindi, and Bengali are supported/);
+  assert.match(gallery, /Selected workspace screens support English, Hindi, and Bengali/);
   assert.match(gallery, /More languages are on the roadmap/);
   assert.match(gallery, /aria-pressed=\{current === code\}/);
   assert.match(gallery, /lang=\{current\}>\{language.examples\[current\]\}/);

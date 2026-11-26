@@ -52,7 +52,7 @@ function WorkspaceStory({ story }) {
           <h2 id="workspace-title" data-type="section">{story.title}</h2>
           <div>
             <p className="cs-intro">{story.introduction}</p>
-            <p className="cs-caption">Preview of the {story.audience === "Student" ? "learner" : story.audience.toLowerCase()} workspace in development. Records shown are examples.</p>
+            <p className="cs-caption">Screenshots from the {story.audience === "Student" ? "learner" : story.audience.toLowerCase()} workspace in development. The records are examples.</p>
           </div>
         </header>
         <Tabs.Root value={active} onValueChange={setActive}>
@@ -117,7 +117,7 @@ function LanguageExample({ language }) {
           </p>
         </div>
       </div>
-      <p className="cs-width cs-language-note">English, Hindi, and Bengali are supported. More languages are on the roadmap.</p>
+      <p className="cs-width cs-language-note">Selected workspace screens support English, Hindi, and Bengali. More languages are on the roadmap.</p>
     </section>
   );
 }

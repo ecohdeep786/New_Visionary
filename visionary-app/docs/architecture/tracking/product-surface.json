@@ -80073,7 +80073,7 @@
     },
     {
       "file": "frontend/src/components/landing/persona/CategoryStory.jsx",
-      "sourceSha256": "d19f8bf9ae6dfc7395581e785eaa71380f792cf98f7238c973228bb8a1772f25"
+      "sourceSha256": "d1d651e7e6aafbe5432044e733aa4d443464bbcabc828151d0a97fda0237d69f"
     },
     {
       "file": "frontend/src/components/landing/persona/PersonaSections.jsx",
@@ -80909,7 +80909,7 @@
     },
     {
       "file": "frontend/src/pages/landing/stories/student.js",
-      "sourceSha256": "56947b1e9692e4c7fe6854e246874299c57ff7eb9f968d538dd632f65fe21ef7"
+      "sourceSha256": "621522a360c74131c76a90871f0b92b85205b26fffff8ba608379ebfc99eb844"
     },
     {
       "file": "frontend/src/pages/landing/stories/teacher.js",
