@@ -103,8 +103,6 @@ for (const vp of [{ name: 'scale-390', width: 390, height: 844 }, { name: 'scale
   const clipped = await page.evaluate(() => {
     const elements = document.querySelectorAll('main h1, main h2, main h3, main p, main a, main button, .destination-copy, .cast-active');
     return [...elements].flatMap(element => {
-      const scroller = element.closest('.path-row, .trust-row, .questions-row');
-      if (scroller && scroller.scrollWidth > scroller.clientWidth + 1) return [];
       const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
       const out = [];
       for (let node = walker.nextNode(); node; node = walker.nextNode()) {

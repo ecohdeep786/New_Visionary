@@ -14,6 +14,11 @@ const getHashId = (hash) => {
 const prefersReducedMotion = () =>
   typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+const focusTargets = {
+  "/": { "#audiences": "audiences", "#intelligence": "intelligence", "#lesson-example": "intelligence" },
+  "/contact": { "#organization-enquiries": "organization-enquiries" },
+};
+
 export default function ScrollToTop() {
   const { pathname, hash, key } = useLocation();
   const navigationType = useNavigationType();
@@ -26,18 +31,18 @@ export default function ScrollToTop() {
   const pendingHashLanding = useRef(Boolean(hash));
 
   useEffect(() => {
-    if (pathname === "/" && ["#intelligence", "#lesson-example", "#audiences"].includes(hash)) {
+    const focusId = focusTargets[pathname]?.[hash];
+    if (focusId) {
       pendingHashLanding.current = false;
       const focusSection = () => {
-        // Earlier homepage links to the example now land at the product explanation.
-        const section = document.getElementById(hash === "#lesson-example" ? "intelligence" : getHashId(hash));
+        const section = document.getElementById(focusId);
         if (!section) return false;
         section.focus({ preventScroll: true });
         section.scrollIntoView({ block: "start", behavior: prefersReducedMotion() ? "instant" : "smooth" });
         return true;
       };
       if (focusSection()) return;
-      // A direct visit can arrive before the homepage has mounted.
+      // A visit can arrive before the destination route has mounted.
       const observer = new MutationObserver(() => {
         if (focusSection()) observer.disconnect();
       });

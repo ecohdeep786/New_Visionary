@@ -20,7 +20,7 @@ import { fontStack } from "@/components/landing/system/tokens";
 /* Contact routes — real mailboxes (preserved from the page). */
 const CONTACT_ROUTES = [
   { Icon: Mail, category: "Product and account questions", title: "A question about Visionary?", description: "For general questions about the product, your account, or getting started.", email: "hello@visionary.org.in", subject: "General question" },
-  { Icon: Building2, category: "Schools and organizations", title: "Discuss an organization", description: "For schools, colleges, coaching teams, and organizations exploring Visionary.", email: "partnerships@visionary.org.in", subject: "Organization enquiry" },
+  { id: "organization-enquiries", Icon: Building2, category: "Schools and organizations", title: "Discuss an organization", description: "For schools, colleges, coaching teams, and organizations exploring Visionary.", email: "partnerships@visionary.org.in", subject: "Organization enquiry" },
   { Icon: ShieldCheck, category: "Safety and privacy", title: "Share a safety concern", description: "Contact the safety team about a safety or privacy concern. For a formal privacy grievance, use the named officer details below.", email: "safety@visionary.org.in", subject: "Safety or privacy concern" },
   { Icon: Newspaper, category: "Press and media", title: "A media enquiry", description: "For journalists, writers, and others with press or media questions.", email: "press@visionary.org.in", subject: "Press enquiry" },
   { Icon: BookOpen, category: "Research", title: "Talk about research", description: "For questions about the learning questions Visionary is exploring.", email: "research@visionary.org.in", subject: "Research enquiry" },
@@ -252,8 +252,8 @@ export default function ContactPage() {
             </div>
             <div className="mt-12 rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-10">
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {CONTACT_ROUTES.map(({ Icon, category, title, description, email, subject }) => (
-                  <article key={category} className="flex min-h-[262px] flex-col rounded-[20px] bg-white p-6">
+                {CONTACT_ROUTES.map(({ id, Icon, category, title, description, email, subject }) => (
+                  <article key={category} id={id} tabIndex={id ? -1 : undefined} className="flex min-h-[262px] flex-col rounded-[20px] bg-white p-6">
                     <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7] text-[#0066cc]">
                       <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                     </span>

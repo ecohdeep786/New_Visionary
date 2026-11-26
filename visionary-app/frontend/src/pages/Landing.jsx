@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import "./landing-home.css";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
@@ -19,7 +19,7 @@ import teacherQuestionImage from "@/assets/problem-cutouts/teacher-question.webp
 import parentQuestionImage from "@/assets/problem-cutouts/parent-question.webp";
 import professionalQuestionImage from "@/assets/problem-cutouts/professional-question.webp";
 import organizationQuestionImage from "@/assets/problem-cutouts/organization-question.webp";
-import { Accessibility, ChevronLeft, ChevronRight, Lock, ShieldCheck } from "lucide-react";
+import { Accessibility, ChevronRight, Lock, ShieldCheck } from "lucide-react";
 
 import { useSignedIn } from "@/components/landing/AuthAwareLink";
 
@@ -27,36 +27,46 @@ const AUDIENCES = [
   {
     slug: "student", label: "Students", castLabel: "Student", portrait: studentLineup,
     headline: "to a project.",
+    outcome: "Make sense of what you learn.",
     roleLabel: "For every student, at every stage",
     question: "Why doesn’t this make sense yet?",
+    example: "Shade one half and two quarters on equal-sized bars. Seeing the same area can make equivalent fractions click.",
     questionImage: studentQuestionImage,
   },
   {
     slug: "teacher", label: "Teachers", castLabel: "Teacher", portrait: teachermeet,
     headline: "to a lesson.",
+    outcome: "Plan for what your class needs.",
     roleLabel: "For every teacher, in every classroom",
     question: "Did it land with everyone?",
+    example: "Ask your class to draw two ways to make a half. Their drawings can show who needs another explanation.",
     questionImage: teacherQuestionImage,
   },
   {
     slug: "parent", label: "Parents", castLabel: "Parent", portrait: parentmeet,
     headline: "to a conversation.",
+    outcome: "See where your child needs help.",
     roleLabel: "For every parent, at every age",
     question: "What did they really understand?",
+    example: "A shared summary could point to fractions as the next thing to practice, so you know what to ask about at home.",
     questionImage: parentQuestionImage,
   },
   {
     slug: "professional", label: "Professionals", castLabel: "Professional", portrait: promeet,
     headline: "to a new skill.",
+    outcome: "Put new skills to work.",
     roleLabel: "For every professional, in every field",
     question: "How do I use this in my work?",
+    example: "Build a spreadsheet budget with sample data, then use the same formulas for a budget you manage at work.",
     questionImage: professionalQuestionImage,
   },
   {
     slug: "organization", label: "Organizations", castLabel: "Organization", portrait: orgmeet,
     headline: "to a team plan.",
+    outcome: "Find learning gaps across teams.",
     roleLabel: "For every organization, across every team",
     question: "Where are the gaps across our teams?",
+    example: "Have a team rehearse a customer handoff. Team-level results could show which step needs more practice.",
     questionImage: organizationQuestionImage,
   },
 ];
@@ -99,22 +109,22 @@ const LANDING_HERO_LINEUP = [
 
 const TRUST_VALUES = [
   {
-    title: "Private by design.",
-    copy: "Your private work stays private. When you choose to share, the people you authorize see only what you shared.",
+    title: "Who can see what?",
+    copy: "See which information is private and what can be shared with families, classrooms and teams.",
     link: "How sharing works",
     to: "/privacy#sharing",
     Icon: Lock,
   },
   {
-    title: "Safe to learn.",
-    copy: "Designed with controls and protections for learners, families and schools.",
+    title: "Safety for learners.",
+    copy: "Read about age eligibility, guardian verification and reporting.",
     link: "How safety works",
     to: "/safety",
     Icon: ShieldCheck,
   },
   {
-    title: "Open to everyone.",
-    copy: "A learning experience designed to adapt to how you learn.",
+    title: "Ways to access Visionary.",
+    copy: "Find language, keyboard and display options for learning.",
     link: "Accessibility",
     to: "/accessibility",
     Icon: Accessibility,
@@ -122,155 +132,76 @@ const TRUST_VALUES = [
 ];
 
 function AudienceQuestions() {
-  const questionRow = useRef(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const role = AUDIENCES[selectedIndex];
   return (
     <section data-section="06-questions" className="home-questions" aria-labelledby="questions-heading">
       <div className="questions-frame">
-        <div className="questions-intro">
-          <h2 id="questions-heading" data-type="section">Every path starts with a question.</h2>
-          <p data-type="editorial-body">One intelligence meets you there.</p>
-        </div>
-        <ul id="question-cards" className="questions-row" role="list" aria-label="Audience questions" ref={questionRow}>
-          {AUDIENCES.map((role) => (
-            <li key={role.slug} className="question-card" data-audience={role.slug}>
-              <div className="question-copy">
-                <span className="question-role" data-type="body">{role.roleLabel}</span>
-                <p className="question-text" data-type="editorial-card">{role.question}</p>
-              </div>
-              <div className="question-media">
-                <img
-                  src={role.questionImage}
-                  width="800"
-                  height="800"
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </li>
+        <h2 id="questions-heading" className="questions-heading" data-type="section">Every path starts with a question.</h2>
+        <p className="questions-intro" data-type="body">Examples of the guided tools we’re building.</p>
+        <div className="question-choices" role="group" aria-label="Explore examples by audience">
+          {AUDIENCES.map(({ slug, label }, index) => (
+            <button
+              key={slug}
+              type="button"
+              aria-controls="question-example-panel"
+              aria-pressed={selectedIndex === index}
+              onClick={() => setSelectedIndex(index)}
+            >
+              {label}
+            </button>
           ))}
-        </ul>
-        <div className="questions-footer">
-          <RailProgress railRef={questionRow} total={AUDIENCES.length} />
-          <RailControls id="question-cards" label="question" railRef={questionRow} className="questions-controls" />
+        </div>
+        <div id="question-example-panel" className="question-card" data-audience={role.slug}>
+          <div className="question-copy">
+            <div aria-live="polite" aria-atomic="true">
+              <span className="question-role" data-type="body">{role.roleLabel}</span>
+              <p className="question-text" data-type="editorial-card">{role.question}</p>
+              <p className="question-example" data-type="body">{role.example}</p>
+            </div>
+            <Link to={`/${role.slug}`} tabIndex={0} className="home-text-link question-link">
+              Explore for {role.label.toLowerCase()} <ChevronRight size={17} aria-hidden="true" />
+            </Link>
+          </div>
+          <div className="question-media">
+            <img
+              key={role.slug}
+              src={role.questionImage}
+              width="800"
+              height="800"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function RailProgress({ railRef, total }) {
-  const [index, setIndex] = useState(0);
-  useEffect(() => {
-    const rail = railRef.current;
-    if (!rail) return undefined;
-    const update = () => {
-      const [first, second] = rail.children;
-      if (!first) return;
-      const step = second
-        ? second.getBoundingClientRect().left - first.getBoundingClientRect().left
-        : first.getBoundingClientRect().width;
-      if (!step) return;
-      setIndex(Math.max(0, Math.min(total - 1, Math.round(rail.scrollLeft / step))));
-    };
-    update();
-    const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(update);
-    observer?.observe(rail);
-    window.addEventListener("resize", update);
-    rail.addEventListener("scroll", update, { passive: true });
-    return () => {
-      observer?.disconnect();
-      window.removeEventListener("resize", update);
-      rail.removeEventListener("scroll", update);
-    };
-  }, [railRef, total]);
-  return (
-    <span className="question-progress" aria-hidden="true">
-      {Array.from({ length: total }, (_, i) => (
-        <span key={i} data-active={i === index ? "true" : undefined} />
-      ))}
-    </span>
-  );
-}
-
-function scrollRail(ref, direction) {
-  const rail = ref.current;
-  const [first, second] = rail?.children ?? [];
-  if (!first || !second) return;
-  const step = second.getBoundingClientRect().left - first.getBoundingClientRect().left;
-  rail.scrollBy({
-    left: direction * step,
-    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-  });
-}
-
-function RailControls({ id, label, railRef, className }) {
-  const [canGoBack, setCanGoBack] = useState(false);
-  const [canGoForward, setCanGoForward] = useState(false);
-
-  useEffect(() => {
-    const rail = railRef.current;
-    if (!rail) return undefined;
-    const update = () => {
-      const last = rail.lastElementChild;
-      const railRight = rail.getBoundingClientRect().left + rail.clientWidth;
-      const lastIsVisible = last ? last.getBoundingClientRect().right <= railRight + 1 : false;
-      setCanGoBack(rail.scrollLeft > 1);
-      setCanGoForward(!lastIsVisible);
-    };
-    update();
-    const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(update);
-    observer?.observe(rail);
-    for (const item of rail.children) observer?.observe(item);
-    window.addEventListener("resize", update);
-    rail.addEventListener("scroll", update, { passive: true });
-    return () => {
-      observer?.disconnect();
-      window.removeEventListener("resize", update);
-      rail.removeEventListener("scroll", update);
-    };
-  }, [railRef]);
-
-  if (!canGoBack && !canGoForward) return null;
-
-  return (
-    <div className={`rail-controls ${className}`}>
-      <button type="button" aria-label={`Previous ${label}`} aria-controls={id} aria-disabled={!canGoBack} onClick={() => canGoBack && scrollRail(railRef, -1)}>
-        <ChevronLeft size={18} aria-hidden="true" />
-      </button>
-      <button type="button" aria-label={`Next ${label}`} aria-controls={id} aria-disabled={!canGoForward} onClick={() => canGoForward && scrollRail(railRef, 1)}>
-        <ChevronRight size={18} aria-hidden="true" />
-      </button>
-    </div>
-  );
-}
-
 function AudienceDirectory() {
-  const pathRow = useRef(null);
   return (
     <section id="audiences" tabIndex={-1} data-section="13-explore" className="home-audiences" aria-labelledby="audiences-title">
       <div className="path-frame">
         <div className="path-intro">
           <h2 id="audiences-title" data-type="section">Find your path.</h2>
-          <p className="path-intro-copy" data-type="editorial-body">One intelligence. Five ways in.</p>
+          <p id="path-status" className="path-note" data-type="metadata">Preview guided tools in development.</p>
         </div>
-        <nav id="audience-paths" aria-label="Audience pages" aria-describedby="path-status" className="path-row" ref={pathRow}>
+        <nav id="audience-paths" aria-label="Audience pages" aria-describedby="path-status" className="path-row">
           {AUDIENCES.map((role) => (
             <Link key={role.slug} to={`/${role.slug}`} tabIndex={0} className="path-card">
               <span className="path-media">
                 <img src={role.portrait} width="224" height="224" alt="" loading="lazy" decoding="async" />
               </span>
               <span className="path-body">
-                <span className="path-title">
-                  <strong>{role.label}</strong>
-                  <ChevronRight className="path-arrow" size={20} aria-hidden="true" />
-                </span>
+                <strong className="path-title">{role.label}</strong>
+                <span className="path-outcome">{role.outcome}</span>
               </span>
+              <ChevronRight className="path-arrow" size={20} aria-hidden="true" />
             </Link>
           ))}
         </nav>
-        <RailControls id="audience-paths" label="audience" railRef={pathRow} className="path-controls" />
-        <p id="path-status" className="path-note" data-type="metadata">Guided experiences are in development.</p>
       </div>
     </section>
   );
@@ -278,7 +209,6 @@ function AudienceDirectory() {
 
 export default function LandingPage() {
   const signedIn = useSignedIn();
-  const trustRow = useRef(null);
   return (
     <div className="page-landing min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
@@ -289,12 +219,14 @@ export default function LandingPage() {
           ctaTo={signedIn ? "/dashboard/home" : "/#audiences"}
           ctaLabel={signedIn ? "Open Visionary" : "Find your path"}
         />
+        <AudienceDirectory />
+        <AudienceQuestions />
         <section id="intelligence" tabIndex={-1} data-section="05-intelligence" className="scene-dark home-intelligence" aria-labelledby="intelligence-heading">
           <div className="home-width intelligence-layout">
             <div className="intelligence-copy">
               <h2 id="intelligence-heading" data-type="display">One Intelligence.</h2>
               <p data-type="editorial-body">One workspace designed to adapt explanations, show where help is needed and put learning to work.</p>
-              <p className="intelligence-note" data-type="body">The guided experience is in development. Today, you can create an account and view saved learning history. Selected workspace screens support English, Hindi and Bengali.</p>
+              <p className="intelligence-note" data-type="body">Today you can set up an account and view any saved learning history. Guided tools are in development. Selected workspace screens support English, Hindi and Bengali.</p>
               <Link to="/how-it-works" className="home-text-link">How it works <ChevronRight aria-hidden="true" size={17} /></Link>
             </div>
             <picture className="intelligence-portrait" aria-hidden="true">
@@ -303,12 +235,10 @@ export default function LandingPage() {
             </picture>
           </div>
         </section>
-        <AudienceQuestions />
-        <AudienceDirectory />
         <section className="home-privacy" data-section="11-trust" aria-labelledby="trust-heading">
           <div className="trust-frame">
             <h2 id="trust-heading" data-type="card-chapter">Your learning stays yours.</h2>
-            <div id="trust-values" className="trust-row" ref={trustRow}>
+            <div id="trust-values" className="trust-row">
               {TRUST_VALUES.map(({ title, copy, link, to, Icon }) => (
                 <div key={title} className="trust-card">
                   <Icon className="trust-icon" strokeWidth={1.7} size={32} aria-hidden="true" />
@@ -318,15 +248,14 @@ export default function LandingPage() {
                 </div>
               ))}
             </div>
-            <RailControls id="trust-values" label="value" railRef={trustRow} className="trust-controls" />
           </div>
         </section>
         <section className="home-closing" data-section="12-cta" aria-labelledby="closing-heading">
           <div className="closing-frame">
             <div className="closing-panel closing-layout">
               <div className="closing-copy">
-                <h2 id="closing-heading" data-type="section">{signedIn ? "Continue in Visionary." : "Keep your learning in reach."}</h2>
-                <p className="closing-line" data-type="editorial-body">{signedIn ? "Return to your workspace." : "A free account gives you access to saved learning history."}</p>
+                <h2 id="closing-heading" data-type="section">{signedIn ? "Continue in Visionary." : "Start with a free profile."}</h2>
+                <p className="closing-line" data-type="editorial-body">{signedIn ? "Return to your workspace." : "Choose your role during setup. Workspace access is currently for adults."}</p>
               </div>
               <div className="closing-actions">
                 <Link className="home-action public-action" to={signedIn ? "/dashboard/home" : "/register"}>
@@ -334,6 +263,9 @@ export default function LandingPage() {
                 </Link>
                 <Link className="home-text-link closing-secondary" to="/how-it-works">
                   See how it works <ChevronRight aria-hidden="true" size={16} />
+                </Link>
+                <Link className="home-text-link closing-secondary" to="/contact#organization-enquiries">
+                  School and team rollouts <ChevronRight aria-hidden="true" size={16} />
                 </Link>
               </div>
             </div>

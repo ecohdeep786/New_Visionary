@@ -13,7 +13,7 @@ const browsers = { chromium, firefox, webkit };
 assert.ok(Object.hasOwn(browsers, engine), 'Choose chromium, firefox or webkit');
 const browser = await browsers[engine].launch(engine === 'chromium' ? { channel: 'msedge' } : {});
 const roles = ['student', 'teacher', 'parent', 'professional', 'organization'];
-const sections = ['01-hero', '05-intelligence', '06-questions', '13-explore', '11-trust', '12-cta'];
+const sections = ['01-hero', '13-explore', '06-questions', '05-intelligence', '11-trust', '12-cta'];
 const receipt = { base, engine, viewports: [], interactions: [], errors: [], failedRequests: [] };
 await mkdir(output, { recursive: true });
 
@@ -74,21 +74,21 @@ async function inspectViewport(width, height) {
   assert.equal(await page.locator('html').getAttribute('lang'), 'en');
   await checkHeader(page);
   const introduction = await hero.locator(".home-hero-copy p").innerText();
-  for (const role of roles) assert.ok(introduction.toLowerCase().includes(role + "s"), "Hero identifies " + role);
-  const questionCards = page.locator('#question-cards .question-card');
-  assert.equal(await questionCards.count(), 5, 'The five audience questions are present');
-  assert.deepEqual(
-    await questionCards.evaluateAll(cards => cards.map(card => card.dataset.audience)),
-    roles,
-  );
-  for (const card of await questionCards.all()) {
-    assert.equal(await card.locator('.question-media img').count(), 1, 'Every question carries its approved portrait');
-    const questionRole = (await card.locator('.question-role').innerText()).trim();
-    assert.ok(questionRole.length > 0, 'Every question names its audience');
-    const question = (await card.locator('.question-text').innerText()).trim();
-    assert.ok(question.endsWith('?'), 'Every question card carries a real audience question: ' + question);
-    assert.equal(await card.locator('a, button').count(), 0, 'Question cards are not doors');
-  }
+  assert.match(introduction, /workspace to learn, teach and build/);
+  const exampleChoices = page.getByRole('group', { name: 'Explore examples by audience' });
+  const exampleButtons = exampleChoices.getByRole('button');
+  assert.deepEqual(await exampleButtons.allTextContents().then(labels => labels.map(label => label.trim().toLowerCase())), roles.map(role => role + 's'));
+  assert.ok(await exampleButtons.evaluateAll(buttons => buttons.every(button => {
+    const { left, right, height } = button.getBoundingClientRect();
+    return height >= 43.5 && left >= -1 && right <= innerWidth + 1;
+  })), 'All five example choices fit without scrolling and have full-size targets');
+  const example = page.locator('#question-example-panel');
+  assert.equal(await example.getAttribute('data-audience'), 'student');
+  assert.equal(await exampleButtons.first().getAttribute('aria-pressed'), 'true');
+  assert.equal(await example.locator('.question-media img').count(), 1);
+  assert.match(await example.locator('.question-text').innerText(), /\?$/);
+  assert.ok((await example.locator('.question-example').innerText()).trim());
+  assert.equal(await example.getByRole('link').getAttribute('href'), '/student');
   const pathCards = page.locator('#audience-paths .path-card');
   assert.equal(await pathCards.count(), 5, 'The five audience doors are present');
   assert.deepEqual(
@@ -97,15 +97,13 @@ async function inspectViewport(width, height) {
   );
   for (const card of await pathCards.all()) {
     assert.equal(await card.locator('.path-media img').count(), 1, 'Every path carries its approved portrait');
-    const title = (await card.locator('.path-title strong').innerText()).trim();
+    const title = (await card.locator('.path-title').innerText()).trim();
     assert.ok(title.length > 0, 'Every path names its audience');
-    assert.equal(await card.locator('.path-question, .path-glimpse').count(), 0, 'Path cards are pure doors with no explanatory subcopy');
-    assert.equal((await card.innerText()).trim(), title, 'Path cards carry only the role name');
+    assert.ok((await card.locator('.path-outcome').innerText()).trim().length > 0, 'Every path explains where it leads');
+    assert.ok(await card.evaluate(link => link.getBoundingClientRect().height >= 44), 'Every path is a full-size tap target');
   }
   assert.match(await page.locator('#path-status').innerText(), /in development/);
   assert.equal(await page.locator('#audience-paths').getAttribute('aria-describedby'), 'path-status');
-  assert.equal(await page.locator('.question-progress span').count(), 5, 'The question carousel exposes five progress marks');
-  assert.equal(await page.locator('.question-progress span[data-active="true"]').count(), 1, 'One question progress mark is active');
   const geometry = await hero.evaluate(el => {
     const familyEl = el.querySelector('.family-stage');
     const family = familyEl.getBoundingClientRect();
@@ -118,6 +116,7 @@ async function inspectViewport(width, height) {
       castVisible: familyVisible,
       clearance: familyVisible ? family.top - copy.bottom : null,
       heroBottom: rect.bottom,
+      compactHero: matchMedia('(max-width: 639px) and (orientation: portrait)').matches,
       pathsBottom: el.querySelector('.hero-paths').getBoundingClientRect().bottom,
       playbackVisible: !!el.querySelector('.hero-playback')?.getClientRects().length,
       playbackTop: el.querySelector('.hero-playback').getBoundingClientRect().top,
@@ -137,7 +136,9 @@ async function inspectViewport(width, height) {
     };
   });
   assert.ok(geometry.scrollWidth <= width && (!geometry.castVisible || geometry.clearance >= 0), 'Hero reflow at ' + width);
-  assert.ok(geometry.heroBottom >= geometry.viewport - 1, 'Hero fills the first screen at ' + width + 'x' + height);
+  if (!geometry.compactHero) {
+    assert.ok(geometry.heroBottom >= geometry.viewport - 1, 'Hero fills the first screen at ' + width + 'x' + height);
+  }
   assert.ok(geometry.pathsBottom <= geometry.viewport + 1, 'Five audience doors inside the first screen at ' + width + 'x' + height);
   assert.ok(geometry.playbackVisible && geometry.playbackTop >= 0 && geometry.playbackBottom <= geometry.viewport, 'Pause/play control stays fully visible at ' + width + 'x' + height);
   assert.ok(geometry.actionHeight >= 43.5, 'Primary action keeps a 44px target at ' + width + 'x' + height);
@@ -146,7 +147,7 @@ async function inspectViewport(width, height) {
     assert.equal(geometry.pathGaps.length, 4, 'The desktop directory displays five cards');
     assert.ok(geometry.pathGaps.every(gap => gap >= 28), 'Path cards keep at least 28px of breathing room at ' + width + ': ' + geometry.pathGaps.join(', '));
   }
-  assert.ok(geometry.nextTop >= geometry.viewport - 1, 'The next chapter intrudes into the first screen at ' + width + 'x' + height);
+  assert.ok(geometry.nextTop >= geometry.heroBottom - 1, 'The audience choices follow the hero at ' + width + 'x' + height);
   if (geometry.castVisible) {
     assert.equal(geometry.portraits.length, 5);
     assert.ok(geometry.portraits.every(p => p.height > 0 && p.center > 0 && p.center < width), 'Cast framing at ' + width);
@@ -172,9 +173,6 @@ async function inspectViewport(width, height) {
         }
       });
     }
-    await page.evaluate(() => {
-      for (const rail of document.querySelectorAll('.path-row, .trust-row')) rail.scrollLeft = 0;
-    });
     if (capture) await target.screenshot({ path: path.join(output, section + '-' + width + '.png') });
   }
   await checkScrolledHeader(page);
@@ -213,56 +211,38 @@ async function journeys(width, height) {
   await follow(page, page.locator('.home-privacy').getByRole('link', { name: 'How safety works', exact: true }), '/safety');
   await follow(page, page.locator('.home-privacy').getByRole('link', { name: 'Accessibility', exact: true }), '/accessibility');
   await follow(page, page.getByRole('link', { name: 'Create an account', exact: true }), '/register', page.getByRole('button', { name: 'Continue with Email' }));
+  await page.getByRole('link', { name: 'School and team rollouts', exact: true }).click();
+  await page.waitForURL(url => url.pathname + url.hash === '/contact#organization-enquiries');
+  await page.waitForFunction(() => document.activeElement?.id === 'organization-enquiries');
+  const contact = page.locator('#organization-enquiries');
+  assert.equal(await contact.getByRole('link').count(), 1);
+  assert.match(await contact.getByRole('link').getAttribute('href'), /^mailto:partnerships@/);
+  await page.goBack();
+  await page.locator('.home-hero h1').waitFor();
   await page.goto(new URL('/#lesson-example', base).href);
   await page.waitForFunction(() => document.activeElement?.id === 'intelligence');
-  receipt.interactions.push(width + 'px: five role journeys, product, privacy, registration, keyboard anchor and legacy deep link');
+  receipt.interactions.push(width + 'px: five role journeys, product, privacy, registration, rollout contact, keyboard anchor and legacy deep link');
+  const exampleChoices = page.getByRole('group', { name: 'Explore examples by audience' });
+  const teacher = exampleChoices.getByRole('button', { name: 'Teachers', exact: true });
+  await teacher.press('Enter');
+  await page.locator('#question-example-panel[data-audience="teacher"]').waitFor();
+  assert.ok(await teacher.evaluate(button => document.activeElement === button));
+  assert.equal(await teacher.getAttribute('aria-pressed'), 'true');
+  await follow(page, page.getByRole('link', { name: 'Explore for teachers', exact: true }), '/teacher');
+  await exampleChoices.getByRole('button', { name: 'Organizations', exact: true }).click();
+  const organization = page.locator('#question-example-panel[data-audience="organization"]');
+  await organization.waitFor();
+  assert.match(await organization.locator('.question-example').innerText(), /team-level results/i);
+  assert.equal(await exampleChoices.locator('[aria-pressed="true"]').count(), 1);
+  assert.equal(await organization.getByRole('link').getAttribute('href'), '/organization');
+  receipt.interactions.push(width + 'px: role examples selectable by keyboard and pointer, with a matching next step');
   if (width < 640) {
-    {
-      const questionPrevious = page.getByRole('button', { name: 'Previous question', exact: true });
-      const questionNext = page.getByRole('button', { name: 'Next question', exact: true });
-      await questionPrevious.waitFor();
-      assert.equal(await questionPrevious.isEnabled(), false, 'Previous is disabled at the beginning of question-cards');
-      await questionNext.click();
-      await page.waitForFunction(() => document.getElementById('question-cards')?.scrollLeft > 1);
-      await page.waitForFunction(() =>
-        [...document.querySelectorAll('.question-progress span')].findIndex(span => span.dataset.active === 'true') === 1);
-      await questionPrevious.click();
-      await page.waitForFunction(() => document.getElementById('question-cards')?.scrollLeft < 1);
-      await page.evaluate(() => { const rail = document.getElementById('question-cards'); rail.scrollLeft = rail.scrollWidth; });
-      await page.waitForFunction(() => {
-        const rail = document.getElementById('question-cards');
-        const last = rail?.lastElementChild;
-        if (!last) return false;
-        const gutter = parseFloat(getComputedStyle(rail).scrollPaddingLeft) || 0;
-        return Math.abs(last.getBoundingClientRect().left - (rail.getBoundingClientRect().left + gutter)) <= 2;
-      });
-      const lastQuestionOffset = await page.evaluate(() => {
-        const rail = document.getElementById('question-cards');
-        const last = rail.lastElementChild;
-        const gutter = parseFloat(getComputedStyle(rail).scrollPaddingLeft) || 0;
-        return Math.round(last.getBoundingClientRect().left - rail.getBoundingClientRect().left - gutter);
-      });
-      assert.ok(Math.abs(lastQuestionOffset) <= 2, 'The last question card aligns to the chapter gutter: ' + lastQuestionOffset);
-      await page.waitForFunction(() =>
-        document.querySelector('button[aria-label="Next question"]')?.getAttribute('aria-disabled') === 'true');
-      assert.equal(await questionNext.getAttribute('aria-disabled'), 'true', 'Next is disabled at the end of question-cards');
-      await page.evaluate(() => { document.getElementById('question-cards').scrollLeft = 0; });
-    }
-    for (const [id, label] of [['audience-paths', 'audience'], ['trust-values', 'value']]) {
-      const rail = page.locator('#' + id);
-      const previous = page.getByRole('button', { name: 'Previous ' + label, exact: true });
-      const next = page.getByRole('button', { name: 'Next ' + label, exact: true });
-      await previous.waitFor();
-      assert.equal(await previous.isEnabled(), false, 'Previous is disabled at the beginning of ' + id);
-      await next.click();
-      await page.waitForFunction(id => document.getElementById(id)?.scrollLeft > 1, id);
-      await previous.click();
-      await page.waitForFunction(id => document.getElementById(id)?.scrollLeft < 1, id);
-      await rail.evaluate(row => { row.scrollLeft = row.scrollWidth; });
-      await page.waitForFunction(id =>
-        document.querySelector('button[aria-label^="Next"][aria-controls="' + id + '"]')?.getAttribute('aria-disabled') === 'true', id);
-      assert.equal(await next.isEnabled(), false, 'Next is disabled at the end of ' + id);
-    }
+    const trust = page.locator('#trust-values');
+    assert.ok(await trust.evaluate(row => row.scrollWidth <= row.clientWidth + 1));
+    assert.ok(await trust.getByRole('link').evaluateAll(links => links.length === 3 && links.every(link => {
+      const { left, right, height } = link.getBoundingClientRect();
+      return left >= 0 && right <= innerWidth + 1 && height >= 43.5;
+    })), 'All trust links are reachable in the normal mobile scroll');
     const groups = page.locator('footer button[aria-controls]');
     assert.equal(await groups.count(), 5);
     for (const group of await groups.all()) {
@@ -297,7 +277,7 @@ async function journeys(width, height) {
       { timeout: 3000 },
     );
     assert.equal(await page.locator('main').evaluate(el => el.inert), false);
-    receipt.interactions.push('Question, path and trust rail endpoints, mobile menu, resize, focus restoration and five footer disclosures');
+    receipt.interactions.push('Trust links in vertical reading order, mobile menu, resize, focus restoration and five footer disclosures');
   }
   const who = page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'For you', exact: true });
   await who.focus();
@@ -317,16 +297,11 @@ async function checkTextScaling() {
     const overflow = await page.evaluate(() => {
       const elements = document.querySelectorAll('main h1, main h2, main h3, main p, main figcaption, main a, main button, .hero-path');
       return [...elements].flatMap(element => {
-        /* Off-screen rail cards are reachable by swipe or keys. Visible cards
-           still have to contain their own text at 200%; a card that continues
-           beyond the viewport is checked against its own box, not the viewport. */
         let bounds = { left: -1, right: innerWidth + 1 };
-        const card = element.closest('.path-card, .trust-card, .question-card');
+        const card = element.closest('.path-card, .trust-card, .question-card, .closing-panel');
         if (card) {
           const rect = card.getBoundingClientRect();
-          if (rect.right < 0 || rect.left > innerWidth) return [];
-          const rail = card.closest('.path-row, .trust-row, .questions-row');
-          if (rail && rail.scrollWidth > rail.clientWidth + 1) bounds = { left: rect.left - 1, right: rect.right + 1 };
+          bounds = { left: Math.max(-1, rect.left - 1), right: Math.min(innerWidth + 1, rect.right + 1) };
         }
         const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
         const clipped = [];
@@ -344,7 +319,7 @@ async function checkTextScaling() {
     assert.deepEqual(overflow, [], 'Visible text fits at 200% on ' + width + 'px');
     const broken = await page.evaluate(() => {
       const broken = [];
-      for (const element of document.querySelectorAll('.path-title strong, .question-text')) {
+      for (const element of document.querySelectorAll('.path-title, .question-text')) {
         const card = element.closest('.path-card, .question-card');
         if (card) {
           const rect = card.getBoundingClientRect();
@@ -368,14 +343,13 @@ async function checkTextScaling() {
     assert.deepEqual(broken, [], 'Audience questions and path names stay whole at 200% on ' + width + 'px');
     const pathChrome = await page.evaluate(() => {
       const row = document.querySelector('#audience-paths');
-      const controls = document.querySelector('.path-controls');
       const visibleCards = [...document.querySelectorAll('.path-card')].filter(card => {
         const rect = card.getBoundingClientRect();
         return rect.right > 0 && rect.left < innerWidth;
       });
       const titleOverflow = visibleCards.flatMap(card => {
         const rect = card.getBoundingClientRect();
-        const strong = card.querySelector('.path-title strong');
+        const strong = card.querySelector('.path-title');
         const arrow = card.querySelector('.path-arrow');
         const strongRect = strong?.getBoundingClientRect();
         const arrowRect = arrow && getComputedStyle(arrow).display !== 'none' ? arrow.getBoundingClientRect() : null;
@@ -383,21 +357,21 @@ async function checkTextScaling() {
       });
       return {
         scrollable: row.scrollWidth > row.clientWidth + 1,
-        controlsVisible: !!controls && controls.getClientRects().length > 0 && getComputedStyle(controls).display !== 'none',
         titleOverflow,
       };
     });
-    assert.ok(!pathChrome.controlsVisible || pathChrome.scrollable, 'Path controls only appear when the path row scrolls at 200% on ' + width + 'px');
+    assert.equal(pathChrome.scrollable, false, 'The directory reflows without horizontal scrolling at 200% on ' + width + 'px');
     assert.deepEqual(pathChrome.titleOverflow, [], 'Path titles stay inside their cards at 200% on ' + width + 'px');
-    const questionChrome = await page.evaluate(() => {
-      const row = document.querySelector('#question-cards');
-      const controls = document.querySelector('.questions-controls');
-      return {
-        scrollable: row.scrollWidth > row.clientWidth + 1,
-        controlsVisible: !!controls && controls.getClientRects().length > 0 && getComputedStyle(controls).display !== 'none',
-      };
-    });
-    assert.ok(!questionChrome.controlsVisible || questionChrome.scrollable, 'Question controls only appear when the question row scrolls at 200% on ' + width + 'px');
+    assert.ok(await page.locator('.question-choices, .trust-row').evaluateAll(rows =>
+      rows.every(row => row.scrollWidth <= row.clientWidth + 1)), 'Examples and trust links reflow without sideways scrolling at 200% on ' + width + 'px');
+    if (width === 320) {
+      const example = page.locator('#question-example-panel');
+      for (const choice of await page.locator('.question-choices button').all()) {
+        await choice.press('Enter');
+        assert.ok(await example.evaluate(panel => panel.scrollWidth <= panel.clientWidth + 1),
+          'The example for ' + (await choice.innerText()) + ' fits at 200% on 320px');
+      }
+    }
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     await checkScrolledHeader(page);
     await page.close();
@@ -406,15 +380,22 @@ async function checkTextScaling() {
 }
 
 async function checkDirectoryEntry() {
-  const page = await openPage(1280, 720);
-  await page.locator('.home-hero').getByRole('link', { name: 'Find your path' }).click();
-  await page.waitForFunction(() => document.activeElement?.id === 'audiences');
-  const copy = page.locator('#audience-paths .path-title strong');
-  assert.equal(await copy.count(), 5);
-  assert.ok(await copy.evaluateAll(titles => titles.every(title => title.getBoundingClientRect().bottom <= innerHeight)),
-    'A laptop visitor can see every role door directly after using Find your path');
-  receipt.interactions.push('Direct audience entry shows five role doors at 1280×720');
-  await page.close();
+  for (const [width, height] of [[320, 568], [390, 844], [768, 1024], [1280, 720]]) {
+    const page = await openPage(width, height);
+    await page.locator('.home-hero').getByRole('link', { name: 'Find your path' }).click();
+    await page.waitForFunction(() => document.activeElement?.id === 'audiences');
+    const directory = page.getByRole('navigation', { name: 'Audience pages' });
+    assert.ok(await directory.evaluate(row => row.scrollWidth === row.clientWidth), 'The directory never needs a swipe at ' + width);
+    const links = directory.getByRole('link');
+    assert.equal(await links.count(), 5);
+    assert.ok(await links.evaluateAll(cards => cards.every(card => {
+      const { left, right, top, bottom } = card.getBoundingClientRect();
+      const headerBottom = document.querySelector('[data-public-nav-bar]').getBoundingClientRect().bottom;
+      return left >= 0 && right <= innerWidth && top >= headerBottom && bottom <= innerHeight;
+    })), 'Every audience path is fully visible after Find your path at ' + width + 'x' + height);
+    await page.close();
+  }
+  receipt.interactions.push('Direct audience entry shows all five destinations at 320, 390, 768 and 1280px');
 }
 
 async function checkPreloadLifecycle() {

@@ -1,5 +1,13 @@
 # Universal landing — inclusive questions, pure path doors
 
+## 26 November follow-up
+
+The landing page puts all five audience paths directly after the hero. Visitors can select an example for their role, then open the matching category page. The examples describe guided tools in development. Privacy, safety, and accessibility follow in the normal reading flow on phones. The closing section explains account eligibility and links schools and teams directly to the partnerships contact.
+
+Five simulated first-time visits completed the journey from hero to footer. Verification covered 20 audience journeys, 13 viewports in each of Chromium, Firefox, and WebKit, 200% text at 320px, and 872 frontend tests.
+
+The 25 November submission at `ab361099` is recorded below.
+
 Date: 2026-11-25
 Base: `c96fcc71` (`origin/dev`)
 Branch: `deepseek/universal-landing-final`

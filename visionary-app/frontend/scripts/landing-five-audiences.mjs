@@ -12,31 +12,31 @@ const roles = [
   {
     slug: 'student', label: 'Students', story: 'to a project',
     questionRole: 'For every student, at every stage',
-    question: /Why doesn’t this make sense yet\?/,
+    question: /Why doesn’t this make sense yet\?/, example: /equivalent fractions/,
     destination: 'Learning,', detail: /Build from what you know/,
   },
   {
     slug: 'teacher', label: 'Teachers', story: 'to a lesson',
     questionRole: 'For every teacher, in every classroom',
-    question: /Did it land with everyone\?/,
+    question: /Did it land with everyone\?/, example: /draw two ways/,
     destination: 'Teaching.', detail: /teach it another way/,
   },
   {
     slug: 'parent', label: 'Parents', story: 'to a conversation',
     questionRole: 'For every parent, at every age',
-    question: /What did they really understand\?/,
+    question: /What did they really understand\?/, example: /practice/,
     destination: 'Parenting.', detail: /What your child understood this week/,
   },
   {
     slug: 'professional', label: 'Professionals', story: 'to a new skill',
     questionRole: 'For every professional, in every field',
-    question: /How do I use this in my work\?/,
+    question: /How do I use this in my work\?/, example: /spreadsheet budget/,
     destination: 'Building.', detail: /Turn every project into a lesson/,
   },
   {
     slug: 'organization', label: 'Organizations', story: 'to a team plan',
     questionRole: 'For every organization, across every team',
-    question: /Where are the gaps across our teams\?/,
+    question: /Where are the gaps across our teams\?/, example: /team-level results/i,
     destination: 'Leading.', detail: /Find gaps before they spread/,
   },
 ];
@@ -74,7 +74,10 @@ for (const [viewportName, width, height, hasTouch] of [
     await assertNoOverflow(page, `${role.label} hero`);
     await page.screenshot({ path: path.join(out, `${viewportName}-${role.slug}-hero.png`) });
 
-    const questionCard = page.locator(`[data-section="06-questions"] [data-audience="${role.slug}"]`);
+    const choice = page.getByRole('group', { name: 'Explore examples by audience' }).getByRole('button', { name: role.label, exact: true });
+    await choice.click();
+    assert.equal(await choice.getAttribute('aria-pressed'), 'true');
+    const questionCard = page.locator(`#question-example-panel[data-audience="${role.slug}"]`);
     await questionCard.scrollIntoViewIfNeeded();
     const questionRole = await questionCard.locator('.question-role').innerText();
     const question = await questionCard.locator('.question-text').innerText();
@@ -82,20 +85,21 @@ for (const [viewportName, width, height, hasTouch] of [
     await questionImage.evaluate(image => image.decode());
     assert.equal(questionRole.toLowerCase(), role.questionRole.toLowerCase(), `${role.label} is named on their question`);
     assert.match(question, role.question, `${role.label} can recognize a real question`);
+    assert.match(await questionCard.locator('.question-example').innerText(), role.example);
     assert.ok(await questionImage.evaluate(image => image.complete && image.naturalWidth > 0), `${role.label} question portrait loads`);
-    assert.equal(await questionCard.locator('a, button').count(), 0, 'Question cards are not doors');
+    const questionLink = questionCard.getByRole('link', { name: `Explore for ${role.label.toLowerCase()}`, exact: true });
+    assert.equal(await questionLink.getAttribute('href'), `/${role.slug}`);
     await assertNoOverflow(page, `${role.label} question`);
     await page.screenshot({ path: path.join(out, `${viewportName}-${role.slug}-question.png`) });
 
     const pathLink = page.getByRole('navigation', { name: 'Audience pages' }).locator(`[href="/${role.slug}"]`);
     await pathLink.scrollIntoViewIfNeeded();
-    const roleLabel = await pathLink.locator('.path-title strong').innerText();
+    const roleLabel = await pathLink.locator('.path-title').innerText();
     const pathImage = pathLink.locator('img');
     await pathImage.evaluate(image => image.decode());
     assert.equal(roleLabel, role.label, `${role.label} is named on their path`);
     assert.ok(await pathImage.evaluate(image => image.complete && image.naturalWidth > 0), `${role.label} path portrait loads`);
-    assert.equal(await pathLink.locator('.path-question, .path-glimpse').count(), 0, 'Path cards are pure doors');
-    assert.equal((await pathLink.innerText()).trim(), role.label, 'Path cards carry only the role name');
+    assert.ok((await pathLink.locator('.path-outcome').innerText()).trim(), `${role.label} path explains what the visitor will find`);
     assert.match(await page.locator('#path-status').innerText(), /in development/);
     await assertNoOverflow(page, `${role.label} path`);
     await page.screenshot({ path: path.join(out, `${viewportName}-${role.slug}-path.png`) });
@@ -127,8 +131,7 @@ for (const [viewportName, width, height, hasTouch] of [
   }
 }
 
-/* The directory must be a second complete set of the same doors, with real
-   portraits and the role's own question and pure door. */
+/* The directory presents the full set of audience destinations. */
 {
   const page = await open(390, 844);
   const directory = page.getByRole('navigation', { name: 'Audience pages' });

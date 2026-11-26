@@ -71,7 +71,7 @@ function AudienceHero({ cast, audiences, ctaTo, ctaLabel }) {
             ))}
           </span>
         </h1>
-        <p>A workspace for students, teachers, parents, professionals and organizations to learn, teach and build.</p>
+        <p>One workspace to learn, teach and build.</p>
         <Link className="home-action" to={ctaTo}>{ctaLabel}</Link>
         {/* Apple's local audience row belongs on the first screen: every
             visitor can recognise their own door without waiting for the
