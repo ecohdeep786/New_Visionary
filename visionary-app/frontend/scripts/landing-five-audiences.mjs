@@ -151,6 +151,23 @@ for (const [viewportName, width, height, hasTouch] of [
   }
 }
 
+/* Long family-sharing headings must still fit when only text is enlarged. */
+{
+  const page = await open(320, 844);
+  await page.getByRole('navigation', { name: 'Audience pages' }).getByRole('link', { name: /^Parents / }).click();
+  const story = page.locator('.category-story[data-audience="parent"]');
+  await story.getByRole('tab', { name: 'Guidance' }).click();
+  await story.getByRole('button', { name: 'বাংলা' }).click();
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    document.documentElement.style.fontSize = '200%';
+  });
+  const widths = await story.evaluate(element => ({ content: element.scrollWidth, available: element.clientWidth }));
+  assert.ok(widths.content <= widths.available + 1, 'Parent sharing headings overflow at 200% text size');
+  receipt.parentTextReflow = widths;
+  await page.close();
+}
+
 /* The directory presents the full set of audience destinations. */
 {
   const page = await open(390, 844);

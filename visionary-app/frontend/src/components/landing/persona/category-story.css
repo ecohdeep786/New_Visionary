@@ -13,8 +13,8 @@
 .category-story[data-audience="organization"] { --cs-accent: #625076; --cs-wash: #ece6f4; --cs-glow: #fbf9fd; }
 .cs-width { width: min(1120px, calc(100% - 2 * clamp(22px, 5vw, 72px))); margin-inline: auto; }
 .category-story :is(h2,h3,p,ul,dl,dd,figure) { margin: 0; }
-.category-story h2 { max-width: 21ch; text-wrap: balance; }
-.category-story h3 { text-wrap: balance; }
+.category-story :is(h2, h3) { text-wrap: balance; overflow-wrap: anywhere; }
+.category-story h2 { max-width: 21ch; }
 .category-story :is(a,button,summary):focus-visible, .cs-panel:focus-visible, .cs-dialog-view:focus-visible {
   outline: 3px solid #0066cc;
   outline-offset: 4px;
