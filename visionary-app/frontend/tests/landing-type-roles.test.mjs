@@ -17,7 +17,7 @@ const SITES = [
   "../src/pages/landing/OrganizationPage.jsx",
   "../src/components/landing/NewPersona.jsx",
   "../src/components/landing/persona/PersonaSections.jsx",
-  "../src/components/landing/persona/PremiumPersonaSections.jsx",
+  "../src/components/landing/persona/CategoryStory.jsx",
 ];
 
 const LADDER = new Set([

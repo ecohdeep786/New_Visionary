@@ -996,71 +996,11 @@
         "PLAT-01"
       ]
     },
-    "frontend/src/components/landing/persona/premium/PremiumAchievementSection.jsx": {
+    "frontend/src/components/landing/persona/CategoryStory.jsx": {
       "profile": "client-presentation",
       "state": "connected",
       "execution": "client",
-      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ]
-    },
-    "frontend/src/components/landing/persona/premium/PremiumCTASection.jsx": {
-      "profile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ]
-    },
-    "frontend/src/components/landing/persona/premium/PremiumExploreSection.jsx": {
-      "profile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ]
-    },
-    "frontend/src/components/landing/persona/premium/PremiumIntelligenceSection.jsx": {
-      "profile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ]
-    },
-    "frontend/src/components/landing/persona/premium/PremiumJourneyFlowSection.jsx": {
-      "profile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ]
-    },
-    "frontend/src/components/landing/persona/premium/PremiumLanguageSection.jsx": {
-      "profile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ]
-    },
-    "frontend/src/components/landing/persona/premium/PremiumTrustSection.jsx": {
-      "profile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "reason": "Public role stories present sample workspace screenshots. Visitors can inspect the examples, switch languages, read about sharing and follow account or rollout links.",
       "followUp": [
         "SCOPE-06",
         "PLAT-01"
@@ -1840,16 +1780,6 @@
         "PLAT-01"
       ]
     },
-    "frontend/src/pages/landing/CollegePage.jsx": {
-      "profile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ]
-    },
     "frontend/src/pages/landing/CommunityPage.jsx": {
       "profile": "client-presentation",
       "state": "connected",
@@ -1881,26 +1811,6 @@
       ]
     },
     "frontend/src/pages/landing/DownloadPage.jsx": {
-      "profile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ]
-    },
-    "frontend/src/pages/landing/OrganizationPage.jsx": {
-      "profile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ]
-    },
-    "frontend/src/pages/landing/ParentPage.jsx": {
       "profile": "client-presentation",
       "state": "connected",
       "execution": "client",
@@ -1971,26 +1881,6 @@
       ]
     },
     "frontend/src/pages/landing/SecurityPage.jsx": {
-      "profile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ]
-    },
-    "frontend/src/pages/landing/StudentPage.jsx": {
-      "profile": "client-presentation",
-      "state": "connected",
-      "execution": "client",
-      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
-      "followUp": [
-        "SCOPE-06",
-        "PLAT-01"
-      ]
-    },
-    "frontend/src/pages/landing/TeacherPage.jsx": {
       "profile": "client-presentation",
       "state": "connected",
       "execution": "client",

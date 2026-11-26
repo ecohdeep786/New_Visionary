@@ -1,0 +1,172 @@
+.category-story {
+  --cs-ink: #1d1d1f;
+  --cs-muted: #505158;
+  --cs-accent: #344984;
+  --cs-wash: #eaf0fb;
+  --cs-glow: #f9fbff;
+  color: var(--cs-ink);
+  background: white;
+}
+.category-story[data-audience="teacher"] { --cs-accent: #305d53; --cs-wash: #e4f0ec; --cs-glow: #f8fcfa; }
+.category-story[data-audience="parent"] { --cs-accent: #7a4449; --cs-wash: #f6e8e4; --cs-glow: #fffaf7; }
+.category-story[data-audience="professional"] { --cs-accent: #3e5073; --cs-wash: #e5ebf3; --cs-glow: #fafbfd; }
+.category-story[data-audience="organization"] { --cs-accent: #625076; --cs-wash: #ece6f4; --cs-glow: #fbf9fd; }
+.cs-width { width: min(1120px, calc(100% - 2 * clamp(22px, 5vw, 72px))); margin-inline: auto; }
+.category-story :is(h2,h3,p,ul,dl,dd,figure) { margin: 0; }
+.category-story h2 { max-width: 21ch; text-wrap: balance; }
+.category-story h3 { text-wrap: balance; }
+.category-story :is(a,button,summary):focus-visible, .cs-panel:focus-visible, .cs-dialog-view:focus-visible {
+  outline: 3px solid #0066cc;
+  outline-offset: 4px;
+}
+.category-story .cs-label { margin-bottom: 13px; font-size: 16px; line-height: 1.4; font-weight: 600; color: var(--cs-accent); }
+.cs-body, .cs-intro, .cs-decisions dd { color: var(--cs-muted); font-size: clamp(17px, 1.35vw, 20px); line-height: 1.5; text-wrap: pretty; }
+.category-story .cs-body { margin-top: 18px; }
+.cs-link, .cs-action { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; font-size: 17px; line-height: 1.25; font-weight: 500; text-decoration: none; }
+.cs-link { color: #064f9e; }
+.cs-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.cs-link svg, .cs-action svg { flex: 0 0 auto; }
+.cs-opening {
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr);
+  gap: clamp(28px, 6vw, 90px);
+  align-items: center;
+  padding-block: clamp(70px, 9vw, 138px);
+}
+.cs-opening-copy { max-width: 540px; }
+.cs-opening-copy .cs-link, .cs-details > .cs-link { margin-top: 16px; }
+.cs-portrait {
+  align-self: stretch;
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  min-height: 295px;
+  max-height: 455px;
+  border-radius: 24px;
+  background: linear-gradient(145deg, var(--cs-glow), var(--cs-wash));
+}
+.cs-portrait img { display: block; width: 100%; height: 100%; max-height: 455px; object-fit: contain; object-position: center bottom; mix-blend-mode: multiply; }
+.cs-workspace { scroll-margin-top: 68px; padding-block: clamp(70px, 8vw, 118px); background: #f5f5f7; }
+.cs-workspace:focus { outline-offset: -4px; }
+.cs-heading { max-width: 850px; }
+.category-story .cs-intro { margin-top: 19px; max-width: 61ch; }
+.category-story .cs-caption, .category-story .cs-language-note { color: #5a5b63; font-size: 14px; line-height: 1.5; }
+.category-story .cs-caption { margin-top: 12px; }
+.cs-steps {
+  margin: clamp(27px, 4vw, 46px) 0 18px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px;
+  width: fit-content; max-width: 100%;
+  border-radius: 27px; padding: 4px;
+  background: #e6e6ea;
+}
+.cs-step, .cs-languages button {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 44px;
+  border: 0; border-radius: 24px; padding: 8px clamp(13px, 2vw, 26px); background: transparent;
+  font: inherit; font-size: 16px; line-height: 1.25; font-weight: 550; cursor: pointer; color: #42434a;
+}
+.cs-step:hover, .cs-languages button:hover { background: #dcdde2; }
+.cs-step[data-state="active"], .cs-languages button[aria-pressed="true"] { color: white; background: #1d1d20; }
+.cs-panel {
+  display: grid; grid-template-columns: minmax(225px, .78fr) minmax(0, 1.65fr);
+  align-items: center; gap: clamp(24px, 3vw, 48px);
+  padding: clamp(25px, 3.5vw, 54px);
+  min-height: clamp(380px, 38vw, 515px);
+  background: radial-gradient(ellipse at 79% 28%, var(--cs-glow) 6%, var(--cs-wash) 94%);
+  border-radius: 28px;
+}
+.cs-panel[hidden] { display: none; }
+.cs-panel-copy { max-width: 29ch; }
+.cs-panel-copy h3 { max-width: 15ch; }
+.cs-screen { display: flex; flex-direction: column; align-items: center; gap: 14px; min-width: 0; }
+.cs-screen picture { display: block; width: 100%; }
+.cs-screen img {
+  display: block; width: auto; max-width: 100%; height: auto; margin: 0 auto;
+  border-radius: 12px; box-shadow: 0 14px 35px -19px rgb(32 36 54 / 36%), 0 1px 3px rgb(32 36 54 / 12%);
+}
+.cs-enlarge, .cs-close { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 44px; cursor: pointer; }
+.cs-enlarge { border: 0; background: transparent; color: var(--cs-accent); font-size: 14px; font-weight: 600; }
+.cs-enlarge:hover { text-decoration: underline; text-underline-offset: 3px; }
+.cs-dialog {
+  margin: auto; padding: 0; width: max-content; max-width: calc(100% - 28px); max-height: 92svh;
+  overflow: visible; border: 0; border-radius: 20px; color: var(--cs-ink); background: white;
+  box-shadow: 0 28px 100px rgb(0 0 0 / 25%);
+}
+.cs-dialog::backdrop { background: rgb(19 20 26 / 58%); }
+body:has(.cs-dialog[open]) { overflow: hidden; }
+.cs-dialog-inner { display: flex; flex-direction: column; max-height: 90svh; padding: 12px; }
+.cs-dialog-header { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 0 0 10px 10px; }
+.cs-close { flex: 0 0 44px; width: 44px; border: 0; border-radius: 50%; background: #ededf1; color: #222327; }
+.cs-dialog-view { overflow: auto; overscroll-behavior: contain; border: 1px solid #e4e4e9; border-radius: 10px; }
+.cs-dialog-view picture, .cs-dialog-view img { display: block; }
+.cs-dialog-view img { max-width: none; height: auto; }
+.cs-language { padding-block: clamp(64px, 8vw, 112px); background: #f7f7f8; }
+.cs-language-layout, .cs-details-questions {
+  display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  column-gap: clamp(32px, 7vw, 100px); align-items: center;
+}
+.cs-language-layout h2 { max-width: 15ch; }
+.cs-languages { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 20px; }
+.cs-languages button { border: 1px solid #cdced3; padding-inline: 18px; }
+.cs-languages button[aria-pressed="true"] { border-color: #1d1d20; }
+.cs-sample { display: grid; align-items: center; min-height: 192px; border-inline-start: 3px solid var(--cs-accent); padding: 22px 0 22px clamp(24px, 3.5vw, 56px); }
+.cs-question { color: var(--cs-accent); font-size: clamp(27px, 3.1vw, 48px); font-weight: 570; line-height: 1.27; letter-spacing: -.025em; text-wrap: balance; }
+.cs-question :is([lang="hi"], [lang="bn"]) { line-height: 1.48; letter-spacing: normal; }
+.category-story .cs-language-note { margin: 28px auto 0; }
+.cs-details { padding-block: clamp(72px, 8.5vw, 124px); }
+.cs-details-questions { align-items: start; }
+.cs-details-questions > .cs-link { grid-column: 2; justify-self: start; }
+.cs-questions { border-top: 1px solid #d5d5d9; }
+.cs-questions details { border-bottom: 1px solid #d5d5d9; }
+.cs-questions summary { display: flex; justify-content: space-between; align-items: center; gap: 14px; min-height: 62px; padding: 15px 3px; color: var(--cs-ink); font-size: clamp(18px, 2vw, 23px); font-weight: 600; line-height: 1.3; cursor: pointer; list-style: none; }
+.cs-questions summary::-webkit-details-marker { display: none; }
+.cs-questions summary svg { flex-shrink: 0; }
+.cs-questions details[open] summary svg { transform: rotate(45deg); }
+.cs-questions .cs-body { margin: 0 20px 20px 3px; }
+.cs-boundaries, .cs-decisions { display: grid; gap: clamp(22px, 4vw, 62px); margin-top: 36px; }
+.cs-boundaries { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cs-boundaries > div, .cs-decisions > div { border-top: 1px solid #c8c9cd; padding-top: 18px; }
+.cs-boundaries ul { padding-left: 1.15em; margin-top: 14px; list-style: disc; }
+.cs-boundaries li { margin: 7px 0; color: var(--cs-muted); font-size: 17px; line-height: 1.5; }
+.cs-boundaries li::marker { color: var(--cs-accent); }
+.category-story .cs-decisions { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 38px; }
+.cs-decisions dt { font-size: clamp(21px, 2.2vw, 27px); line-height: 1.22; font-weight: 600; }
+.cs-decisions dd { margin-top: 12px; font-size: 17px; }
+.cs-next { padding-block: clamp(76px, 9vw, 138px); background: white; border-top: 1px solid #ebebed; text-align: center; }
+.cs-next h2, .cs-next .cs-body { margin-inline: auto; }
+.cs-next .cs-body { max-width: 58ch; }
+.cs-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px 25px; margin-top: 26px; }
+.cs-action { padding: 12px 22px; color: white; border-radius: 25px; background: var(--cs-ink); }
+.cs-action:hover { background: #343439; }
+@media (max-width: 850px) {
+  .cs-panel { grid-template-columns: minmax(195px, .7fr) minmax(0, 1.4fr); min-height: 340px; }
+  .cs-decisions { gap: 22px; }
+}
+@media (max-width: 699px) {
+  .cs-opening, .cs-panel, .cs-language-layout, .cs-details-questions, .cs-boundaries, .category-story .cs-decisions { grid-template-columns: minmax(0, 1fr); }
+  .cs-opening { gap: 22px; }
+  .cs-portrait { min-height: 0; height: clamp(225px, 66vw, 345px); }
+  .cs-portrait img { max-height: 100%; }
+  .cs-panel { min-height: 0; padding: 25px clamp(12px, 3.8vw, 24px) 12px; gap: 23px; border-radius: 20px; }
+  .cs-panel-copy { max-width: 48ch; padding-inline: 6px; }
+  .cs-panel-copy h3 { max-width: none; }
+  .cs-panel-copy .cs-body { margin-top: 10px; }
+  .cs-screen { gap: 4px; }
+  .cs-screen img { border-radius: 8px; }
+  .cs-steps { border-radius: 17px; gap: 3px; }
+  .cs-step { font-size: 15px; padding-inline: 12px; }
+  .cs-language-layout { row-gap: 25px; }
+  .cs-sample { min-height: 95px; padding-block: 5px; }
+  .cs-details-questions { row-gap: 23px; }
+  .cs-details-questions > .cs-link { grid-column: 1; margin-top: 0; }
+  .cs-boundaries { margin-top: 26px; }
+  .category-story .cs-decisions { margin-top: 28px; }
+  .cs-next h2 { max-width: 17ch; }
+}
+@media (max-width: 370px) {
+  .cs-steps { display: grid; width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-actions { flex-direction: column; }
+}
+@media (forced-colors: active) {
+  .cs-step[data-state="active"], .cs-languages button[aria-pressed="true"] { outline: 2px solid Highlight; outline-offset: -4px; }
+  .cs-action, .cs-screen img { border: 1px solid CanvasText; }
+}
