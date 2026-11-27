@@ -13,31 +13,31 @@ const roles = [
     slug: 'student', label: 'Students', story: 'to a project',
     questionRole: 'For every student, at every stage',
     question: /Why doesn’t this make sense yet\?/, example: /equivalent fractions/,
-    destination: 'Learning,', workspace: 'One half, from a picture to a recipe.', steps: ['Learn', 'Ask', 'Practice', 'Build'],
+    destination: 'Learning,', detail: /Build from what you know/,
   },
   {
     slug: 'teacher', label: 'Teachers', story: 'to a lesson',
     questionRole: 'For every teacher, in every classroom',
     question: /Did it land with everyone\?/, example: /draw two ways/,
-    destination: 'Teaching.', workspace: 'From a lesson plan to one learner’s drawing.', steps: ['Prepare', 'Assign', 'Review'],
+    destination: 'Teaching.', detail: /teach it another way/,
   },
   {
     slug: 'parent', label: 'Parents', story: 'to a conversation',
     questionRole: 'For every parent, at every age',
     question: /What did they really understand\?/, example: /practice/,
-    destination: 'Parenting.', workspace: 'A shared summary. A conversation at home.', steps: ['Connect', 'Summary', 'Guidance'],
+    destination: 'Parenting.', detail: /What your child understood this week/,
   },
   {
     slug: 'professional', label: 'Professionals', story: 'to a new skill',
     questionRole: 'For every professional, in every field',
     question: /How do I use this in my work\?/, example: /spreadsheet budget/,
-    destination: 'Building.', workspace: 'Give a skill a job to do.', steps: ['Goal', 'Skill', 'Project'],
+    destination: 'Building.', detail: /Turn every project into a lesson/,
   },
   {
     slug: 'organization', label: 'Organizations', story: 'to a team plan',
     questionRole: 'For every organization, across every team',
     question: /Where are the gaps across our teams\?/, example: /team-level results/i,
-    destination: 'Leading.', workspace: 'One cohort. One shared handoff.', steps: ['Cohort', 'Content', 'Evidence'],
+    destination: 'Leading.', detail: /Find gaps before they spread/,
   },
 ];
 
@@ -113,33 +113,13 @@ for (const [viewportName, width, height, hasTouch] of [
     assert.equal(new URL(page.url()).pathname, `/${role.slug}`);
     await assertNoOverflow(page, `${role.label} destination`);
     await page.screenshot({ path: path.join(out, `${viewportName}-${role.slug}-destination.png`) });
-    const workspace = page.getByRole('region', { name: role.workspace, exact: true });
-    await workspace.getByRole('tablist').waitFor();
-    const availability = await workspace.getByText(/workspace in development/i).innerText();
-    const screens = new Set();
-    for (const label of role.steps) {
-      await workspace.getByRole('tab', { name: label, exact: true }).click();
-      const panel = workspace.getByRole('tabpanel', { name: label, exact: true });
-      const image = panel.getByRole('img');
-      const source = await image.evaluate(async element => {
-        await element.decode();
-        return element.currentSrc;
-      });
-      assert.ok(source.includes(role.slug + '-'), role.label + ' shows its own product');
-      assert.equal(source.includes('-phone'), width < 600, role.label + ' screen matches the viewport');
-      screens.add(source);
-      await assertNoOverflow(page, role.label + ' ' + label);
-    }
-    assert.equal(screens.size, role.steps.length, role.label + ' has a different screen for each step');
-    await workspace.getByRole('button', { name: 'Enlarge screenshot' }).click();
-    await page.getByRole('dialog').waitFor();
-    await page.keyboard.press('Escape');
-    await page.getByRole('dialog').waitFor({ state: 'hidden' });
-    const action = page.locator('.cs-next .cs-action');
-    assert.equal(await action.getAttribute('href'), role.slug === 'organization' ? '/contact#organization-enquiries' : '/register');
+    const intelligence = page.locator('main section[data-section="05-intelligence"]');
+    await intelligence.getByRole('heading', { name: 'One intelligence.', exact: true }).waitFor();
+    const detail = await intelligence.getByRole('heading', { name: role.detail }).innerText();
+    const availability = await intelligence.getByText(/(?:is|are) in development/i).innerText();
     receipt.journeys.push({
       viewport: viewportName, role: role.slug, story: role.story, question, destination: `/${role.slug}`,
-      destinationHeading: heading.split('\n')[0], workspace: role.workspace, steps: role.steps, availability,
+      destinationHeading: heading.split('\n')[0], intelligenceDetail: detail, availability,
     });
     if (viewportName === 'desktop') {
       await page.goBack();
@@ -149,23 +129,6 @@ for (const [viewportName, width, height, hasTouch] of [
     }
     await page.close();
   }
-}
-
-/* Long family-sharing headings must still fit when only text is enlarged. */
-{
-  const page = await open(320, 844);
-  await page.getByRole('navigation', { name: 'Audience pages' }).getByRole('link', { name: /^Parents / }).click();
-  const story = page.locator('.category-story[data-audience="parent"]');
-  await story.getByRole('tab', { name: 'Guidance' }).click();
-  await story.getByRole('button', { name: 'বাংলা' }).click();
-  await page.evaluate(async () => {
-    await document.fonts.ready;
-    document.documentElement.style.fontSize = '200%';
-  });
-  const widths = await story.evaluate(element => ({ content: element.scrollWidth, available: element.clientWidth }));
-  assert.ok(widths.content <= widths.available + 1, 'Parent sharing headings overflow at 200% text size');
-  receipt.parentTextReflow = widths;
-  await page.close();
 }
 
 /* The directory presents the full set of audience destinations. */
