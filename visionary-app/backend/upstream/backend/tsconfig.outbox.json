@@ -1,4 +1,4 @@
 {
   "extends": "./tsconfig.product.json",
-  "files": ["src/outbox/main-consent-outbox.ts"]
+  "files": ["src/outbox/main-consent-outbox.ts", "src/file/index.ts"]
 }
